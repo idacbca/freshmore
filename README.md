@@ -1,5 +1,4 @@
-# freshmore
-Xianduoduo
+# Xianduoduo
 ===============
 
 这是一个基于ThinkPHP 5以及H-ui开发的小型B2C商城。
