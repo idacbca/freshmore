@@ -15,8 +15,6 @@
 define('APP_PATH', __DIR__ . '/../admin/');
 
 //define('VIEW_LAYER','blue');
-// 开启调试模式
-define('APP_DEBUG', true);
 
 // 加载框架引导文件
 require __DIR__ . '/../thinkphp/start.php';
