@@ -69,23 +69,27 @@ var setting = {
 	},
 	callback: {
 		beforeClick: function(treeId, treeNode) {
-			$.ajax({
-				//
-				url:"{:url('product_category_del')}",
-				type:'get',
-				data:{id:treeNode.id},
-				dataType:'json',
-				async: false,
-				success: function(data){
-					if(data == 1){
-						alert("删除成功！");
-						window.location.reload();
-					} else{
-						alert(data);
-						window.location.reload();
+			var v = confirm("确认删除此分类？");
+			if(v == true){
+				$.ajax({
+					//
+					url:"{:url('product_category_del')}",
+					type:'get',
+					data:{id:treeNode.id},
+					dataType:'json',
+					async: false,
+					success: function(data){
+						if(data == 1){
+							alert("删除成功！");
+							window.location.reload();
+						} else{
+							alert(data);
+							window.location.reload();
+						}
 					}
-				}
-			});
+				});
+			}
+			
 		}
 	}
 };
