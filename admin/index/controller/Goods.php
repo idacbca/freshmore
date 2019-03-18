@@ -15,8 +15,19 @@ class Goods extends Controller
 		return $this->fetch();
 	}
 
+	// 商品添加页
 	public function product_add(){
+		$data = db('goods_type')->field("*, concat(path, ',', id) as paths")->order('paths')->select();
+		foreach ($data as $k => $v) {
+			$data[$k]['name'] = str_repeat("|------", $v['level']).$v['name'];
+		}
+		$this->assign('data', $data);
 		return $this->fetch();
+	}
+
+	//添加商品函数
+	public function goods_add(){
+		var_dump($_POST);
 	}
 
 	public function product_category(){
