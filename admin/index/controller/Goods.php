@@ -4,7 +4,8 @@ namespace app\index\controller;
 use think\Controller;
 
 class Goods extends Controller
-{
+{	
+	//商品管理页
 	public function product_list(){
 		$start_time = '';
 		$end_time = '';
@@ -27,13 +28,43 @@ class Goods extends Controller
 
 	//添加商品函数
 	public function goods_add(){
-		var_dump($_POST);
+		$data['goodsname'] = $_POST['goodsname'];
+		$tid = explode(",", $_POST['tid']);
+		$data['tid'] = $tid[0];
+		$data['tpid'] = $tid[1];
+		$data['unit'] = $_POST['unit'];
+		$data['attributes'] = $_POST['attributes'];
+		$data['imagepath'] = "";
+		$data['number'] = $_POST['number'];
+		$data['barcode'] = $_POST['barcode'];
+		$data['curprice'] = $_POST['curprice'];
+		$data['oriprice'] = $_POST['oriprice'];
+		$data['cosprice'] = $_POST['cosprice'];
+		$data['inventory'] = $_POST['inventory'];
+		$data['restrict'] = $_POST['restrict'];
+		$data['already'] = $_POST['already'];
+		$data['freight'] = $_POST['freight'];
+		$data['status'] = $_POST['status'];
+		$data['reorder'] = $_POST['reorder'];
+		// $data['file'] = $_POST['file'];
+		$data['text'] = $_POST['editorValue'];
+
+		$db = db('goods');
+		$result = $db->insert($data);
+
+		if($result){
+			$this->success('商品添加成功！', 'product_list');
+		} else{
+			$this->error('商品添加失败！');
+		}
 	}
 
+	// 商品分类页
 	public function product_category(){
 		return $this->fetch();
 	}
 
+	// 商品分类添加页
 	public function product_category_add(){
 		$data = db('goods_type')->field("*, concat(path, ',', id) as paths")->order('paths')->select();
 		foreach ($data as $k => $v) {
