@@ -7,12 +7,25 @@ class Goods extends Controller
 {	
 	//商品管理页
 	public function product_list(){
-		$start_time = '';
-		$end_time = '';
-		$this->assign([
-			'start_time' => $start_time,
-			'end_time' => $end_time
-		]);
+		// $start_time = '';
+		// $end_time = '';
+		$data = db('goods')->select();
+		$this->assign('data', $data);
+		return $this->fetch();
+	}
+
+	// 编辑商品
+	public function product_edit(){
+		$data = db('goods_type')->field("*, concat(path, ',', id) as paths")->order('paths')->select();
+		foreach ($data as $k => $v) {
+			$data[$k]['name'] = str_repeat("|------", $v['level']).$v['name'];
+		}
+		$this->assign('data', $data);
+
+		$db = db('goods');
+		$id = input('param.id');
+		$goods = $db->find($id);
+		$this->assign('goods', $goods);
 		return $this->fetch();
 	}
 
