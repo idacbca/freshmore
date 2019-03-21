@@ -14,6 +14,16 @@ class Goods extends Controller
 		return $this->fetch();
 	}
 
+	// 删除商品函数
+	public function product_del_ajax(){
+		$id = $_GET['id'];
+		$db = db('goods');
+		$re = $db->where('id', $id)->delete();
+		if($re){
+			echo 1;
+		}
+	}
+
 	// 编辑商品
 	public function product_edit(){
 		$data = db('goods_type')->field("*, concat(path, ',', id) as paths")->order('paths')->select();
@@ -27,6 +37,40 @@ class Goods extends Controller
 		$goods = $db->find($id);
 		$this->assign('goods', $goods);
 		return $this->fetch();
+	}
+
+	//修改商品信息函数
+	public function goods_edit(){
+		$data['id'] = $_POST['id'];
+		$data['goodsname'] = $_POST['goodsname'];
+		$tid = explode(",", $_POST['tid']);
+		$data['tid'] = $tid[0];
+		$data['tpid'] = $tid[1];
+		$data['unit'] = $_POST['unit'];
+		$data['attributes'] = $_POST['attributes'];
+		$data['imagepath'] = "";
+		$data['number'] = $_POST['number'];
+		$data['barcode'] = $_POST['barcode'];
+		$data['curprice'] = $_POST['curprice'];
+		$data['oriprice'] = $_POST['oriprice'];
+		$data['cosprice'] = $_POST['cosprice'];
+		$data['inventory'] = $_POST['inventory'];
+		$data['restrict'] = $_POST['restrict'];
+		$data['already'] = $_POST['already'];
+		$data['freight'] = $_POST['freight'];
+		$data['status'] = $_POST['status'];
+		$data['reorder'] = $_POST['reorder'];
+		// $data['file'] = $_POST['file'];
+		$data['text'] = $_POST['editorValue'];
+
+		$db = db('goods');
+		$result = $db->where('id', $data['id'])->update($data);
+
+		if($result){
+			$this->success('商品修改成功！', 'product_list');
+		} else{
+			$this->error('商品修改失败！');
+		}
 	}
 
 	// 商品添加页

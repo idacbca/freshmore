@@ -57,8 +57,8 @@
 					<tr class="text-c va-m">
 						<td><input name="" type="checkbox" value=""></td>
 						<td>{$vo.id}</td>
-						<td><a onClick="product_show('哥本哈根橡木地板',{url:('product-show')},'10001')" href="javascript:;"><img width="60" class="product-thumb" src="temp/product/Thumb/6204.jpg"></a></td>
-						<td class="text-l"><a style="text-decoration:none" onClick="product_show('哥本哈根橡木地板',{url:('product-show')},'10001')" href="javascript:;"><!-- <img title="国内品牌" src="static/h-ui.admin/images/cn.gif"> --> {$vo.goodsname}</a></td>
+						<td><a href="{:url('product_edit', ['id'=>$vo.id])}"><img width="60" class="product-thumb" src=""></a></td>
+						<td class="text-l"><a style="text-decoration:none" href="{:url('product_edit', ['id'=>$vo.id])}">{$vo.goodsname}</a></td>
 						<td>
 						{switch name="$vo.attributes"}
 						    {case value="1"}推荐{/case}
@@ -76,7 +76,11 @@
 						{if condition="($vo.status == 0)"} <span class="label label-success radius">已上架</span>
 							{else /} <span class="label label-default radius">未上架</span>
 						{/if}</td>
-						<td class="td-manage"><a style="text-decoration:none" onClick="product_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a> <a style="text-decoration:none" class="ml-5" href="{:url('product_edit?id='.$vo.id)}" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="product_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+						<td class="td-manage">
+						{if condition="($vo.status == 0)"}
+							<a style="text-decoration:none" onClick="product_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>
+							{else /}<a style="text-decoration:none" onClick="product_start(this,'10001')" href="javascript:;" title="上架"><i class="Hui-iconfont">&#xe6dc;</i></a>
+						{/if}<a style="text-decoration:none" class="ml-5" href="{:url('product_edit', ['id'=>$vo.id])}" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="product_del(this, {$vo.id})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 					</tr>
 				{/foreach}
 				</tbody>
@@ -158,42 +162,24 @@ $('.table-sort').dataTable({
 	]
 });
 /*产品-添加*/
-function product_add(title,url){
+/*function product_add(title,url){
 	var index = layer.open({
 		type: 2,
 		title: title,
 		content: url
 	});
 	layer.full(index);
-}
+}*/
 /*产品-查看*/
-function product_show(title,url,id){
+/*function product_show(title,url,id){
 	var index = layer.open({
 		type: 2,
 		title: title,
 		content: url
 	});
 	layer.full(index);
-}
-/*产品-审核*/
-function product_shenhe(obj,id){
-	layer.confirm('审核文章？', {
-		btn: ['通过','不通过'], 
-		shade: false
-	},
-	function(){
-		$(obj).parents("tr").find(".td-manage").prepend('<a class="c-primary" onClick="product_start(this,id)" href="javascript:;" title="申请上线">申请上线</a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
-		$(obj).remove();
-		layer.msg('已发布', {icon:6,time:1000});
-	},
-	function(){
-		$(obj).parents("tr").find(".td-manage").prepend('<a class="c-primary" onClick="product_shenqing(this,id)" href="javascript:;" title="申请上线">申请上线</a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-danger radius">未通过</span>');
-		$(obj).remove();
-    	layer.msg('未通过', {icon:5,time:1000});
-	});	
-}
+}*/
+
 /*产品-下架*/
 function product_stop(obj,id){
 	layer.confirm('确认要下架吗？',function(index){
@@ -206,7 +192,7 @@ function product_stop(obj,id){
 
 /*产品-发布*/
 function product_start(obj,id){
-	layer.confirm('确认要发布吗？',function(index){
+	layer.confirm('确认要上架吗？',function(index){
 		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="product_stop(this,id)" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>');
 		$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
 		$(obj).remove();
@@ -235,12 +221,14 @@ function product_edit(title,url,id){
 function product_del(obj,id){
 	layer.confirm('确认要删除吗？',function(index){
 		$.ajax({
-			type: 'POST',
-			url: '',
+			type: 'GET',
+			data: {id:id},
+			url: "{:url('product_del_ajax')}",
 			dataType: 'json',
 			success: function(data){
-				$(obj).parents("tr").remove();
+				// $(obj).parents("tr").remove();
 				layer.msg('已删除!',{icon:1,time:1000});
+				setInterval(function(){window.location.reload()}, 1000);
 			},
 			error:function(data) {
 				console.log(data.msg);
