@@ -295,7 +295,8 @@ $(function(){
 		swf: '/static/admin/lib/webuploader/0.1.5/Uploader.swf',
 	
 		// 文件接收服务端。
-		server: '/static/admin/lib/webuploader/0.1.5/server/fileupload.php',
+		// server: '/static/admin/lib/webuploader/0.1.5/server/fileupload.php',
+		server: '{:url('uploadpic')}',
 	
 		// 选择文件的按钮。可选。
 		// 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -347,8 +348,10 @@ $(function(){
 	});
 	
 	// 文件上传成功，给item添加成功class, 用样式标记上传成功。
-	uploader.on( 'uploadSuccess', function( file ) {
+	uploader.on( 'uploadSuccess', function( file, response ) {
 		$( '#'+file.id ).addClass('upload-state-success').find(".state").text("已上传");
+		console.log(response);
+		// $("#fList_"+ids).append('<input type="hidden" name="'+ids+'[]" value="'+response.filePath+'" />');
 	});
 	
 	// 文件上传失败，显示上传出错。
@@ -539,7 +542,8 @@ $(function(){
             swf: '/static/admin/lib/webuploader/0.1.5/Uploader.swf',
             chunked: false,
             chunkSize: 512 * 1024,
-            server: '/static/admin/lib/webuploader/0.1.5/server/fileupload.php',
+            // server: '/static/admin/lib/webuploader/0.1.5/server/fileupload.php',
+            server: '{:url('uploadpic')}',
             // runtimeOrder: 'flash',
 
             // accept: {

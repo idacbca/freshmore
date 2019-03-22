@@ -10,18 +10,42 @@ class Goods extends Controller
 		// $start_time = '';
 		// $end_time = '';
 		$data = db('goods')->select();
-		$this->assign('data', $data);
+		$count = count($data);
+		$this->assign([
+			'data' => $data,
+			'count' => $count
+		]);
 		return $this->fetch();
 	}
 
-	// 删除商品函数
+	// 删除商品ajax
 	public function product_del_ajax(){
-		$id = $_GET['id'];
+		$id = $_POST['id'];
 		$db = db('goods');
 		$re = $db->where('id', $id)->delete();
 		if($re){
 			echo 1;
-		}
+		}else echo 0;
+	}
+
+	// 商品上架ajax
+	public function product_start_ajax(){
+		$id = $_POST['id'];
+		$db = db('goods');
+		$re = $db->where('id', $id)->update(['status' => '0']);
+		if($re){
+			echo 1;
+		}else echo 0;
+	}
+
+	// 商品下架ajax
+	public function product_stop_ajax(){
+		$id = $_POST['id'];
+		$db = db('goods');
+		$re = $db->where('id', $id)->update(['status' => '1']);
+		if($re){
+			echo 1;
+		}else echo 0;
 	}
 
 	// 编辑商品
@@ -91,7 +115,7 @@ class Goods extends Controller
 		$data['tpid'] = $tid[1];
 		$data['unit'] = $_POST['unit'];
 		$data['attributes'] = $_POST['attributes'];
-		$data['imagepath'] = "";
+		$data['imagepath'] = $_POST['imagepath'];
 		$data['number'] = $_POST['number'];
 		$data['barcode'] = $_POST['barcode'];
 		$data['curprice'] = $_POST['curprice'];
@@ -191,5 +215,24 @@ class Goods extends Controller
 		} else{
 			echo '<script>alert("分类名不能为空！");parent.location.href="product_category"</script>';
 		}
+	}
+
+	// 图片上传控制器(半成)
+	public function uploadpic(){
+		$file = $this->request->file('file');//file是传文件的名称，这是webloader插件固定写入的。因为webloader插件会写入一个隐藏input，这里与TP5的写法有点区别
+	    $file->size = 524288000;
+        $Path = 'public' . DS . 'uploads';
+        $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
+	 
+	    if($info){
+	        // 成功上传后 获取上传信息
+	        // 输出 jpg 地址
+	        $filePath = "/".$Path. DS .$info->getSaveName();
+	        $filePath = str_replace("\\","/",$filePath);   //替换\为/
+	        return json(['success'=>true,'filePath'=>$filePath]);
+	    }else{
+	        // 上传失败获取错误信息
+	        echo $file->getError();
+	    }
 	}
 }
