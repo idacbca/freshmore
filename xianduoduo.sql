@@ -11,11 +11,66 @@
  Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 19/03/2019 13:58:12
+ Date: 22/03/2019 15:03:51
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for admin_user
+-- ----------------------------
+DROP TABLE IF EXISTS `admin_user`;
+CREATE TABLE `admin_user`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `admin_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `admin_password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for auth_group
+-- ----------------------------
+DROP TABLE IF EXISTS `auth_group`;
+CREATE TABLE `auth_group`  (
+  `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` char(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `rules` char(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
+
+-- ----------------------------
+-- Table structure for auth_group_access
+-- ----------------------------
+DROP TABLE IF EXISTS `auth_group_access`;
+CREATE TABLE `auth_group_access`  (
+  `uid` mediumint(8) UNSIGNED NOT NULL,
+  `group_id` mediumint(8) UNSIGNED NOT NULL,
+  UNIQUE INDEX `uid_group_id`(`uid`, `group_id`) USING BTREE,
+  INDEX `uid`(`uid`) USING BTREE,
+  INDEX `group_id`(`group_id`) USING BTREE
+) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
+
+-- ----------------------------
+-- Table structure for auth_rule
+-- ----------------------------
+DROP TABLE IF EXISTS `auth_rule`;
+CREATE TABLE `auth_rule`  (
+  `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` char(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `title` char(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `type` tinyint(1) NOT NULL DEFAULT 1,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `condition` char(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `name`(`name`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
+
+-- ----------------------------
+-- Records of auth_rule
+-- ----------------------------
+INSERT INTO `auth_rule` VALUES (4, 'index/goods/product_category_add', '分类添加', 1, 1, '');
 
 -- ----------------------------
 -- Table structure for goods
@@ -42,12 +97,15 @@ CREATE TABLE `goods`  (
   `reorder` int(255) NULL DEFAULT NULL,
   `text` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
-INSERT INTO `goods` VALUES (1, 'yy', 27, 1, '11', '1', '', 11, 11, 1, 1, 11, 1, 1, 1, 1, '0', 1, '<p>1212</p>');
+INSERT INTO `goods` VALUES (9, '女装大佬', 27, 1, '1', '1', '', 1, 111, 1, 1, 1, 1, 1, 1, 1, '0', 0, '<p>www</p>');
+INSERT INTO `goods` VALUES (10, 'lolita', 34, 27, '件', '1', '', 12, 1212, 1000, 900, 600, 20, 20, 0, 5, '0', 12, '<p>www</p>');
+INSERT INTO `goods` VALUES (11, '康师傅', 34, 27, '件', '5', '', 8, 1212, 400, 400, 300, 100, 100, 0, 0, '1', 11, '<p>www</p>');
+INSERT INTO `goods` VALUES (12, '凯夫拉一型', 32, 31, '件', '4', '', 23, 22323, 80000, 80000, 60000, 10, 10, 0, 10, '1', 23, '<p>wwwww</p>');
 
 -- ----------------------------
 -- Table structure for goods_type
