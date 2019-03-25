@@ -72,7 +72,7 @@ class Goods extends Controller
 		$data['tpid'] = $tid[1];
 		$data['unit'] = $_POST['unit'];
 		$data['attributes'] = $_POST['attributes'];
-		$data['imagepath'] = "";
+		// $data['imagepath'] = "";
 		$data['number'] = $_POST['number'];
 		$data['barcode'] = $_POST['barcode'];
 		$data['curprice'] = $_POST['curprice'];
@@ -115,7 +115,7 @@ class Goods extends Controller
 		$data['tpid'] = $tid[1];
 		$data['unit'] = $_POST['unit'];
 		$data['attributes'] = $_POST['attributes'];
-		$data['imagepath'] = $_POST['imagepath'];
+		// $data['imagepath'] = $_POST['imagepath'];
 		$data['number'] = $_POST['number'];
 		$data['barcode'] = $_POST['barcode'];
 		$data['curprice'] = $_POST['curprice'];
