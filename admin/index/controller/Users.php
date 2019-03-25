@@ -54,11 +54,24 @@ class Users extends Controller
 
     public function admin_role()
     {
+    	$data=db('auth_group')->where("status=1")->select();
+        $this->assign('data',$data);
         return $this->fetch();
     }
 
     public function admin_role_add()
     {
+    	$db = db('auth_rule');
+    	$data = $db->where("status=1")->where('title','like','%分类%')->select();
+    	$this->assign('data',$data);
         return $this->fetch();
+    }
+
+    public function admin_role_add_operte(){
+    	$data['title']=$_POST['roleName'];
+    	$data['rules']=implode(",", $_POST['check']);
+    	$data['status']=1;
+    	$db=db('auth_group');
+    	$result=$db->insert($data);
     }
 }
