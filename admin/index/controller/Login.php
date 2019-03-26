@@ -15,11 +15,13 @@ class Login extends Controller
     {
     	$m=db('admin_user');
     	$data=$m->where('admin_name', $_POST['admin_name'])->where('admin_password', md5($_POST['admin_password']))->find();
+    	$uid = $data['id'];
     	if($data){
-    		session('user',$data);
+    		session('uid', $uid);
     		$this->success("登陆成功", url('index/index/index'));
     	}else{
     		$this->error("登陆失败");
     	}
     }
+
 }

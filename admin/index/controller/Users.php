@@ -27,7 +27,8 @@ class Users extends Controller
 
                     $res1=$m->insert($data);//用户数据库
                     $group['group_id']=$_POST['group_id'];
-                    $group['uid']=$res1;
+                    $uid = db('admin_user')->getLastInsID();
+                    $group['uid']=$uid;
                     $res2=$g->insert($group);//分组数据库
 
 

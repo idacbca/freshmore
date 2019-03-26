@@ -11,7 +11,7 @@
  Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 26/03/2019 14:35:26
+ Date: 26/03/2019 15:43:56
 */
 
 SET NAMES utf8mb4;
@@ -26,13 +26,13 @@ CREATE TABLE `admin_user`  (
   `admin_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `admin_password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
-INSERT INTO `admin_user` VALUES (1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
-INSERT INTO `admin_user` VALUES (2, 'root', '63a9f0ea7bb98050796b649e85481845');
+INSERT INTO `admin_user` VALUES (1, '1234', '81dc9bdb52d04dc20036dbd8313ed055');
+INSERT INTO `admin_user` VALUES (4, 'admin', '21232f297a57a5a743894a0e4a801fc3');
 
 -- ----------------------------
 -- Table structure for auth_group
@@ -44,11 +44,12 @@ CREATE TABLE `auth_group`  (
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `rules` char(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
 
 -- ----------------------------
 -- Records of auth_group
 -- ----------------------------
+INSERT INTO `auth_group` VALUES (17, '超级管理员', 1, '4,5');
 INSERT INTO `auth_group` VALUES (16, '管理员管理', 1, '5');
 INSERT INTO `auth_group` VALUES (15, '商品管理员', 1, '4');
 
@@ -67,8 +68,8 @@ CREATE TABLE `auth_group_access`  (
 -- ----------------------------
 -- Records of auth_group_access
 -- ----------------------------
-INSERT INTO `auth_group_access` VALUES (1, 15);
-INSERT INTO `auth_group_access` VALUES (1, 16);
+INSERT INTO `auth_group_access` VALUES (1, 17);
+INSERT INTO `auth_group_access` VALUES (4, 17);
 
 -- ----------------------------
 -- Table structure for auth_rule

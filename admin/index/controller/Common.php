@@ -8,10 +8,11 @@ class Common extends Controller
 {
     // 当任何函数加载时候  会调用此函数
     public function _initialize(){
-        $uid = session('user')['id'];
-        if(empty($uid)){
-            // echo '<script>alert("没有登陆");location.href="'.url('index/login/index').'"</script>';
-            $this->error('您还没有登录', url('admin/login/login'));
+        $uid = session('uid');
+        $re = input('?session.uid');
+        if(empty($re)){
+            echo '<script>alert("您还没有登陆");window.parent.location.href="'.url('index/login/login').'"</script>';exit;
+            // $this->error('您还没有登录', url('admin/login/login'));
         }
 
         $AUTH = new Auth();
