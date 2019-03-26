@@ -11,7 +11,7 @@
  Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 22/03/2019 15:03:51
+ Date: 26/03/2019 14:35:26
 */
 
 SET NAMES utf8mb4;
@@ -26,7 +26,13 @@ CREATE TABLE `admin_user`  (
   `admin_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `admin_password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of admin_user
+-- ----------------------------
+INSERT INTO `admin_user` VALUES (1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
+INSERT INTO `admin_user` VALUES (2, 'root', '63a9f0ea7bb98050796b649e85481845');
 
 -- ----------------------------
 -- Table structure for auth_group
@@ -38,7 +44,13 @@ CREATE TABLE `auth_group`  (
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `rules` char(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
+
+-- ----------------------------
+-- Records of auth_group
+-- ----------------------------
+INSERT INTO `auth_group` VALUES (16, '管理员管理', 1, '5');
+INSERT INTO `auth_group` VALUES (15, '商品管理员', 1, '4');
 
 -- ----------------------------
 -- Table structure for auth_group_access
@@ -53,6 +65,12 @@ CREATE TABLE `auth_group_access`  (
 ) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
 
 -- ----------------------------
+-- Records of auth_group_access
+-- ----------------------------
+INSERT INTO `auth_group_access` VALUES (1, 15);
+INSERT INTO `auth_group_access` VALUES (1, 16);
+
+-- ----------------------------
 -- Table structure for auth_rule
 -- ----------------------------
 DROP TABLE IF EXISTS `auth_rule`;
@@ -65,11 +83,12 @@ CREATE TABLE `auth_rule`  (
   `condition` char(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `name`(`name`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
 
 -- ----------------------------
 -- Records of auth_rule
 -- ----------------------------
+INSERT INTO `auth_rule` VALUES (5, 'index/users/admin_list', '管理员管理', 1, 1, '');
 INSERT INTO `auth_rule` VALUES (4, 'index/goods/product_category_add', '分类添加', 1, 1, '');
 
 -- ----------------------------
