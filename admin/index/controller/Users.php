@@ -29,7 +29,7 @@ class Users extends Controller
                     $group['group_id']=$_POST['group_id'];
                     $uid = db('admin_user')->getLastInsID();
                     $group['uid']=$uid;
-                    $res2=$g->insert($group);//分组数据库
+                    $res2=$g->insert($group);//分组数据库l
 
 
                     if($res1 && $res2){
