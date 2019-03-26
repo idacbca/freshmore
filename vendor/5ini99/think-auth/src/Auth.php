@@ -91,7 +91,7 @@ class Auth
         'auth_group' => 'auth_group', // 用户组数据表名
         'auth_group_access' => 'auth_group_access', // 用户-用户组关系表
         'auth_rule' => 'auth_rule', // 权限规则表
-        'auth_user' => 'member', // 用户信息表
+        'auth_user' => 'admin_user', // 用户信息表
     ];
 
     /**
@@ -191,8 +191,10 @@ class Auth
             return $groups[$uid];
         }
         // 转换表名
-        $auth_group_access = Loader::parseName($this->config['auth_group_access'], 1);
-        $auth_group = Loader::parseName($this->config['auth_group'], 1);
+        // $auth_group_access = Loader::parseName($this->config['auth_group_access'], 1);
+        // $auth_group = Loader::parseName($this->config['auth_group'], 1);
+        $auth_group_access = $this->config['auth_group_access'];
+        $auth_group = $this->config['auth_group'];
         // 执行查询
         $user_groups = Db::view($auth_group_access, 'uid,group_id')
             ->view($auth_group, 'title,rules', "{$auth_group_access}.group_id={$auth_group}.id", 'LEFT')

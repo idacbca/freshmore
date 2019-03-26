@@ -19,7 +19,8 @@
 <script>
 
 </script>
-  <?php if(isset($msg)) {?>
+  <?php switch ($code) {?>
+  <?php case 1:?>
     <script>
                 swal({
                     title: "",
@@ -29,7 +30,8 @@
                     showConfirmButton: true
                 });
     </script>
-  <?php }else{?>
+  <?php break;?>
+  <?php case 0:?>
   <script>
                 swal({
                     title: "",
@@ -39,6 +41,7 @@
                     showConfirmButton: true
                 });
     </script>
+  <?php break;?>
   <?php }?>
 <b  style = "display:none;"><?php echo($wait); ?></b> </p>
 </div>
