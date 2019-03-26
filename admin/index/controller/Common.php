@@ -10,20 +10,21 @@ class Common extends Controller
     public function _initialize(){
         $re = input('?session.uid');
         if(empty($re)){
-            echo '<script>alert("您还没有登陆");window.parent.location.href="'.url('index/login/login').'"</script>';exit;
-            // $this->error('您还没有登录', url('admin/login/login'));
+            // echo '<script>alert("您还没有登陆");window.parent.location.href="'.url('index/login/login').'"</script>';exit;
+            $this->error('您还没有登录', url('admin/login/login'));
         }
+        $auth = new Auth(); //实例化auth类
 
-        $auth = new Auth();
-        // MODULE_NAME(index).'/'.CONTROLLER_NAME(index).'/'.ACTION_NAME(index)==index/index/index
-
+        //获取当前页面的module/controller/action
         $controller = request()->controller();
         $action = request()->action();
-        $module = request()->action();
+        $module = request()->module();
+
+        $rules = $controller.'/'.$action; //定义检查规则：controller/action
+        $notCheck = array('index/index','index/welcome'); //定义不需要检查的c/a
+
         // if(!$AUTH->check(MODULE_NAME.'/'.CONTROLLER_NAME.'/'.ACTION_NAME, session('user')['id'])){
-        if(!$auth->check($controller.'/'.$action, session('uid'))){
-        
-          // echo '<script>location.href="'.url('index/login/check_error').'"</script>';
+        if(!$auth->check($rules, session('uid'))){
             $this->error('您没有权限', url('index/index/welcome'));
         }
     }

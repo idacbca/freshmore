@@ -60,6 +60,7 @@ class Users extends Controller
         return $this->fetch();
     }
 
+	// 权限管理页面
     public function admin_permission()
     {
     	$data = db('auth_rule')->select();
@@ -71,12 +72,12 @@ class Users extends Controller
 		return $this->fetch();
     }
 
-    // 权限管理页面
+    // 添加权限节点页面
     public function admin_permission_add(){
     	return $this->fetch();
     }
 
-    // 向数据库添加权限
+    // 向数据库添加权限函数
     public function admin_permission_operate(){
     	$data['name'] = $_POST['name'];
         $data['title'] = $_POST['title'];
@@ -88,7 +89,28 @@ class Users extends Controller
         } else{
         	$this->error('权限添加失败！');
         }
+    }
 
+    // 编辑权限节点页面
+    public function admin_permission_edit(){
+    	$id = input('param.id');
+    	$data = db('auth_rule')->find($id);
+    	$this->assign('data', $data);
+    	return $this->fetch();
+    }
+
+    // 修改权限函数
+    public function admin_permission_edit_operate(){
+    	$data['name'] = $_POST['name'];
+        $data['title'] = $_POST['title'];
+        $data['type'] = 1;
+        $data['status'] = 1;
+        $result=db('auth_rule')->where('id', $data['id'])->update($data);
+        if($result){
+        	$this->success('权限修改成功！', 'admin_permission');
+        } else{
+        	$this->error('权限修改失败！');
+        }
     }
 
     public function admin_role()

@@ -48,7 +48,7 @@ class Goods extends Controller
 		}else echo 0;
 	}
 
-	// 编辑商品
+	// 编辑商品页面
 	public function product_edit(){
 		$data = db('goods_type')->field("*, concat(path, ',', id) as paths")->order('paths')->select();
 		foreach ($data as $k => $v) {
