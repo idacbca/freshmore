@@ -102,6 +102,7 @@ class Users extends Controller
 
     // 修改权限函数
     public function admin_permission_edit_operate(){
+    	$data['id'] = $_POST['id'];
     	$data['name'] = $_POST['name'];
         $data['title'] = $_POST['title'];
         $data['type'] = 1;
@@ -114,6 +115,7 @@ class Users extends Controller
         }
     }
 
+    //角色管理页
     public function admin_role()
     {
     	$data = db('auth_group')->where("status=1")->select();
@@ -125,6 +127,7 @@ class Users extends Controller
         return $this->fetch();
     }
 
+    //添加角色页
     public function admin_role_add()
     {
     	$db = db('auth_rule');
