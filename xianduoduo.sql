@@ -11,7 +11,7 @@
  Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 26/03/2019 15:43:56
+ Date: 29/03/2019 10:02:13
 */
 
 SET NAMES utf8mb4;
@@ -84,13 +84,14 @@ CREATE TABLE `auth_rule`  (
   `condition` char(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `name`(`name`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
 
 -- ----------------------------
 -- Records of auth_rule
 -- ----------------------------
-INSERT INTO `auth_rule` VALUES (5, 'index/users/admin_list', '管理员管理', 1, 1, '');
-INSERT INTO `auth_rule` VALUES (4, 'index/goods/product_category_add', '分类添加', 1, 1, '');
+INSERT INTO `auth_rule` VALUES (7, 'goods/product_list', '商品管理', 1, 1, '');
+INSERT INTO `auth_rule` VALUES (5, 'users/admin_list', '管理员管理', 1, 1, '');
+INSERT INTO `auth_rule` VALUES (4, 'goods/product_category', '分类管理', 1, 1, '');
 
 -- ----------------------------
 -- Table structure for goods
@@ -138,7 +139,7 @@ CREATE TABLE `goods_type`  (
   `path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `level` int(255) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 35 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of goods_type
@@ -149,7 +150,7 @@ INSERT INTO `goods_type` VALUES (3, '鞋', 0, '0,3', 1);
 INSERT INTO `goods_type` VALUES (27, '女装', 1, '0,1,27', 2);
 INSERT INTO `goods_type` VALUES (31, '防弹衣', 0, '0,31', 1);
 INSERT INTO `goods_type` VALUES (32, '凯夫拉', 31, '0,31,32', 2);
-INSERT INTO `goods_type` VALUES (33, '小皮鞋', 3, '0,3,33', 2);
 INSERT INTO `goods_type` VALUES (34, '小裙子', 27, '0,1,27,34', 3);
+INSERT INTO `goods_type` VALUES (36, '小皮鞋', 3, '0,3,36', 2);
 
 SET FOREIGN_KEY_CHECKS = 1;

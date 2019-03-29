@@ -10,8 +10,8 @@ class Common extends Controller
     public function _initialize(){
         $re = input('?session.uid');
         if(empty($re)){
-            // echo '<script>alert("您还没有登陆");window.parent.location.href="'.url('index/login/login').'"</script>';exit;
-            $this->error('您还没有登录', url('admin/login/login'));
+            echo '<script>alert("您还没有登陆");window.parent.location.href="'.url('index/login/login').'"</script>';exit;
+            // $this->error('您还没有登录', url('index/login/login'));
         }
         $auth = new Auth(); //实例化auth类
 
@@ -21,11 +21,29 @@ class Common extends Controller
         $module = request()->module();
 
         $rules = $controller.'/'.$action; //定义检查规则：controller/action
-        $notCheck = array('index/index','index/welcome'); //定义不需要检查的c/a
+        /*$notCheck = array(
+            //不检查主页和登出
+            'Index/logout',
+            'Index/index',
+            'Index/welcome',
+            'Goods/product_list',
+            //商品分类内嵌页添加/删除函数
+            'Goods/product_category_add',
+            'Goods/goods_type_add',
+            'Goods/product_category_ajax', 
+            'Goods/product_category_del',
+        ); //定义不需要检查的c/a*/
 
-        // if(!$AUTH->check(MODULE_NAME.'/'.CONTROLLER_NAME.'/'.ACTION_NAME, session('user')['id'])){
-        if(!$auth->check($rules, session('uid'))){
-            $this->error('您没有权限', url('index/index/welcome'));
+        $checkList = array(
+            'Goods/product_category',  //分类管理页
+            'Goods/goods_type_add',  //分类添加
+            'Goods/product_list'  //商品管理页
+        );
+
+        if(in_array($rules, $checkList)){
+            if(!$auth->check($rules, session('uid'))){
+                $this->error('您没有权限');
+            }
         }
     }
 }

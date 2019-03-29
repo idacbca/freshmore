@@ -3,7 +3,7 @@ namespace app\index\controller;
 
 use think\Controller;
 
-class Goods extends Controller
+class Goods extends Common
 {	
 	//商品管理页
 	public function product_list(){

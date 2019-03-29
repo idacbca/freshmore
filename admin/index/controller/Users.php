@@ -29,7 +29,7 @@ class Users extends Controller
                     $group['group_id']=$_POST['group_id'];
                     $uid = db('admin_user')->getLastInsID();
                     $group['uid']=$uid;
-                    $res2=$g->insert($group);//分组数据库l
+                    $res2=$g->insert($group);//分组数据库
 
 
                     if($res1 && $res2){
@@ -124,9 +124,9 @@ class Users extends Controller
     {
     	$db = db('auth_rule');
     	//分类权限节点选择
-    	$cadata = $db->where("status=1")->where('title','like','%分类%')->select();
+    	$cadata = $db->where('status', '1')->where('title','like','分类%')->select();
     	// 管理员权限节点选择
-    	$addata = $db->where("status=1")->where('title','like','%管理员%')->select();
+    	$addata = $db->where('status', '1')->where('title','like','管理员%')->select();
     	$this->assign([
     		'cadata' => $cadata,
     		'addata' => $addata
