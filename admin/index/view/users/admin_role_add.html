@@ -60,7 +60,7 @@
 									分类管理</label>
 							</dt>
 							<dd>
-							{foreach $cadata as $vo}
+							{foreach $category_data as $vo}
 								<label class="">
 									<input type="checkbox" value="{$vo['id']}" name="check[]" id="user-Character-0-0-0">
 									{$vo['title']}</label>
@@ -75,7 +75,7 @@
 									商品管理</label>
 							</dt>
 							<dd>
-							{foreach $cadata as $vo}
+							{foreach $product_data as $vo}
 								<label class="">
 									<input type="checkbox" value="{$vo['id']}" name="check[]" id="user-Character-0-0-0">
 									{$vo['title']}</label>
@@ -124,7 +124,7 @@
 									管理员管理</label>
 							</dt>
 							<dd>
-							{foreach $addata as $vo}
+							{foreach $admin_data as $vo}
 								<label class="">
 									<input type="checkbox" value="{$vo['id']}" name="check[]" id="user-Character-0-0-0">
 									{$vo['title']}</label>

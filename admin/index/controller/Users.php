@@ -124,12 +124,15 @@ class Users extends Controller
     {
     	$db = db('auth_rule');
     	//分类权限节点选择
-    	$cadata = $db->where('status', '1')->where('title','like','分类%')->select();
-    	// 管理员权限节点选择
-    	$addata = $db->where('status', '1')->where('title','like','管理员%')->select();
+    	$category_data = $db->where('status', '1')->where('title','like','分类%')->select();
+    	//管理员权限节点选择
+    	$admin_data = $db->where('status', '1')->where('title','like','管理员%')->select();
+    	//商品权限节点选择
+    	$product_data = $db->where('status', '1')->where('title','like','商品%')->select();
     	$this->assign([
-    		'cadata' => $cadata,
-    		'addata' => $addata
+    		'category_data' => $category_data,
+    		'admin_data' => $admin_data,
+    		'product_data' => $product_data
     	]);
         return $this->fetch();
     }

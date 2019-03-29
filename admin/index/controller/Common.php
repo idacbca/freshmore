@@ -21,27 +21,16 @@ class Common extends Controller
         $module = request()->module();
 
         $rules = $controller.'/'.$action; //定义检查规则：controller/action
-        /*$notCheck = array(
-            //不检查主页和登出
-            'Index/logout',
-            'Index/index',
-            'Index/welcome',
-            'Goods/product_list',
-            //商品分类内嵌页添加/删除函数
-            'Goods/product_category_add',
-            'Goods/goods_type_add',
-            'Goods/product_category_ajax', 
-            'Goods/product_category_del',
-        ); //定义不需要检查的c/a*/
 
-        $checkList = array(
-            'Goods/product_category',  //分类管理页
-            'Goods/goods_type_add',  //分类添加
-            'Goods/product_list'  //商品管理页
-        );
+        $check = db('auth_rule')->where('status', '1')->select();
+        //定义需要检查的controller/action
+        $checkList = array();
+        foreach ($check as $key => $value) {
+            array_push($checkList, $check[$key]['name']);
+        }
 
-        if(in_array($rules, $checkList)){
-            if(!$auth->check($rules, session('uid'))){
+        if(in_array($rules, $checkList)){  //如果在检查队列里才检查权限
+            if(!$auth->check($rules, session('uid'))){ //检查session uid对应的用户组是否具有权限
                 $this->error('您没有权限');
             }
         }
