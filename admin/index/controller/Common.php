@@ -31,7 +31,7 @@ class Common extends Controller
 
         if(in_array($rules, $checkList)){  //如果在检查队列里才检查权限
             if(!$auth->check($rules, session('uid'))){ //检查session uid对应的用户组是否具有权限
-                $this->error('您没有权限');
+                $this->error('您没有权限', url('index/index/welcome'));
             }
         }
     }

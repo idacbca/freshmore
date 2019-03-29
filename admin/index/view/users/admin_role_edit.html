@@ -123,6 +123,36 @@
 							<dt>
 								<label class="">
 									<input type="checkbox" value="" name="user-Character-1-0" id="user-Character-1-0">
+									角色管理</label>
+							</dt>
+							<dd>
+							{foreach $role_data as $vo}
+								<label class="">
+									<input type="checkbox" value="{$vo['id']}" name="check[]" id="user-Character-0-0-0" {if condition="in_array($vo.id,$num)"}checked {/if}>
+									{$vo['title']}</label>
+								<label class="">
+							{/foreach}
+							</dd>
+						</dl>
+						<dl class="cl permission-list2">
+							<dt>
+								<label class="">
+									<input type="checkbox" value="" name="user-Character-1-0" id="user-Character-1-0">
+									权限管理</label>
+							</dt>
+							<dd>
+							{foreach $permission_data as $vo}
+								<label class="">
+									<input type="checkbox" value="{$vo['id']}" name="check[]" id="user-Character-0-0-0" {if condition="in_array($vo.id,$num)"}checked {/if}>
+									{$vo['title']}</label>
+								<label class="">
+							{/foreach}
+							</dd>
+						</dl>
+						<dl class="cl permission-list2">
+							<dt>
+								<label class="">
+									<input type="checkbox" value="" name="user-Character-1-0" id="user-Character-1-0">
 									管理员管理</label>
 							</dt>
 							<dd>
@@ -132,21 +162,6 @@
 									{$vo['title']}</label>
 								<label class="">
 							{/foreach}
-								<!-- <label class="">
-									<input type="checkbox" value="" name="user-Character-1-0-0" id="user-Character-1-0-0">
-									添加</label>
-								<label class="">
-									<input type="checkbox" value="" name="user-Character-1-0-0" id="user-Character-1-0-1">
-									修改</label>
-								<label class="">
-									<input type="checkbox" value="" name="user-Character-1-0-0" id="user-Character-1-0-2">
-									删除</label>
-								<label class="">
-									<input type="checkbox" value="" name="user-Character-1-0-0" id="user-Character-1-0-3">
-									查看</label>
-								<label class="">
-									<input type="checkbox" value="" name="user-Character-1-0-0" id="user-Character-1-0-4">
-									审核</label> -->
 							</dd>
 						</dl>
 					</dd>

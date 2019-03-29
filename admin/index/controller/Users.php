@@ -3,7 +3,7 @@ namespace app\index\controller;
 
 use think\Controller;
 
-class Users extends Controller
+class Users extends Common
 {
     public function admin_add()
     {
@@ -137,10 +137,16 @@ class Users extends Controller
     	$admin_data = $db->where('status', '1')->where('title','like','管理员%')->select();
     	//商品权限节点选择
     	$product_data = $db->where('status', '1')->where('title','like','商品%')->select();
+    	//角色管理权限节点选择
+    	$role_data = $db->where('status', '1')->where('title','like','角色%')->select();
+    	//权限管理权限节点选择
+    	$permission_data = $db->where('status', '1')->where('title','like','权限%')->select();
     	$this->assign([
     		'category_data' => $category_data,
     		'admin_data' => $admin_data,
-    		'product_data' => $product_data
+    		'product_data' => $product_data,
+    		'role_data' => $role_data,
+    		'permission_data' => $permission_data
     	]);
         return $this->fetch();
     }
@@ -167,10 +173,16 @@ class Users extends Controller
     	$admin_data = $db->where('status', '1')->where('title','like','管理员%')->select();
     	//商品权限节点选择
     	$product_data = $db->where('status', '1')->where('title','like','商品%')->select();
+    	//角色管理权限节点选择
+    	$role_data = $db->where('status', '1')->where('title','like','角色%')->select();
+    	//权限管理权限节点选择
+    	$permission_data = $db->where('status', '1')->where('title','like','权限%')->select();
     	$this->assign([
     		'category_data' => $category_data,
     		'admin_data' => $admin_data,
-    		'product_data' => $product_data
+    		'product_data' => $product_data,
+    		'role_data' => $role_data,
+    		'permission_data' => $permission_data
     	]);
 
         $db = db('auth_group');
