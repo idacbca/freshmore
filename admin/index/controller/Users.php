@@ -149,4 +149,61 @@ class Users extends Controller
         	$this->error('角色添加失败！');
         }
     }
+
+    //编辑角色信息
+    public function admin_role_edit(){
+        $db = db('auth_rule');
+    	//分类权限节点选择
+    	$category_data = $db->where('status', '1')->where('title','like','分类%')->select();
+    	//管理员权限节点选择
+    	$admin_data = $db->where('status', '1')->where('title','like','管理员%')->select();
+    	//商品权限节点选择
+    	$product_data = $db->where('status', '1')->where('title','like','商品%')->select();
+    	$this->assign([
+    		'category_data' => $category_data,
+    		'admin_data' => $admin_data,
+    		'product_data' => $product_data
+    	]);
+
+        $db = db('auth_group');
+		$id = input('param.id');
+		$auth_group = $db->find($id);
+        $this->assign('auth_group', $auth_group);
+
+        $rules=db('auth_group')->where('id',$id)->value('rules');
+        $num=explode(",",$rules);
+        $this->assign('num', $num);
+
+		return $this->fetch();
+    }
+       
+        public function admin_role_edit_operte()
+        {
+        $data['id'] = $_POST['id'];
+        $data['title'] = $_POST['roleName'];
+    	$data['rules'] = implode(",", $_POST['check']);
+    	$data['status'] = 1;
+        $db=db('auth_group');
+    	$result=$db->where('id',$data['id'])->update($data);
+    	if($result){
+        	$this->success('角色修改成功！', 'admin_role');
+        } else{
+        	$this->error('角色修改失败！');
+        }
+    }
+    //删除角色ajax
+    public function admin_del_ajax(){
+        $id = $_POST['id'];
+        $db_user=db('auth_group_access');
+        $user_num=$db_user->where('group_id',$id)->count();
+        if($user_num!=0){
+            echo 0;
+        }else{
+        $db = db('auth_group');
+		$re = $db->where('id', $id)->delete();
+		if($re){
+			echo 1;
+        }else echo 0;
+        }
+    }
 }
