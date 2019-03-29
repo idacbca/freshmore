@@ -11,7 +11,7 @@
  Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 29/03/2019 10:02:13
+ Date: 29/03/2019 14:09:01
 */
 
 SET NAMES utf8mb4;
@@ -49,7 +49,7 @@ CREATE TABLE `auth_group`  (
 -- ----------------------------
 -- Records of auth_group
 -- ----------------------------
-INSERT INTO `auth_group` VALUES (17, '超级管理员', 1, '4,5');
+INSERT INTO `auth_group` VALUES (17, '超级管理员', 1, '4,5,7');
 INSERT INTO `auth_group` VALUES (16, '管理员管理', 1, '5');
 INSERT INTO `auth_group` VALUES (15, '商品管理员', 1, '4');
 
@@ -84,14 +84,19 @@ CREATE TABLE `auth_rule`  (
   `condition` char(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `name`(`name`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
 
 -- ----------------------------
 -- Records of auth_rule
 -- ----------------------------
-INSERT INTO `auth_rule` VALUES (7, 'goods/product_list', '商品管理', 1, 1, '');
-INSERT INTO `auth_rule` VALUES (5, 'users/admin_list', '管理员管理', 1, 1, '');
-INSERT INTO `auth_rule` VALUES (4, 'goods/product_category', '分类管理', 1, 1, '');
+INSERT INTO `auth_rule` VALUES (7, 'Goods/product_list', '商品管理页', 1, 1, '');
+INSERT INTO `auth_rule` VALUES (5, 'Users/admin_list', '管理员管理页', 1, 1, '');
+INSERT INTO `auth_rule` VALUES (4, 'Goods/product_category', '分类管理页', 1, 1, '');
+INSERT INTO `auth_rule` VALUES (8, 'Goods/goods_type_add', '分类添加', 1, 1, '');
+INSERT INTO `auth_rule` VALUES (9, 'Goods/product_category_del', '分类删除', 1, 1, '');
+INSERT INTO `auth_rule` VALUES (10, 'Goods/product_add', '商品添加', 1, 1, '');
+INSERT INTO `auth_rule` VALUES (11, 'Goods/product_edit', '商品编辑', 1, 1, '');
+INSERT INTO `auth_rule` VALUES (12, 'Goods/product_del_ajax', '商品删除', 1, 1, '');
 
 -- ----------------------------
 -- Table structure for goods

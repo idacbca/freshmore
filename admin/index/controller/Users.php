@@ -7,7 +7,7 @@ class Users extends Controller
 {
     public function admin_add()
     {
-    	$data=db('auth_group')->where("status=1")->select();
+    	$data = db('auth_group')->where("status=1")->select();
         $this->assign('data',$data);
         return $this->fetch();
     }
@@ -44,6 +44,7 @@ class Users extends Controller
         }
     }
 
+    //管理员列表页
     public function admin_list()
     {
     	$data = db('admin_user')->select();
@@ -115,8 +116,12 @@ class Users extends Controller
 
     public function admin_role()
     {
-    	$data=db('auth_group')->where("status=1")->select();
-        $this->assign('data',$data);
+    	$data = db('auth_group')->where("status=1")->select();
+    	$count = count($data);
+		$this->assign([
+			'data' => $data,
+			'count' => $count
+		]);
         return $this->fetch();
     }
 
