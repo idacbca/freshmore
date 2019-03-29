@@ -9,8 +9,13 @@ class Index extends Common
     {
     	$user = db('admin_user')->where('id', session('uid'))->find();
     	$admin_name = $user['admin_name'];
-    	$id = $user['id'];
-    	$this->assign('admin_name', $admin_name);
+        $id = $user['id'];
+        $group_id = db('auth_group_access')->where('uid',$id)->value('group_id');
+        $role = db('auth_group')->where('id',$group_id)->value('title');
+    	$this->assign([
+            'admin_name'=> $admin_name,
+            'role'=>$role
+        ]);
         return $this->fetch();
     }
 

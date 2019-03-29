@@ -47,13 +47,23 @@ class Users extends Common
     //管理员列表页
     public function admin_list()
     {
+        if($_POST){
+        $search=$_POST['search'];
+        $data = db('admin_user')->where('admin_name','like','%'.$search.'%')->select();
+	    $count = count($data);
+	    $this->assign([
+		'data' => $data,
+		'count' => $count
+		]);
+        return $this->fetch();
+        }else{
     	$data = db('admin_user')->select();
 		$count = count($data);
 		$this->assign([
 			'data' => $data,
 			'count' => $count
 		]);
-        return $this->fetch();
+        return $this->fetch();}
     }
 
     public function admin_password_edit()
@@ -64,6 +74,16 @@ class Users extends Common
 	// 权限管理页面
     public function admin_permission()
     {
+        if($_POST){
+        $search = $_POST['search'];
+        $data=db('auth_rule')->where('title','like','%'.$search.'%')->select();
+		$count = count($data);
+		$this->assign([
+			'data' => $data,
+			'count' => $count
+		]);
+		return $this->fetch();
+        }else{
     	$data = db('auth_rule')->select();
 		$count = count($data);
 		$this->assign([
@@ -71,7 +91,7 @@ class Users extends Common
 			'count' => $count
 		]);
 		return $this->fetch();
-    }
+    }}
 
     // 添加权限节点页面
     public function admin_permission_add(){

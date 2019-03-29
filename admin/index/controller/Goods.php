@@ -9,13 +9,24 @@ class Goods extends Common
 	public function product_list(){
 		// $start_time = '';
 		// $end_time = '';
-		$data = db('goods')->select();
-		$count = count($data);
-		$this->assign([
-			'data' => $data,
-			'count' => $count
-		]);
-		return $this->fetch();
+		if($_POST){
+			$search = $_POST['search'];
+			$data = db('goods')->where('goodsname','like','%'.$search.'%')->select();
+			$count = count($data);
+			$this->assign([
+				'data' => $data,
+				'count' => $count
+			]);
+			return $this->fetch();
+		} else{
+			$data = db('goods')->select();
+			$count = count($data);
+			$this->assign([
+				'data' => $data,
+				'count' => $count
+			]);
+			return $this->fetch();
+		}
 	}
 
 	// 删除商品ajax
