@@ -10,8 +10,8 @@ class Common extends Controller
     public function _initialize(){
         $re = input('?session.uid');
         if(empty($re)){
-            echo '<script>alert("您还没有登陆");window.parent.location.href="'.url('index/login/login').'"</script>';exit;
-            // $this->error('您还没有登录', url('index/login/login'));
+            // echo '<script>alert("您还没有登陆");window.parent.location.href="'.url('index/login/login').'"</script>';exit;
+            $this->error('您还没有登录', url('index/login/login'));
         }
         $auth = new Auth(); //实例化auth类
 
