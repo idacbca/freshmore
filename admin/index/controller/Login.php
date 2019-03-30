@@ -29,6 +29,7 @@ class Login extends Controller
                 $this->error('密码不正确，请重新登陆',url('index/login/login'));
             } else{
                 session('uid', $uid);
+                session('session_start_time', time());
                 $this->success("登陆成功", url('index/index/index'));
             }
         }

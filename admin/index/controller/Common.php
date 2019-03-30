@@ -15,6 +15,11 @@ class Common extends Controller
         }
         $auth = new Auth(); //实例化auth类
 
+        if (time() - session('session_start_time') > config('session')['expire']) {
+            session(null);//真正的销毁在这里！
+            $this->error('登录已过期！', url('index/login/login'));
+        }
+
         //获取当前页面的module/controller/action
         $controller = request()->controller();
         $action = request()->action();
