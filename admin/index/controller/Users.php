@@ -48,23 +48,28 @@ class Users extends Common
     public function admin_list()
     {
         if($_POST){
-	        $search = $_POST['search'];
-	        $data = db('admin_user')->where('admin_name','like','%'.$search.'%')->select();
-		    $count = count($data);
-		    $this->assign([
-				'data' => $data,
-				'count' => $count
-			]);
-        	return $this->fetch();
-        } else{
-	    	$data = db('admin_user')->select();
-			$count = count($data);
-			$this->assign([
-				'data' => $data,
-				'count' => $count
-			]);
-	    	return $this->fetch();
-    	}
+        $search=$_POST['search'];
+        $data = db('admin_user')->where('admin_name','like','%'.$search.'%')->select();
+        $count = count($data);
+        $word = $search;
+        $num = 1;
+	    $this->assign([
+		'data' => $data,
+        'count' => $count,
+        'word' => $word,
+        'num' => $num
+		]);
+        return $this->fetch();
+        }else{
+    	$data = db('admin_user')->select();
+        $count = count($data);
+        $num = 0;
+		$this->assign([
+			'data' => $data,
+            'count' => $count,
+            'num' => $num
+		]);
+        return $this->fetch();}
     }
 
     public function admin_password_edit()
@@ -78,18 +83,24 @@ class Users extends Common
         if($_POST){
         $search = $_POST['search'];
         $data=db('auth_rule')->where('title','like','%'.$search.'%')->select();
-		$count = count($data);
+        $count = count($data);
+        $word=$search;
+        $num = 1;
 		$this->assign([
 			'data' => $data,
-			'count' => $count
+            'count' => $count,
+            'word'=>$word,
+            'num' => $num
 		]);
 		return $this->fetch();
         }else{
     	$data = db('auth_rule')->select();
-		$count = count($data);
+        $count = count($data);
+        $num = 0;
 		$this->assign([
 			'data' => $data,
-			'count' => $count
+            'count' => $count,
+            'num' => $num
 		]);
 		return $this->fetch();
     }}

@@ -11,19 +11,25 @@ class Goods extends Common
 		// $end_time = '';
 		if($_POST){
 			$search = $_POST['search'];
+			$word=$search;
 			$data = db('goods')->where('goodsname','like','%'.$search.'%')->select();
 			$count = count($data);
+			$num = 1;
 			$this->assign([
 				'data' => $data,
-				'count' => $count
+				'count' => $count,
+				'word' => $word,
+				'num' => $num
 			]);
 			return $this->fetch();
 		} else{
 			$data = db('goods')->select();
 			$count = count($data);
+			$num = 0;
 			$this->assign([
 				'data' => $data,
-				'count' => $count
+				'count' => $count,
+				'num' => $num
 			]);
 			return $this->fetch();
 		}
