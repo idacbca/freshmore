@@ -48,22 +48,23 @@ class Users extends Common
     public function admin_list()
     {
         if($_POST){
-        $search=$_POST['search'];
-        $data = db('admin_user')->where('admin_name','like','%'.$search.'%')->select();
-	    $count = count($data);
-	    $this->assign([
-		'data' => $data,
-		'count' => $count
-		]);
-        return $this->fetch();
-        }else{
-    	$data = db('admin_user')->select();
-		$count = count($data);
-		$this->assign([
-			'data' => $data,
-			'count' => $count
-		]);
-        return $this->fetch();}
+	        $search = $_POST['search'];
+	        $data = db('admin_user')->where('admin_name','like','%'.$search.'%')->select();
+		    $count = count($data);
+		    $this->assign([
+				'data' => $data,
+				'count' => $count
+			]);
+        	return $this->fetch();
+        } else{
+	    	$data = db('admin_user')->select();
+			$count = count($data);
+			$this->assign([
+				'data' => $data,
+				'count' => $count
+			]);
+	    	return $this->fetch();
+    	}
     }
 
     public function admin_password_edit()
@@ -217,20 +218,21 @@ class Users extends Common
 		return $this->fetch();
     }
        
-        public function admin_role_edit_operte()
-        {
-        $data['id'] = $_POST['id'];
-        $data['title'] = $_POST['roleName'];
-    	$data['rules'] = implode(",", $_POST['check']);
-    	$data['status'] = 1;
-        $db=db('auth_group');
-    	$result=$db->where('id',$data['id'])->update($data);
-    	if($result){
-        	$this->success('角色修改成功！', 'admin_role');
-        } else{
-        	$this->error('角色修改失败！');
-        }
+    public function admin_role_edit_operte()
+    {
+	    $data['id'] = $_POST['id'];
+	    $data['title'] = $_POST['roleName'];
+		$data['rules'] = implode(",", $_POST['check']);
+		$data['status'] = 1;
+	    $db=db('auth_group');
+		$result=$db->where('id',$data['id'])->update($data);
+		if($result){
+	    	$this->success('角色修改成功！', 'admin_role');
+	    } else{
+	    	$this->error('角色修改失败！');
+	    }
     }
+
     //删除角色ajax
     public function admin_del_ajax(){
         $id = $_POST['id'];
@@ -238,12 +240,12 @@ class Users extends Common
         $user_num=$db_user->where('group_id',$id)->count();
         if($user_num!=0){
             echo 0;
-        }else{
-        $db = db('auth_group');
-		$re = $db->where('id', $id)->delete();
-		if($re){
-			echo 1;
-        }else echo 0;
+        } else{
+	        $db = db('auth_group');
+			$re = $db->where('id', $id)->delete();
+			if($re){
+				echo 1;
+	        }else echo 0;
         }
     }
 }
