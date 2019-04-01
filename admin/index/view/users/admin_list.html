@@ -28,11 +28,7 @@
 <div class="page-container">
 <div class="text-c">
 			<form class="Huiform" method="POST" action="{:url('admin_list')}" target="_self">
-				{if condition = "($num == 1)"}
-				<input type="text" class="input-text" style="width:250px" placeholder="输入管理员名称" id="search" name="search" value="{$word}">
-				{else/}
-				<input type="text" class="input-text" style="width:250px" placeholder="输入管理员名称" id="search" name="search" >
-				{/if}
+				<input type="text" class="input-text" style="width:250px" placeholder="输入管理员名称" id="search" name="search" {if condition="(isset($word))"}value="{$word}" {/if}>
 				<button type="submit" class="btn btn-success" id="" name="" href=""><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
 			</form>
 		</div>

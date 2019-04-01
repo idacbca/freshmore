@@ -14,22 +14,18 @@ class Goods extends Common
 			$word=$search;
 			$data = db('goods')->where('goodsname','like','%'.$search.'%')->select();
 			$count = count($data);
-			$num = 1;
 			$this->assign([
 				'data' => $data,
 				'count' => $count,
-				'word' => $word,
-				'num' => $num
+				'word' => $word
 			]);
 			return $this->fetch();
 		} else{
 			$data = db('goods')->select();
 			$count = count($data);
-			$num = 0;
 			$this->assign([
 				'data' => $data,
-				'count' => $count,
-				'num' => $num
+				'count' => $count
 			]);
 			return $this->fetch();
 		}

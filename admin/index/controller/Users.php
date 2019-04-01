@@ -52,22 +52,18 @@ class Users extends Common
         $data = db('admin_user')->where('admin_name','like','%'.$search.'%')->select();
         $count = count($data);
         $word = $search;
-        $num = 1;
 	    $this->assign([
-		'data' => $data,
-        'count' => $count,
-        'word' => $word,
-        'num' => $num
+		    'data' => $data,
+            'count' => $count,
+            'word' => $word,
 		]);
         return $this->fetch();
         }else{
     	$data = db('admin_user')->select();
         $count = count($data);
-        $num = 0;
 		$this->assign([
 			'data' => $data,
-            'count' => $count,
-            'num' => $num
+            'count' => $count
 		]);
         return $this->fetch();}
     }
@@ -85,22 +81,18 @@ class Users extends Common
         $data=db('auth_rule')->where('title','like','%'.$search.'%')->select();
         $count = count($data);
         $word=$search;
-        $num = 1;
 		$this->assign([
 			'data' => $data,
             'count' => $count,
-            'word'=>$word,
-            'num' => $num
+            'word'=>$word
 		]);
 		return $this->fetch();
         }else{
     	$data = db('auth_rule')->select();
         $count = count($data);
-        $num = 0;
 		$this->assign([
 			'data' => $data,
-            'count' => $count,
-            'num' => $num
+            'count' => $count
 		]);
 		return $this->fetch();
     }}
