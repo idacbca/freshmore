@@ -10,10 +10,15 @@ class Common extends Controller
     public function _initialize(){
         $re = input('?session.uid');
         if(empty($re)){
-            echo '<script>alert("您还没有登陆");window.parent.location.href="'.url('index/login/login').'"</script>';exit;
-            // $this->error('您还没有登录', url('index/login/login'));
+            // echo '<script>alert("您还没有登陆");window.parent.location.href="'.url('index/login/login').'"</script>';exit;
+            $this->error('您还没有登录', url('index/login/login'));
         }
         $auth = new Auth(); //实例化auth类
+
+        if (time() - session('session_start_time') > config('session')['expire']) {
+            session(null);//真正的销毁在这里！
+            $this->error('登录已过期！', url('index/login/login'));
+        }
 
         //获取当前页面的module/controller/action
         $controller = request()->controller();
