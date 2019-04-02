@@ -3,14 +3,14 @@ namespace app\index\controller;
 
 use think\Controller;
 
-class Index extends Controller
+class Goods extends Controller
 {
-    public function index()
+    public function shop_left_sidebar()
     {
         return $this->fetch();
     }
 
-    public function about_us()
+    public function product_detail()
     {
     	return $this->fetch();
     }
