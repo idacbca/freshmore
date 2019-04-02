@@ -33,7 +33,8 @@
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l">
 		<!-- <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>  -->
 		<a href="{:url('admin_permission_add')}" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加权限节点</a></span> <span class="r">共有数据：<strong>{$count}</strong> 条</span> </div>
-	<table class="table table-border table-bordered table-bg">
+		<div class="mt-20">
+	<table class="table table-border table-bordered table-bg table-sort">
 		<thead>
 			<tr>
 				<th scope="col" colspan="7">权限节点</th>
@@ -59,6 +60,7 @@
 		</tbody>
 	</table>
 </div>
+</div>
 <!--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="/static/admin/lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript" src="/static/admin/lib/layer/2.4/layer.js"></script>
@@ -68,6 +70,16 @@
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript" src="/static/admin/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
 <script type="text/javascript">
+
+
+$('.table-sort').dataTable({
+	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
+	"bStateSave": true,//状态保存
+	"aoColumnDefs": [
+	  {"orderable":false,"aTargets":[0,4]}// 制定列不参与排序
+	]
+});
+
 /*
 	参数解释：
 	title	标题
