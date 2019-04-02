@@ -10,7 +10,12 @@ class Goods extends Controller
         return $this->fetch();
     }
 
-    public function product_detail()
+    public function product_details()
+    {
+    	return $this->fetch();
+    }
+
+    public function cart()
     {
     	return $this->fetch();
     }
