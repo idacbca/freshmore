@@ -5,7 +5,7 @@ use think\Controller;
 
 class Checkout extends Controller
 {
-    public function shop_left_sidebar()
+    public function checkout()
     {
         return $this->fetch();
     }
