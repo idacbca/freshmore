@@ -224,7 +224,7 @@
 
 	/* Mobile Menu */
 	$('nav.sn-navigation').meanmenu({
-		meanMenuClose: '<img src="img/icons/icon-close.png" alt="close icon">',
+		meanMenuClose: '<img src="/static/home/img/icons/icon-close.jpg" alt="close icon">',
 		meanMenuCloseSize: '18px',
 		meanScreenWidth: '991',
 		meanExpandableChildren: true,
