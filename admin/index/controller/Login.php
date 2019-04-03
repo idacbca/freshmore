@@ -7,7 +7,12 @@ class Login extends Controller
 {
     public function login()
     {
-        return $this->fetch();
+        $re = session('?uid');
+        if($re){
+            $this->success('您已登录，正在跳转首页',url('index/index/index'));
+        } else{
+            return $this->fetch();
+        }
     }
 
     // 登录函数
