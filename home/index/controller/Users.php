@@ -3,7 +3,7 @@ namespace app\index\controller;
 
 use think\Controller;
 
-class Login extends Controller
+class Users extends Controller
 {
     public function login()
     {
@@ -11,6 +11,11 @@ class Login extends Controller
     }
 
     public function register()
+    {
+    	return $this->fetch();
+    }
+
+    public function my_account()
     {
     	return $this->fetch();
     }
