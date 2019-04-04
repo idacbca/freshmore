@@ -194,8 +194,13 @@ function product_stop(obj,id){
 			url: "{:url('product_stop_ajax')}",
 			dataType: 'json',
 			success: function(data){
-				layer.msg('已下架!',{icon: 5,time:1000});
-				setInterval(function(){window.location.reload()}, 1000);
+				if(data == 1){
+					layer.msg('已下架!',{icon: 5,time:1000});
+					setInterval(function(){window.location.reload()}, 1000);
+				} else{
+					layer.msg('下架失败，权限不足!',{icon: 5,time:1000});
+				}
+				
 			},
 			error:function(data) {
 				console.log(data.msg);
@@ -213,8 +218,12 @@ function product_start(obj,id){
 			url: "{:url('product_start_ajax')}",
 			dataType: 'json',
 			success: function(data){	
-				layer.msg('已上架!',{icon: 6,time:1000});
-				setInterval(function(){window.location.reload()}, 1000);
+				if(data == 1){
+					layer.msg('已上架!',{icon: 6,time:1000});
+					setInterval(function(){window.location.reload()}, 1000);
+				} else{
+					layer.msg('上架失败，权限不足!',{icon: 5,time:1000});
+				}
 			},
 			error:function(data) {
 				console.log(data.msg);

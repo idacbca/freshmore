@@ -38,7 +38,7 @@ class Users extends Common
                         $this->error('失败');
                     }
             }else {
-                    $this->error('当前用户名已存在');
+                $this->error('当前用户名已存在');
             }
             
         }
@@ -48,24 +48,39 @@ class Users extends Common
     public function admin_list()
     {
         if($_POST){
-        $search=$_POST['search'];
-        $data = db('admin_user')->where('admin_name','like','%'.$search.'%')->select();
-        $count = count($data);
-        $word = $search;
-	    $this->assign([
-		    'data' => $data,
-            'count' => $count,
-            'word' => $word,
-		]);
-        return $this->fetch();
-        }else{
-    	$data = db('admin_user')->select();
-        $count = count($data);
-		$this->assign([
-			'data' => $data,
-            'count' => $count
-		]);
-        return $this->fetch();}
+            $search=$_POST['search'];
+            $data = db('admin_user')
+                ->alias('au')
+                ->join('auth_group_access aga','au.id = aga.uid')
+                ->join('auth_group ag','aga.group_id = ag.id')
+                ->where('admin_name','like','%'.$search.'%')
+                ->select();
+            $count = count($data);
+            $word = $search;
+            $this->assign([
+                'data' => $data,
+                'count' => $count,
+                'word' => $word,
+            ]);
+            return $this->fetch();
+        }else {
+            $data = db('admin_user')
+                ->alias('au')
+                ->join('auth_group_access aga','au.id = aga.uid')
+                ->join('auth_group ag','aga.group_id = ag.id')
+                ->select();
+            $count = count($data);
+            $this->assign([
+                'data' => $data,
+                'count' => $count
+            ]);
+            return $this->fetch();}
+    }
+
+    //管理员列表页，管理员停用ajax
+    public function admin_stop_ajax()
+    {
+        
     }
 
     public function admin_password_edit()
