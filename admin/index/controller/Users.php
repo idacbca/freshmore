@@ -192,7 +192,8 @@ class Users extends Common
 
     public function admin_role_add_operte(){
     	$data['title'] = $_POST['roleName'];
-    	$data['rules'] = implode(",", $_POST['check']);
+        $data['rules'] = implode(",", $_POST['check']);
+        $data['description'] = $_POST['description'];
     	$data['status'] = 1;
     	$db=db('auth_group');
     	$result=$db->insert($data);
@@ -240,7 +241,8 @@ class Users extends Common
     {
 	    $data['id'] = $_POST['id'];
 	    $data['title'] = $_POST['roleName'];
-		$data['rules'] = implode(",", $_POST['check']);
+        $data['rules'] = implode(",", $_POST['check']);
+        $data['description'] = $_POST['description'];
 		$data['status'] = 1;
 	    $db=db('auth_group');
 		$result=$db->where('id',$data['id'])->update($data);
