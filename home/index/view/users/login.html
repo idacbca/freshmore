@@ -40,8 +40,8 @@
 													</div>
 													<div class="single-input">
 														<label for="login-form-identify">验证码</label>
-														<input id="t1" type="text" name="u" onblur="but()"/>
-														<span id="discode"></span>
+														<input class="col-md-6" id="t1" type="text" name="u" onblur="but()"/>
+														<span class="col-md-6" id="discode"></span>
 													</div>
 													<div class="single-input">
 														<input type="button" value="加载验证码" class="sn-button sn-button-dark mr-3" onClick="createCode()">
@@ -96,7 +96,6 @@ function createCode()
  document.getElementById("discode").style.color="#0ab000"; //字体颜色
  document.getElementById("discode").innerHTML=code; // 显示
 }
-
 
 function but()
 {//验证验证码输入是否正确
