@@ -78,17 +78,19 @@
                     <nav class="sn-navigation">
                         <ul>
 							<li><a href="{:url('index/index/index')}">主页</a></li>
-							<li><p>商品分类</p>
+							<li><a href="{:url('index/goods/shop_left_sidebar')}">商品分类</a>
 								<ul>
                                    {foreach $type as $data}
                                    
-                                    <li><a href="product-details.html">{$data['name']}</a>
+                                    <li><a href="{:url('goods', ['id'=>$data.id])}">{$data['name']}</a>
 										<ul>
                                             {foreach $data['chlid'] as $data2}
-                                            <li><a href="product-details.html">{$data2['name']}</a>
+                                            <li><a href="{:url('index/goods/list')}">{$data2['name']}</a>
                                             <ul>
                                                 {foreach $data2['chlid2'] as $data3}
-                                                <li><a href="product-details.html">{$data3['name']}</a></li>
+                                                <!-- if($data3['id']){ -->
+                                                    <li><a href="{:url('index/goods/list')}">{$data3['name']}</a></li>
+                                                <!-- } -->
                                                 {/foreach}
                                             </ul>
                                             </li>
