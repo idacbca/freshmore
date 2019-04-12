@@ -7,6 +7,7 @@ class Goods extends Controller
 {
     public function shop_left_sidebar()
     {
+        $goodstype = model('GoodsType');
         return $this->fetch();
     }
 
