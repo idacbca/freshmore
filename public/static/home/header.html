@@ -16,16 +16,18 @@
                     {if condition="session('?cid')"}
                     <div class="col-lg-6 col-md-6 col-12">
                         <ul class="header-top-right">
-                            <li><a href="my-account.html">我的主页</a></li>
-                            <li><a href="cart.html">购物车</a></li>
-                            <li><a href="checkout.html">结算</a></li>
+                            
+                            <li><a href="{:url('index/users/my_account')}">我的主页</a></li>
+                            <li><a href="{:url('index/goods/cart')}">购物车</a></li>
+                            <li><a href="{:url('index/checkout/checkout')}">结算</a></li>
                         </ul>
                     </div>
                     {else}
                     <div class="col-lg-6 col-md-6 col-12">
                         <ul class="header-top-right">
-                            <li><a href="login.html">登录</a></li>
-                            <li><a href="cart.html">购物车</a></li>
+                            <li><a href="{:url('index/users/login')}">登录</a></li>
+                            <li><a href="{:url('index/users/register')}">注册</a></li>
+                            <li><a href="{:url('index/goods/cart')}">购物车</a></li>
                         </ul>
                     </div>
                     {/if}
@@ -54,7 +56,7 @@
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-7 col-12">
                         <div class="header-logo">
-                            <a href="index.html">
+                            <a href="{:url('index/index/index')}">
                                 <img src="/static/home/img/logo/logo1.png" alt="logo">
                             </a>
                         </div>
@@ -74,35 +76,28 @@
             <div class="container">
                 <div class="header-bottom-inner">
                     <nav class="sn-navigation">
-                        <ul> 
-                            
-                            <li><a href="index.html">主页</a></li>
-
+                        <ul>
+							<li><a href="{:url('index/index/index')}">主页</a></li>
 							<li><p>商品分类</p>
 								<ul>
+                                   {foreach $type as $data}
                                    
-                                    <li><a href="product-details.html">二级分类</a>
+                                    <li><a href="product-details.html">{$data['name']}</a>
 										<ul>
-											<li><a href="product-details.html">三级分类</a></li>
-											<li><a href="product-details.html">三级分类</a></li>
-											<li><a href="product-details.html">三级分类</a></li>
+                                            {foreach $data['chlid'] as $data2}
+                                            <li><a href="product-details.html">{$data2['name']}</a>
+                                            <ul>
+                                                {foreach $data2['chlid2'] as $data3}
+                                                <li><a href="product-details.html">{$data3['name']}</a></li>
+                                                {/foreach}
+                                            </ul>
+                                            </li>
+											{/foreach}
 										</ul>
-									</li>
-									<li><a href="product-details.html">二级分类</a>
-										<ul>
-											<li><a href="product-details.html">三级分类</a></li>
-											<li><a href="product-details.html">三级分类</a></li>
-											<li><a href="product-details.html">三级分类</a></li>
-										</ul>
-									</li>
-									<li><a href="product-details.html">二级分类</a>
-										<ul>
-											<li><a href="product-details.html">三级分类</a></li>
-											<li><a href="product-details.html">三级分类</a></li>
-											<li><a href="product-details.html">三级分类</a></li>
-										</ul>
-									</li>
-								</ul>
+									</li>	
+                                    {/foreach}
+                                </ul>
+                                
                             </li>
                             
 						</ul>

@@ -16,10 +16,10 @@ class Index extends Controller
              $type2=$m->where("pid=".$value['id'])->select();//获取二级分类
 
              foreach($type2 as $k=>$v){
+                
+
+                array_push($type[$key]['chlid'],$v);//合并一级二级分类
                 $type[$key]['chlid'][$k]['chlid2']=array(); //组装三级分类的数组
-
-                 array_push($type[$key]['chlid'],$v);//合并一级二级分类
-
                 $type3=$m->where("pid=".$v['id'])->select(); //获取三级分类
                 
                 foreach($type3 as $v2){
@@ -31,9 +31,11 @@ class Index extends Controller
              }
 
         }
-        
-       // var_dump($type);
 
+        
+        
+        $this->assign('type',$type);
+        //var_dump($type);
         return $this->fetch();
         
     }
@@ -42,4 +44,5 @@ class Index extends Controller
     {
     	return $this->fetch();
     }
+    
 }

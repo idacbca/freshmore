@@ -130,22 +130,22 @@ class Goods extends Common
 		$data['attributes'] = $_POST['attributes'];
 		// $data['imagepath'] = $_POST['imagepath'];
 		$data['number'] = $_POST['number'];
-		$data['barcode'] = $_POST['barcode'];
+		//$data['barcode'] = $_POST['barcode'];
 		$data['curprice'] = $_POST['curprice'];
-		$data['oriprice'] = $_POST['oriprice'];
+		//$data['oriprice'] = $_POST['oriprice'];
 		$data['cosprice'] = $_POST['cosprice'];
 		$data['inventory'] = $_POST['inventory'];
-		$data['restrict'] = $_POST['restrict'];
-		$data['already'] = $_POST['already'];
+		//$data['restrict'] = $_POST['restrict'];
+		//$data['already'] = $_POST['already'];
 		$data['freight'] = $_POST['freight'];
 		$data['status'] = $_POST['status'];
-		$data['reorder'] = $_POST['reorder'];
-		// $data['file'] = $_POST['file'];
+		//$data['reorder'] = $_POST['reorder'];
+	    // $data['file'] = $_POST['file'];
 		$data['text'] = $_POST['editorValue'];
 
 		$db = db('goods');
 		$result = $db->insert($data);
-
+        
 		if($result){
 			$this->success('商品添加成功！', 'product_list');
 		} else{

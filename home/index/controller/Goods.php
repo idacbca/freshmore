@@ -19,4 +19,6 @@ class Goods extends Controller
     {
     	return $this->fetch();
     }
+    
+   
 }
