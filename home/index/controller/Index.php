@@ -21,12 +21,6 @@ class Index extends Common
     	return $this->fetch();
     }
     
-    public function list()
-    {
-        $id=db('goods');
-        $this->assign('id',$id);
-    	return $this->fetch();
-    }
    
 
 }

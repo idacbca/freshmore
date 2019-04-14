@@ -82,14 +82,14 @@
 								<ul>
                                    {foreach $type as $data}
                                    
-                                    <li><a href="{:url('goods', ['id'=>$data.id])}">{$data['name']}</a>
+                                    <li><a href="{:url('index/goods/shop_left_sidebar', ['id'=>$data.id])}">{$data['name']}</a>
 										<ul>
                                             {foreach $data['chlid'] as $data2}
-                                            <li><a href="{:url('index/goods/list')}">{$data2['name']}</a>
+                                            <li><a href="{:url('index/goods/shop_left_sidebar', ['id'=>$data.id])}">{$data2['name']}</a>
                                             <ul>
                                                 {foreach $data2['chlid2'] as $data3}
                                                 <!-- if($data3['id']){ -->
-                                                    <li><a href="{:url('index/goods/list')}">{$data3['name']}</a></li>
+                                                    <li><a href="{:url('index/goods/shop_left_sidebar', ['id'=>$data.id])}">{$data3['name']}</a></li>
                                                 <!-- } -->
                                                 {/foreach}
                                             </ul>

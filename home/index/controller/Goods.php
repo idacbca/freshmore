@@ -26,5 +26,5 @@ class Goods extends Common
     	return $this->fetch();
     }
     
-   
+    
 }
