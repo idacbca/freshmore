@@ -21,6 +21,5 @@ class Index extends Common
     	return $this->fetch();
     }
     
-   
-
+    
 }

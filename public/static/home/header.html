@@ -44,11 +44,9 @@
                         <form class="header-search">
                             <select name="header-search-categories">
                                 <option value="1">全部种类</option>
-                                <option value="1">水果</option>
-                                <option value="1">鲜蔬</option>
-                                <option value="1">海产</option>
-                                <option value="1">肉禽蛋品</option>
-                            
+                                {foreach $type as $data}
+                                <option value="1">{$data['name']}</option>
+                                {/foreach}
                             </select>
                             <input type="text" placeholder="请输入商品名">
                             <button type="submit"><i class="fa fa-search"></i></button>
@@ -85,11 +83,11 @@
                                     <li><a href="{:url('index/goods/shop_left_sidebar', ['id'=>$data.id])}">{$data['name']}</a>
 										<ul>
                                             {foreach $data['chlid'] as $data2}
-                                            <li><a href="{:url('index/goods/shop_left_sidebar', ['id'=>$data.id])}">{$data2['name']}</a>
+                                            <li><a href="{:url('index/goods/shop_left_sidebar', ['id'=>$data2.id])}">{$data2['name']}</a>
                                             <ul>
                                                 {foreach $data2['chlid2'] as $data3}
                                                 <!-- if($data3['id']){ -->
-                                                    <li><a href="{:url('index/goods/shop_left_sidebar', ['id'=>$data.id])}">{$data3['name']}</a></li>
+                                                    <li><a href="{:url('index/goods/shop_left_sidebar', ['id'=>$data3.id])}">{$data3['name']}</a></li>
                                                 <!-- } -->
                                                 {/foreach}
                                             </ul>
