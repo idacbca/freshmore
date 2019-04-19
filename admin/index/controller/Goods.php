@@ -80,31 +80,6 @@ class Goods extends Common
 
 	//修改商品信息函数
 	public function goods_edit(){
-		/*$data['id'] = $_POST['id'];
-		$data['goodsname'] = $_POST['goodsname'];
-		$tid = explode(",", $_POST['tid']);
-		$data['tid'] = $tid[0];
-		$data['tpid'] = $tid[1];
-		$data['unit'] = $_POST['unit'];
-		$data['attributes'] = $_POST['attributes'];
-		// $data['imagepath'] = "";
-		$data['number'] = $_POST['number'];
-		$data['barcode'] = $_POST['barcode'];
-		$data['curprice'] = $_POST['curprice'];
-		$data['oriprice'] = $_POST['oriprice'];
-		$data['cosprice'] = $_POST['cosprice'];
-		$data['inventory'] = $_POST['inventory'];
-		$data['restrict'] = $_POST['restrict'];
-		$data['already'] = $_POST['already'];
-		$data['freight'] = $_POST['freight'];
-		$data['status'] = $_POST['status'];
-		$data['reorder'] = $_POST['reorder'];
-		// $data['file'] = $_POST['file'];
-		$data['text'] = $_POST['editorValue'];
-
-		$db = db('goods');
-		$result = $db->where('id', $data['id'])->update($data);*/
-
 		$goods = model('goods');
 		$tid = explode(",", $_POST['tid']);
 		$result = $goods->save([
