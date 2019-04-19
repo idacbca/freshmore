@@ -34,7 +34,7 @@ class Users extends Common
                         $this->error('密码不正确，请重新登陆');
                     } else{
                         session('cid', $cid);
-                        session('session_start_time', time());
+                        session('session_start_time_f', time());
                         $this->success("登陆成功", url('index/index/index'));
                     }
                 }
