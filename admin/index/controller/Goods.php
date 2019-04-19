@@ -12,7 +12,8 @@ class Goods extends Common
 		if($_POST){
 			$search = $_POST['search'];
 			$word=$search;
-			$data = db('goods')->where('goodsname','like','%'.$search.'%')->select();
+			$goods = model('goods');
+			$data = $goods->where('goodsname','like','%'.$search.'%')->select();
 			$count = count($data);
 			$this->assign([
 				'data' => $data,
@@ -21,7 +22,8 @@ class Goods extends Common
 			]);
 			return $this->fetch();
 		} else{
-			$data = db('goods')->select();
+			$goods = model('goods');
+			$data = $goods->select();
 			$count = count($data);
 			$this->assign([
 				'data' => $data,
@@ -78,7 +80,7 @@ class Goods extends Common
 
 	//修改商品信息函数
 	public function goods_edit(){
-		$data['id'] = $_POST['id'];
+		/*$data['id'] = $_POST['id'];
 		$data['goodsname'] = $_POST['goodsname'];
 		$tid = explode(",", $_POST['tid']);
 		$data['tid'] = $tid[0];
@@ -101,7 +103,24 @@ class Goods extends Common
 		$data['text'] = $_POST['editorValue'];
 
 		$db = db('goods');
-		$result = $db->where('id', $data['id'])->update($data);
+		$result = $db->where('id', $data['id'])->update($data);*/
+
+		$goods = model('goods');
+		$tid = explode(",", $_POST['tid']);
+		$result = $goods->save([
+		    'goodsname'  =>  $_POST['goodsname'],
+		    'tid' => $tid[0],
+			'tpid' => $tid[1],
+			'unit' => $_POST['unit'],
+			'attributes' => $_POST['attributes'],
+			'number' => $_POST['number'],
+			'curprice' => $_POST['curprice'],
+			'cosprice' => $_POST['cosprice'],
+			'inventory' => $_POST['inventory'],
+			'freight' => $_POST['freight'],
+			'status' => $_POST['status'],
+			'text' => $_POST['editorValue']
+		],['id' => $_POST['id']]);
 
 		if($result){
 			$this->success('商品修改成功！', 'product_list');
@@ -122,29 +141,45 @@ class Goods extends Common
 
 	//添加商品函数
 	public function goods_add(){
-		$data['goodsname'] = $_POST['goodsname'];
-		$tid = explode(",", $_POST['tid']);
+		/*$data['goodsname'] = $_POST['goodsname'];
 		$data['tid'] = $tid[0];
 		$data['tpid'] = $tid[1];
 		$data['unit'] = $_POST['unit'];
 		$data['attributes'] = $_POST['attributes'];
-		// $data['imagepath'] = $_POST['imagepath'];
+		$data['imagepath'] = $_POST['imagepath'];
 		$data['number'] = $_POST['number'];
-		//$data['barcode'] = $_POST['barcode'];
+		$data['barcode'] = $_POST['barcode'];
 		$data['curprice'] = $_POST['curprice'];
-		//$data['oriprice'] = $_POST['oriprice'];
+		$data['oriprice'] = $_POST['oriprice'];
 		$data['cosprice'] = $_POST['cosprice'];
 		$data['inventory'] = $_POST['inventory'];
-		//$data['restrict'] = $_POST['restrict'];
-		//$data['already'] = $_POST['already'];
+		$data['restrict'] = $_POST['restrict'];
+		$data['already'] = $_POST['already'];
 		$data['freight'] = $_POST['freight'];
 		$data['status'] = $_POST['status'];
-		//$data['reorder'] = $_POST['reorder'];
-	    // $data['file'] = $_POST['file'];
-		$data['text'] = $_POST['editorValue'];
+		$data['reorder'] = $_POST['reorder'];
+	    $data['file'] = $_POST['file'];
+		$data['text'] = $_POST['editorValue'];*/
 
-		$db = db('goods');
-		$result = $db->insert($data);
+		$goods = model('goods');
+		$tid = explode(",", $_POST['tid']);
+		$goods->data([
+		    'goodsname'  =>  $_POST['goodsname'],
+		    'tid' => $tid[0],
+			'tpid' => $tid[1],
+			'unit' => $_POST['unit'],
+			'attributes' => $_POST['attributes'],
+			'number' => $_POST['number'],
+			'curprice' => $_POST['curprice'],
+			'cosprice' => $_POST['cosprice'],
+			'inventory' => $_POST['inventory'],
+			'freight' => $_POST['freight'],
+			'status' => $_POST['status'],
+			'text' => $_POST['editorValue']
+		]);
+
+		$result = $goods->save();
+		// $result = $db->insert($data);
         
 		if($result){
 			$this->success('商品添加成功！', 'product_list');

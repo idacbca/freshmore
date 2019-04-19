@@ -9,8 +9,8 @@ class Goods extends Common
     {
         if(input('?get.id')){
             $type = $this->getCatgory();
-            $m = db('goods');
-            $data = $m->where("tid=".$_GET['id'].'or tpid='.$_GET['id'])->select();
+            $goods = model('goods');
+            $data = $goods->where("tid=".$_GET['id'].'or tpid='.$_GET['id'])->select();
             //var_dump($data);
             $this->assign([
                 'product' => $data,
