@@ -7,21 +7,24 @@ class Goods extends Common
 {
     public function shop_left_sidebar()
     {
-        $type = $this->getCatgory();
-        $this->assign('type',$type); 
-        return $this->fetch();
-        if($_GET['id']){
-            $m=db('goods');
-            $data=$m->where("tid=".$_GET['id'].'or tpid='.$_GET['id'])->select();
+        if(input('?get.id')){
+            $type = $this->getCatgory();
+            $m = db('goods');
+            $data = $m->where("tid=".$_GET['id'].'or tpid='.$_GET['id'])->select();
             //var_dump($data);
-            $this->assign('data',$data);
+            $this->assign([
+                'product' => $data,
+                'type' => $type
+            ]);
             return $this->fetch();
-        }
-        else{
-            $m=db('goods');
-          //$data=$m->where("tid=".$_GET['id'].'or tpid='.$_GET['id'])->select();
-          //var_dump($data);
-            $this->assign('data',$m);
+        } else{
+            $type = $this->getCatgory();
+            $goods = model('goods');
+            $data = $goods->select();
+            $this->assign([
+                'product' => $data,
+                'type' => $type
+            ]);
             return $this->fetch();
         }
     }

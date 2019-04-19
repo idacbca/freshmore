@@ -61,7 +61,60 @@
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-5 col-12">
                         <div class="header-cart-wrap">
-                        
+                            {if condition="session('?cid')"}
+                            <div class="header-cart">
+                                <a href="{:url('index/goods/cart')}" class="header-cart-button"><i class="fa fa-shopping-cart"></i> 购物车 (0)</a>
+                                <div class="minicart">
+                                    <ul class="minicart-product-list">
+                                        <li>
+                                            <a href="product-details-right-sidebar.html" class="minicart-product-image">
+                                                <img src="/static/home/img/product/small-size/product-image-1.jpg" alt="cart products">
+                                                <span class="quantity">1</span>
+                                            </a>
+                                            <div class="minicart-product-details">
+                                                <h6><a href="product-details-right-sidebar.html">Aenean eu tristique</a></h6>
+                                                <span>£80</span>
+                                            </div>
+                                            <button class="close">
+                                                <i class="fa fa-times-circle"></i>
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <a href="product-details-right-sidebar.html" class="minicart-product-image">
+                                                <img src="/static/home/img/product/small-size/product-image-2.jpg" alt="cart products">
+                                                <span class="quantity">1</span>
+                                            </a>
+                                            <div class="minicart-product-details">
+                                                <h6><a href="product-details-right-sidebar.html">Aenean sagittis</a></h6>
+                                                <span>£80</span>
+                                            </div>
+                                            <button class="close">
+                                                <i class="fa fa-times-circle"></i>
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <a href="product-details-right-sidebar.html" class="minicart-product-image">
+                                                <img src="/static/home/img/product/small-size/product-image-3.jpg" alt="cart products">
+                                                <span class="quantity">1</span>
+                                            </a>
+                                            <div class="minicart-product-details">
+                                                <h6><a href="product-details-right-sidebar.html">Aliquam lobortis est</a></h6>
+                                                <span>£80</span>
+                                            </div>
+                                            <button class="close">
+                                                <i class="fa fa-times-circle"></i>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                    <p class="minicart-total">SUBTOTAL: <span>£315.00</span></p>
+                                    <div class="minicart-button">
+                                        <a href="checkout.html" class="sn-button-dark sn-button-fullwidth">
+                                            <span>Checkout</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {/if}
                         </div>
                     </div>
                 </div>

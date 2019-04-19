@@ -64,9 +64,10 @@
                             <div class="row justify-content-center shop-page-products products-wrapper">
 
                                 <!-- Single Product -->
+                                {foreach $product as $vo}
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                                     <div class="product-item">
-                                        {foreach $data as $data}
+
                                         <div class="product-item-images">
                                             <a href="product_details.html" class="product-item-image-inner">
                                                 <img src="/static/home/img/product/thumbnail-size/product-image-3.jpg" alt="product image">
@@ -78,7 +79,7 @@
                                         
                                         <div class="product-item-content">
                                             <div class="product-item-content-left">
-                                                <h5><a href="product_details.html">{$data['goodsname']}</a></h5>
+                                                <h5><a href="product_details.html">{$vo.goodsname}</a></h5>
                                                 <div class="ratting-box">
                                                     <span class="active"><i class="fa fa-star"></i></span>
                                                     <span class="active"><i class="fa fa-star"></i></span>
@@ -99,15 +100,12 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        {/foreach}
                                     </div>
-                                </div>    
-                            </div>
+                                </div>
+                                {/foreach}
                                 <!--// Single Product -->
 
-                               
-
-                          </div>
+                            </div>
                             <!--// Shop Page Products -->
 
                             <!-- Shop Page Toolbars -->
