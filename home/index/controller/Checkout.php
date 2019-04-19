@@ -3,7 +3,7 @@ namespace app\index\controller;
 
 use think\Controller;
 
-class Checkout extends Controller
+class Checkout extends Common
 {
     public function checkout()
     {
