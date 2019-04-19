@@ -7,6 +7,7 @@ namespace Composer\Autoload;
 class ComposerStaticInit2bc4f313dba415539e266f7ac2c87dcd
 {
     public static $files = array (
+        '1cfd2761b63b0a29ed23657ea394cb2d' => __DIR__ . '/..' . '/topthink/think-captcha/src/helper.php',
         '9b552a3cc426e3287cc811caefa3cf53' => __DIR__ . '/..' . '/topthink/think-helper/src/helper.php',
     );
 
@@ -15,6 +16,7 @@ class ComposerStaticInit2bc4f313dba415539e266f7ac2c87dcd
         array (
             'think\\helper\\' => 13,
             'think\\composer\\' => 15,
+            'think\\captcha\\' => 14,
             'think\\auth\\' => 11,
             'think\\' => 6,
         ),
@@ -32,6 +34,10 @@ class ComposerStaticInit2bc4f313dba415539e266f7ac2c87dcd
         'think\\composer\\' => 
         array (
             0 => __DIR__ . '/..' . '/topthink/think-installer/src',
+        ),
+        'think\\captcha\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/topthink/think-captcha/src',
         ),
         'think\\auth\\' => 
         array (
