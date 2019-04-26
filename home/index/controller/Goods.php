@@ -19,7 +19,8 @@ class Goods extends Common
             // var_dump($data);
             $this->assign([
                 'product' => $data,
-                'type' => $type
+                'type' => $type,
+                'title' => '鲜多多生鲜网 - 商城'
             ]);
             return $this->fetch();
         } else{
@@ -29,7 +30,8 @@ class Goods extends Common
             // var_dump($data);
             $this->assign([
                 'product' => $data,
-                'type' => $type
+                'type' => $type,
+                'title' => '鲜多多生鲜网 - 商城'
             ]);
             return $this->fetch();
         }
@@ -63,7 +65,10 @@ class Goods extends Common
     public function cart()
     {
         $type = $this->getCatgory();
-        $this->assign('type',$type);
+        $this->assign([
+            'title' => '鲜多多生鲜网 - 购物车',
+            'type' => $type
+        ]);
         return $this->fetch();
     }
     

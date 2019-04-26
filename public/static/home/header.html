@@ -1,6 +1,10 @@
-<!DOCTYPE html>
-<html class="no-js" lang="zh-CN">
-<body>
+
+    <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+    <!-- Add your site or application content here -->
+
 	<!-- Header -->
 	<header class="header sticky-header">
         
@@ -16,10 +20,10 @@
                     {if condition="session('?cid')"}
                     <div class="col-lg-6 col-md-6 col-12">
                         <ul class="header-top-right">
-                            
                             <li><a href="{:url('index/users/my_account')}">我的主页</a></li>
                             <li><a href="{:url('index/goods/cart')}">购物车</a></li>
                             <li><a href="{:url('index/checkout/checkout')}">结算</a></li>
+                            <li><a href="{:url('index/users/logout')}">注销</a></li>
                         </ul>
                     </div>
                     {else}
@@ -179,6 +183,3 @@
 
 	</header>
 	<!--// Header -->
-	
-</body>
-</html>
