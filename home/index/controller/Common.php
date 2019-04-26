@@ -32,4 +32,9 @@ class Common extends Controller
         }
         return $type;
     }
+
+    public function getPath(){
+        $m=db('goods_type');
+        $id = $m->where('id',input('id'))->select();
+    }
 }

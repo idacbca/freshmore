@@ -24,16 +24,13 @@
                     <!-- Shop Breadcrumb -->
                     <div class="shop-breadcrumb">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="shop.html">Shop</a></li>
-                            <li><a href="shop.html">Mens</a></li>
-                            <li>Aenean Eu Tristique</li>
-                        </ul>
-                    </div>
-                    <!--// Shop Breadcrumb -->
+                            {foreach $type as $data}
+                            <li><a href="index.html">{$data.name}</a></li>
+                            {/foreach}    
 
                     <!-- Product Details Inner -->
                     <div class="product-details">
+                        {foreach $details as $value}
 
                         <!-- Product Details Left -->
                         <div class="product-details-left">
@@ -64,9 +61,10 @@
                         </div>
                         <!--// Product Details Left -->
 
-                        <!-- Product Details Right -->
-                        <div class="product-details-right">
-                            <h5 class="product-title">Aenean Eu Tristique</h5>
+                        <!-- Product Details Right --> 
+                        
+                        <div class="product-details-right">   
+                            <h5 class="product-title">{$value.goodsname}</h5>
                             
                             <div class="ratting-stock-availbility">
                                 <div class="ratting-box">
@@ -76,13 +74,13 @@
                                     <span class="active"><i class="fa fa-star"></i></span>
                                     <span><i class="fa fa-star"></i></span>
                                 </div>
-                                <span class="stock-available">In stock</span>
+                                <span class="stock-available">库存量：{$value.inventory}</span>
                             </div>
                             
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla. adipiscing cursus eu, suscipit id nulla.</p>
+                            <p>{$value.text}</p>
                             
                             <div class="price-box">
-                                <span class="pricebox-price">£80.00</span>
+                                <span class="pricebox-price">价格：￥{$value.curprice}/ {$value.unit}</span>
                             </div>
 
                             <div class="product-details-quantity">
@@ -94,7 +92,7 @@
                                 </a>
                             </div>
 
-                            <div class="product-details-color">
+                            <!-- <div class="product-details-color">
                                 <span>Color :</span>
                                 <ul>
                                     <li class="red"><span></span></li>
@@ -102,9 +100,9 @@
                                     <li class="blue"><span></span></li>
                                     <li class="black"><span></span></li>
                                 </ul>
-                            </div>
+                            </div> -->
 
-                            <div class="product-details-size">
+                            <!-- <div class="product-details-size">
                                 <span>Size :</span>
                                 <ul>
                                     <li class="checked"><span>S</span></li>
@@ -113,24 +111,24 @@
                                     <li><span>XL</span></li>
                                     <li><span>XXL</span></li>
                                 </ul>
-                            </div>
+                            </div> -->
 
                             <div class="product-details-categories">
-                                <span>Categories :</span>
+                                <span>分类 ：</span>
                                 <ul>
-                                    <li><a href="shop.html">Accessories</a></li>
-                                    <li><a href="shop.html">Kids</a></li>
-                                    <li><a href="shop.html">Women</a></li>
+                                    {foreach $type as $data}
+                                    <li><a href="shop.html">{$data.name}</a></li>
+                                    {/foreach}
                                 </ul>
                             </div>
 
-                            <div class="product-details-tags">
+                            <!-- <div class="product-details-tags">
                                 <span>Tags :</span>
                                 <ul>
                                     <li><a href="shop.html">Electronic</a></li>
                                     <li><a href="shop.html">Television</a></li>
                                 </ul>
-                            </div>
+                            </div> -->
 
                             <div class="product-details-socialshare">
                                 <span>Share :</span>
@@ -142,9 +140,11 @@
                                     <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                                 </ul>
                             </div> 
+                            
                         </div>
+                        
                         <!--// Product Details Right -->
-        
+                        {/foreach}
                     </div>
                     <!--// Product Details Inner -->
                     

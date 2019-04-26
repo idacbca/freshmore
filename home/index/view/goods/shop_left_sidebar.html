@@ -38,15 +38,15 @@
                                     <button data-product-view="list"><i class="fa fa-th-list"></i></button>
                                 </div>
 
-                                <div class="shop-toolbar-items-count">Showing 1–9 of 20 results</div>
+                                <!-- <div class="shop-toolbar-items-count">Showing 1–9 of 20 results</div> -->
 
                                 <div class="shop-toolbar-sortby">
-                                    <span>Sort By</span>
+                                    <span>排序方式</span>
                                     <select name="shop-toolbar-sortby">
-                                        <option value="0">Default Sorting</option>
-                                        <option value="1">Sort By Popularity</option>
-                                        <option value="2">Sort By Price</option>
-                                        <option value="3">Sort By Recent</option>
+                                        <option value="0">默认排序</option>
+                                        <option value="1">人气</option>
+                                        <option value="2">价格</option>
+                                        <option value="3">上架时间</option>
                                     </select>
                                 </div>
 
@@ -69,7 +69,7 @@
                                     <div class="product-item">
 
                                         <div class="product-item-images">
-                                            <a href="product_details.html" class="product-item-image-inner">
+                                            <a href="{:url('index/goods/product_details', ['id'=>$vo.id])}" class="product-item-image-inner">
                                                 <img src="/static/home/img/product/thumbnail-size/product-image-3.jpg" alt="product image">
                                             </a>
                                             <a href="cart.html" class="add-to-cart-button">
@@ -79,7 +79,7 @@
                                         
                                         <div class="product-item-content">
                                             <div class="product-item-content-left">
-                                                <h5><a href="product_details.html">{$vo.goodsname}</a></h5>
+                                                <h5><a href="{:url('index/goods/product_details',['id'=>$vo.id])}">{$vo.goodsname}</a></h5>
                                                 <div class="ratting-box">
                                                     <span class="active"><i class="fa fa-star"></i></span>
                                                     <span class="active"><i class="fa fa-star"></i></span>
@@ -88,10 +88,10 @@
                                                     <span><i class="fa fa-star"></i></span>
                                                 </div>
                                                 <div class="price-box">
-                                                    <span class="pricebox-price">1</span>
+                                                    <span class="pricebox-price">￥{$vo.curprice}/ {$vo.unit}</span>
                                                 </div>
                                             </div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla.</p>
+                                            <p>{$vo.text}</p>
                                             <div class="product-item-content-right">
                                                 <ul>
                                                     <li><a class="quick-view-trigger" href="#" data-toggle="tooltip" title="Quick View"><i class="fa fa-eye"></i></a></li>
@@ -116,15 +116,15 @@
                                     <button data-product-view="list"><i class="fa fa-th-list"></i></button>
                                 </div>
 
-                                <div class="shop-toolbar-items-count">Showing 1–9 of 20 results</div>
+                                <!-- <div class="shop-toolbar-items-count">Showing 1–9 of 20 results</div> -->
 
                                 <div class="shop-toolbar-sortby">
-                                    <span>Sort By</span>
+                                    <span>排序方式</span>
                                     <select name="shop-toolbar-sortby">
-                                        <option value="0">Default Sorting</option>
-                                        <option value="1">Sort By Popularity</option>
-                                        <option value="2">Sort By Price</option>
-                                        <option value="3">Sort By Recent</option>
+                                        <option value="0">默认排序</option>
+                                        <option value="1">人气</option>
+                                        <option value="2">价格</option>
+                                        <option value="3">上架时间</option>
                                     </select>
                                 </div>
 
@@ -146,12 +146,12 @@
                             <div class="widgets">
 
                                 <aside class="single-widget widget-categories">
-                                    <h6 class="widget-title">CATEGORIES</h6>
+                                    <h6 class="widget-title">分类</h6>
                                     <ul>  
-                                        <li><a href="shop-right-sidebar.html">Accessories <span>(18)</span></a></li>
-                                        <li><a href="shop-right-sidebar.html">Kids <span>(16)</span></a></li>
-                                        <li><a href="shop-right-sidebar.html">Men <span>(6)</span></a></li>
-                                        <li><a href="shop-right-sidebar.html">Women <span>(11)</span></a></li>
+                                        <li><a href="shop-right-sidebar.html">蔬菜 <span>(18)</span></a></li>
+                                        <li><a href="shop-right-sidebar.html">水产<span>(16)</span></a></li>
+                                        <li><a href="shop-right-sidebar.html">水果 <span>(6)</span></a></li>
+                                        <li><a href="shop-right-sidebar.html">？？ <span>(11)</span></a></li>
                                     </ul>
                                 </aside>
 
