@@ -7,11 +7,16 @@ class Goods extends Common
 {
     public function shop_left_sidebar()
     {
-        if(input('?get.id')){
+        if(input('id')){
             $type = $this->getCatgory();
             $goods = model('goods');
-            $data = $goods->where("tid=".$_GET['id'].'or tpid='.$_GET['id'])->select();
-            //var_dump($data);
+            $tpid = model('goods_type');
+            $id = $tpid->where('pid',input('id'));
+          //  var_dump($id);           
+            $data = $goods->where('tid', input('id'))
+                ->whereOr('tpid', input('id'))
+                ->select();
+            // var_dump($data);
             $this->assign([
                 'product' => $data,
                 'type' => $type,
@@ -22,6 +27,7 @@ class Goods extends Common
             $type = $this->getCatgory();
             $goods = model('goods');
             $data = $goods->select();
+            // var_dump($data);
             $this->assign([
                 'product' => $data,
                 'type' => $type,
@@ -34,12 +40,26 @@ class Goods extends Common
 
     public function product_details()
     {
-        $type = $this->getCatgory();
-        $this->assign([
-            'title' => '鲜多多生鲜网 - 商品详情',
-            'type' => $type
-        ]);
-    	return $this->fetch();
+        if(input('id')){
+            $type = $this->getCatgory();
+            $goods = model('goods');
+            $data = $goods->where('id', input('id'))->select();
+            //var_dump($data);
+            $this->assign([
+                'details' => $data,
+                'type' => $type
+            ]);
+            return $this->fetch();
+        } else{
+            $type = $this->getCatgory();
+            $goods = model('goods');
+            $data = $goods->select();
+            $this->assign([
+                'details' => $data,
+                'type' => $type
+            ]);
+            return $this->fetch();
+        }
     }
 
     public function cart()
