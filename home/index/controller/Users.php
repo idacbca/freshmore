@@ -8,7 +8,10 @@ class Users extends Common
     public function login()
     {
         $type = $this->getCatgory();
-        $this->assign('type',$type);
+        $this->assign([
+            'title' => '鲜多多 - 登录',
+            'type' => $type
+        ]);
         return $this->fetch();
     }
 
@@ -45,7 +48,10 @@ class Users extends Common
     public function register()
     {
         $type = $this->getCatgory();
-        $this->assign('type',$type);
+        $this->assign([
+            'title' => '鲜多多生鲜网 - 注册',
+            'type' => $type
+        ]);
     	return $this->fetch();
     }
 
@@ -86,7 +92,10 @@ class Users extends Common
     public function my_account()
     {
         $type = $this->getCatgory();
-        $this->assign('type',$type);
+        $this->assign([
+            'title' => '鲜多多生鲜网 - 账户中心',
+            'type' => $type
+        ]);
     	return $this->fetch();
     }
 }
