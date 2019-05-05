@@ -2,9 +2,8 @@
 <html class="no-js" lang="zxx">
 
 
-<!-- source http://www.scnoob.com More templates http://www.scnoob.com/moban -->
 <head>
-	{include file="../public/static/home/head.html" title="title" /}
+	{include file="../public/static/home/head.html" title="$title" /}
 </head>
 
 <body>
@@ -30,16 +29,16 @@
 						<form action="{:url('login_operate')}" method="post" class="sn-form sn-form-boxed">
 							<div class="sn-form-inner">
 								<div class="single-input">
-									<label for="login-form-mobile">手机号</label>
-									<input type="text" name="login-form-mobile" id="login-form-mobile">
+									<label for="login-form-mobile">用户名</label>
+									<input type="text" name="user_name" id="login-form-mobile">
 								</div>
 								<div class="single-input">
 									<label for="login-form-password">密码</label>
-									<input type="password" name="login-form-password" id="login-form-password">
+									<input type="password" name="user_password" id="login-form-password">
 								</div>
 								<div class="single-input">
 									<label for="login-form-identify">验证码</label>
-									<input class="col-lg-6 col-md-4" id="captcha" type="text" name="captcha" onblur="but()"/>
+									<input class="col-lg-6 col-md-4" id="captcha" type="text" name="captcha">
 									<span class="col-lg-6" id="discode"><img src="{:captcha_src()}" alt="captcha" onclick="this.src=this.src"/></span>
 								</div>
 								<div class="single-input">

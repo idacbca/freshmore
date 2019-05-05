@@ -1,10 +1,8 @@
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="zh-CN">
 
-
-<!-- source http://www.scnoob.com More templates http://www.scnoob.com/moban -->
 <head>
-	{include file="../public/static/home/head.html" title="title" /}
+	{include file="../public/static/home/head.html" title="$title" /}
 </head>
 
 <body>
@@ -17,43 +15,43 @@
 	<!-- Wrapper -->
 	<div id="wrapper" class="wrapper">
 
-			{include file="../public/static/home/header.html" /}
+		{include file="../public/static/home/header.html" /}
 		<!-- Page Conttent -->
 		<main class="page-content">
 
             <!-- My Account Page -->
             <div class="my-account-area section-padding-md">
 
-                        <!-- Register Form -->
-                        <div class="col-lg-6 offset-lg-3">
-							<div class="login-form-wrapper">
-								<h5>注册</h5>
-								<form action="#" class="sn-form sn-form-boxed">
-									<div class="sn-form-inner">
-										<div class="single-input">
-											<label for="register-form-name">用户名</label>
-											<input type="text" name="username" id="register-form-name">
-										</div>
-										<div class="single-input">
-											<label for="register-form-password">设置密码</label>
-											<input type="user_password" name="password" id="user_password">
-										</div>
-										<div class="single-input">
-											<label for="register-form-password">再输一遍</label>
-											<input type="user_password2" name="password" id="user_password2">
-										</div>
-										<div class="single-input">
-											<button type="submit" class="sn-button sn-button-dark">
-												<span>确认注册</span>
-											</button>
-										</div>
-									</div>
-								</form>
-                        	</div>
-                        </div>
-                        <!--// Register Form -->
+                <!-- Register Form -->
+                <div class="col-lg-6 offset-lg-3">
+					<div class="login-form-wrapper">
+						<h5>注册</h5>
+						<form action="{:url('register_operate')}" method="post" class="sn-form sn-form-boxed" id="form_register">
+							<div class="sn-form-inner">
+								<div class="single-input">
+									<label for="register-form-name">用户名</label>
+									<input type="text" class="input-text" name="user_name" id="user_name">
+								</div>
+								<div class="single-input">
+									<label for="register-form-password">设置密码</label>
+									<input type="password" class="input-text" name="user_password" id="user_password">
+								</div>
+								<div class="single-input">
+									<label for="register-form-password">再输一遍</label>
+									<input type="password" class="input-text" name="user_password2" id="user_password2">
+								</div>
+								<div class="single-input">
+									<button type="submit" class="sn-button sn-button-dark btn-block">
+										<span>确认注册</span>
+									</button>
+								</div>
+							</div>
+						</form>
+                	</div>
+                </div>
+                <!--// Register Form -->
 
-                    </div>
+            </div>
               
             <!--// My Account Page -->
 
@@ -67,42 +65,36 @@
 
 	</div>
     <!--// Wrapper -->
-    
 
-	<script >
-			var code; //在全局 定义验证码
-		function createCode()
-		{ //创建验证码函数
-		 code = "";
-		 var codeLength =4;//验证码的长度
-		 var selectChar = new Array(0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f','g','h','i','j','k',
-		  'l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');//所有候选组成验证码的字符，当然也可以用中文的
-		 for(var i=0;i<codeLength;i++)
-		 { 
-		 var charIndex =Math.floor(Math.random()*36);
-		 code +=selectChar[charIndex]; 
-		 }
-		// 设置验证码的显示样式，并显示
-		 document.getElementById("discode").style.fontFamily="Fixedsys"; //设置字体
-		 document.getElementById("discode").style.letterSpacing="5px"; //字体间距
-		 document.getElementById("discode").style.color="#0ab000"; //字体颜色
-		 document.getElementById("discode").innerHTML=code; // 显示
-		}
-		
-		
-		function but()
-		{//验证验证码输入是否正确
-		 var val1=document.getElementById("t1").value;
-		 var val2=code;
-		 if(val1!=val2){
-		  alert("验证码错误!");
-		 document.getElementById('t1').value="";
-		  }
-		 }
-			
-			</script>		
+<script type="text/javascript" src="/static/home/lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
+<script type="text/javascript" src="/static/home/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+<script type="text/javascript" src="/static/home/lib/jquery.validation/1.14.0/messages_zh.js"></script> 
+<script type="text/javascript">
+$(function(){
+	$("#form_register").validate({
+		rules:{
+			user_name:{
+				required:true,
+				minlength:4,
+				maxlength:16
+			},
+			user_password:{
+				required:true
+			},
+			user_password2:{
+				required:true,
+				equalTo: "#user_password"
+			}
+		},
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+            form.submit();
+        } 
+	});
+});
+</script> 
 </body>
 
-
-<!-- source http://www.scnoob.com More templates http://www.scnoob.com/moban -->
 </html>

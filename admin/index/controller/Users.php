@@ -74,7 +74,8 @@ class Users extends Common
                 'data' => $data,
                 'count' => $count
             ]);
-            return $this->fetch();}
+            return $this->fetch();
+        }
     }
 
     //管理员列表页，管理员停用ajax
@@ -266,6 +267,65 @@ class Users extends Common
 			if($re){
 				echo 1;
 	        }else echo 0;
+        }
+    }
+
+    //用户管理页
+    public function user_list(){
+        if($_POST){
+            $search=$_POST['search'];
+            $user = model('user');
+            $data = $user
+                ->where('user_name','like','%'.$search.'%')
+                ->select();
+            $count = count($data);
+            $word = $search;
+            $this->assign([
+                'data' => $data,
+                'count' => $count,
+                'word' => $word,
+            ]);
+            return $this->fetch();
+        }else {
+            $user = model('user');
+            $data = $user
+                ->select();
+            $count = count($data);
+            $this->assign([
+                'data' => $data,
+                'count' => $count
+            ]);
+            return $this->fetch();
+        }
+    }
+
+    // 用户添加页
+    public function user_add(){
+
+    }
+
+    // 修改用户密码页
+    public function change_password(){
+        $id = input('param.id');
+        $user = model('user');
+        $data = $user->where('id', $id)
+        ->find();
+        $this->assign('data', $data);
+        return $this->fetch();
+    }
+
+    //修改密码函数
+    public function change_password_operate(){
+        $user = model('user');
+        $id = $_POST['id'];
+        $user_password = md5($_POST['newpassword']);
+        $re = $user->save([
+            'user_password' => $user_password
+        ],['id' => $id]);
+        if($re){
+            $this->success('密码修改成功', url('user_list'));
+        } else{
+            $this->error('密码修改失败！');
         }
     }
 }

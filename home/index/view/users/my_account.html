@@ -2,9 +2,8 @@
 <html class="no-js" lang="zxx">
 
 
-<!-- source http://www.scnoob.com More templates http://www.scnoob.com/moban -->
 <head>
-	{include file="../public/static/home/head.html" title="title" /}
+	{include file="../public/static/home/head.html" title="$title" /}
 </head>
 
 <body>
@@ -30,58 +29,51 @@
 
                         <div class="col-lg-3">
                             <ul class="nav myaccount-tab-trigger" id="account-page-tab" role="tablist">
+                                
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="account-dashboard-tab" data-toggle="tab" href="#account-dashboard" role="tab" aria-controls="account-dashboard" aria-selected="true">Dashboard</a>
+                                    <a class="nav-link" id="account-orders-tab" data-toggle="tab" href="#account-orders" role="tab" aria-controls="account-orders" aria-selected="false">我的订单</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="account-orders-tab" data-toggle="tab" href="#account-orders" role="tab" aria-controls="account-orders" aria-selected="false">Orders</a>
+                                    <a class="nav-link" id="account-address-tab" data-toggle="tab" href="#account-address" role="tab" aria-controls="account-address" aria-selected="false">我的地址</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="account-address-tab" data-toggle="tab" href="#account-address" role="tab" aria-controls="account-address" aria-selected="false">Addresses</a>
+                                    <a class="nav-link" id="account-details-tab" data-toggle="tab" href="#account-details" role="tab" aria-controls="account-details" aria-selected="false">信息修改</a>
                                 </li>
+                              
                                 <li class="nav-item">
-                                    <a class="nav-link" id="account-details-tab" data-toggle="tab" href="#account-details" role="tab" aria-controls="account-details" aria-selected="false">Account Details</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="account-logout-tab"  href="login-register.html" role="tab"  aria-selected="false">Logout</a>
+                                    <a class="nav-link" id="account-logout-tab"  href="{:url('logout')}" role="tab"  aria-selected="false">Logout</a>
                                 </li>
                             </ul>
                         </div>
 
                         <div class="col-lg-9">
                             <div class="tab-content myaccount-tab-content" id="account-page-tab-content">
-                                <div class="tab-pane fade show active" id="account-dashboard" role="tabpanel" aria-labelledby="account-dashboard-tab">
-                                    <div class="myaccount-dashboard">
-                                        <p>Hello <b>function.raaz</b> (not function.raaz? <a href="login-register.html">Sign out</a>)</p>
-                                        <p>From your account dashboard you can view your recent orders, manage your shipping and billing addresses and <a href="#">edit your password and account details</a>.</p>
-                                    </div>
-                                </div>
                                 <div class="tab-pane fade" id="account-orders" role="tabpanel" aria-labelledby="account-orders-tab">
                                     <div class="myaccount-orders">
-                                        <h4 class="small-title">MY ORDERS</h4>
+                                        <h4 class="small-title">我的订单</h4>
                                         <div class="table-responsive">
                                             <table class="table table-bordered table-hover">
                                                 <tbody>
                                                     <tr>			
-                                                        <th>ORDER</th>
-                                                        <th>DATE</th>
-                                                        <th>STATUS</th>
-                                                        <th>TOTAL</th>
+                                                        <th>订单编号</th>
+                                                        <th>日期</th>
+                                                        <th>订单状态</th>
+                                                        <th>价格</th>
                                                         <th></th>
                                                     </tr>
                                                     <tr>		
                                                         <td><a class="account-order-id" href="#">#5364</a></td>
                                                         <td>July 27, 2018</td>
-                                                        <td>On Hold</td>
+                                                        <td>未付款</td>
                                                         <td>£162.00 for 2 items</td>
-                                                        <td><a href="#" class="add-to-cart-button"><span>View</span></a></td>
+                                                        <td><a href="#" class="add-to-cart-button"><span>查看详情</span></a></td>
                                                     </tr>
                                                     <tr>		
                                                         <td><a class="account-order-id" href="#">#5356</a></td>
                                                         <td>July 27, 2018</td>
                                                         <td>On Hold</td>
                                                         <td>£162.00 for 2 items</td>
-                                                        <td><a href="#" class="add-to-cart-button"><span>View</span></a></td>
+                                                        <td><a href="#" class="add-to-cart-button"><span>查看详情</span></a></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -90,20 +82,15 @@
                                 </div>
                                 <div class="tab-pane fade" id="account-address" role="tabpanel" aria-labelledby="account-address-tab">
                                     <div class="myaccount-address">
-                                        <p>The following addresses will be used on the checkout page by default.</p>
+                                       
                                         <div class="row">
                                             <div class="col">
-                                                <h4 class="small-title">BILLING ADDRESS</h4>
+                                                <h4 class="small-title">我的地址</h4>
                                                 <address>
                                                     1234 Heaven Stress, Beverly Hill OldYork UnitedState of Lorem
                                                 </address>
                                             </div>
-                                            <div class="col">
-                                                <h4 class="small-title">SHIPPING ADDRESS</h4>
-                                                <address>
-                                                    1234 Heaven Stress, Beverly Hill OldYork UnitedState of Lorem
-                                                </address>
-                                            </div>
+                                          
                                         </div>
                                     </div>
                                 </div>
@@ -112,31 +99,28 @@
                                         <form action="#" class="sn-form">
                                             <div class="sn-form-inner">
 												<div class="single-input single-input-half">
-													<label for="account-details-firstname">First Name*</label>
-													<input type="text" id="account-details-firstname">
+													<label for="昵称修改">昵称修改</label>
+													<input type="text" id="昵称修改">
 												</div>
 												<div class="single-input single-input-half">
-													<label for="account-details-lastname">Last Name*</label>
-													<input type="text" id="account-details-lastname">
+													<label for="更新地址">更新地址</label>
+													<input type="text" id="更新地址">
+												</div>
+												
+												<div class="single-input">
+													<label for="原密码">原密码</label>
+													<input type="password" id="原密码">
 												</div>
 												<div class="single-input">
-													<label for="account-details-email">Email*</label>
-													<input type="email" id="account-details-email">
+													<label for="新密码">新密码</label>
+													<input type="password" id="新密码">
 												</div>
 												<div class="single-input">
-													<label for="account-details-oldpass">Current Password(leave blank to leave unchanged)</label>
-													<input type="password" id="account-details-oldpass">
+													<label for="account-details-confpass">再输一遍</label>
+													<input type="password" id="再输一遍">
 												</div>
 												<div class="single-input">
-													<label for="account-details-newpass">New Password (leave blank to leave unchanged)</label>
-													<input type="password" id="account-details-newpass">
-												</div>
-												<div class="single-input">
-													<label for="account-details-confpass">Confirm New Password</label>
-													<input type="password" id="account-details-confpass">
-												</div>
-												<div class="single-input">
-													<button class="sn-button sn-button-dark" type="submit"><span>SAVE CHANGES</span></button>
+													<button class="sn-button sn-button-dark" type="submit"><span>保存更改</span></button>
 												</div>
                                             </div>
                                         </form>
@@ -165,5 +149,4 @@
 </body>
 
 
-<!-- source http://www.scnoob.com More templates http://www.scnoob.com/moban -->
-</html>
+ </html>
