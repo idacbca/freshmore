@@ -47,13 +47,13 @@
                     <div class="col-lg-4 col-12">
                         <form class="header-search">
                             <select name="header-search-categories">
-                                <option value="1">全部种类</option>
+                                <option value="0">全部种类</option>
                                 {foreach $type as $data}
-                                <option value="1">{$data['name']}</option>
+                                <option value="{$data['level']}">{$data['name']}</option>
                                 {/foreach}
                             </select>
-                            <input type="text" placeholder="请输入商品名">
-                            <button type="submit"><i class="fa fa-search"></i></button>
+                            <input type="text" name="gooodsname" placeholder="请输入商品名">
+                            <button type="submit" onclick="searchGoods()" ><i class="fa fa-search"><a href="{:url('index/goods/searchGoods')}"></a></i></button>
                         </form>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-7 col-12">

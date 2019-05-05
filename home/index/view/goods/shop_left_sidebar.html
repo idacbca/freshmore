@@ -20,7 +20,7 @@
                     <div class="shop-breadcrumb">
                         <ul>
                             <li><a href="{:url('index/index/index')}">主页</a></li>
-                        {foreach $idpath as $p}  
+                        {foreach  $idpath as $p}  
                           <li>{$p}</li> 
                         {/foreach}
                         </ul>
@@ -150,10 +150,9 @@
                                 <aside class="single-widget widget-categories">
                                     <h6 class="widget-title">分类</h6>
                                     <ul>  
-                                        <li><a href="shop-right-sidebar.html">蔬菜 <span>(18)</span></a></li>
-                                        <li><a href="shop-right-sidebar.html">水产<span>(16)</span></a></li>
-                                        <li><a href="shop-right-sidebar.html">水果 <span>(6)</span></a></li>
-                                        <li><a href="shop-right-sidebar.html">？？ <span>(11)</span></a></li>
+                                        {foreach $type as $data}
+                                        <li><a href="product_details.html">{$data['name']} <span></span></a></li>
+                                        {/foreach}
                                     </ul>
                                 </aside>
 

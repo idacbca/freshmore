@@ -44,13 +44,16 @@ class Common extends Controller
         $m = db('goods_type');
         //$id = $m->where('id',input('id'))->select();
         $idpath = $m->where('id',input('id'))->value('path');
+      //  $idpath = $m->where('id',$id)->value('path');
         $arr2 = explode(',',$idpath);
         $arr = array_filter($arr2);
-        foreach($arr as $pathname){
-            $pathname2 = $m->where('id',$pathname)->value('name');
-            var_dump($pathname2);
+        $pathname2 = array();
+        foreach($arr as $k=>&$pathname){           
+            $arr[$k] = $m->where('id',$pathname)->value('name');               
         }
-        
+        var_dump($arr);
         return $arr;
     }
+
+
 }

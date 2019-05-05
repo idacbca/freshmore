@@ -27,10 +27,11 @@ class Goods extends Common
             return $this->fetch();
         } else{
             $type = $this->getCatgory();
+            $id = 
             $idpath = $this->getPath();
             $goods = model('goods');
             $data = $goods->select();
-            // var_dump($data);
+            // var_dump($idpath);
             $this->assign([
                 'product' => $data,
                 'type' => $type,
@@ -47,20 +48,25 @@ class Goods extends Common
         if(input('id')){
             $type = $this->getCatgory();
             $goods = model('goods');
+          //  $tid = $goods->where('tid', input('id'))->select();
+            $idpath = $this->getPath();
             $data = $goods->where('id', input('id'))->select();
             //var_dump($data);
             $this->assign([
                 'details' => $data,
+                'idpath' => $idpath,
                 'type' => $type
             ]);
             return $this->fetch();
         } else{
             $type = $this->getCatgory();
             $goods = model('goods');
+            $idpath = $this->getPath();
             $data = $goods->select();
             $this->assign([
                 'details' => $data,
-                'type' => $type
+                'type' => $type,
+                'idpath' => $idpath
             ]);
             return $this->fetch();
         }
@@ -75,6 +81,15 @@ class Goods extends Common
         ]);
         return $this->fetch();
     }
-    
+    public function searchGoods(){
+        $m = db('goods');
+        //$id = $m->where('id',input('id'))->select();
+        $name = $m->where('goodsname', input('goodsname'));
+        var_dump($name);
+        if($name) return $name;
+        else echo '0';
+        return $this->fetch();
+        
+    }
     
 }
