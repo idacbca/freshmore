@@ -15,16 +15,18 @@
             <!-- Fullwidth Shop Area -->
             <div class="shop-area bg-white section-padding-bottom-md">
                 <div class="container">
-
+                
                     <!-- Shop Breadcrumb -->
                     <div class="shop-breadcrumb">
                         <ul>
                             <li><a href="{:url('index/index/index')}">主页</a></li>
-                            <li>商品分类</li>  
+                        {foreach $idpath as $p}  
+                          <li>{$p}</li> 
+                        {/foreach}
                         </ul>
                     </div>
                     <!--// Shop Breadcrumb -->
-
+                
                     <div class="row">
 
                         <!-- Shop Page Products -->
