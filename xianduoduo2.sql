@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : duoduo
+ Source Server         : test
  Source Server Type    : MySQL
- Source Server Version : 50553
+ Source Server Version : 50725
  Source Host           : localhost:3306
  Source Schema         : xianduoduo
 
  Target Server Type    : MySQL
- Target Server Version : 50553
+ Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 05/05/2019 10:07:11
+ Date: 05/05/2019 15:38:04
 */
 
 SET NAMES utf8mb4;
@@ -147,6 +147,27 @@ INSERT INTO `goods` VALUES (11, '康师傅', 34, 27, '件', '5', '', 8, 1212, 40
 INSERT INTO `goods` VALUES (12, '凯夫拉一型', 32, 31, '件', '4', '', 23, 22323, 80000, 80000, 60000, 10, 10, 0, 10, '1', 23, '<p>wwwww</p>');
 
 -- ----------------------------
+-- Table structure for goods_files
+-- ----------------------------
+DROP TABLE IF EXISTS `goods_files`;
+CREATE TABLE `goods_files`  (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `filepath` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of goods_files
+-- ----------------------------
+INSERT INTO `goods_files` VALUES (1, '/public\\uploads20190429\\44b9363cc7d72314580d68ee7ae115e8.png');
+INSERT INTO `goods_files` VALUES (2, '/public\\uploads20190429\\a7d001b2644fb79bfefd9fa8b7a3666f.png');
+INSERT INTO `goods_files` VALUES (3, '/public\\uploads20190429\\07628c6e9beb9b3d3f0717c9b7bb8d2c.png');
+INSERT INTO `goods_files` VALUES (4, '/public\\uploads20190429\\fdf0b90200c51d040cd5f22c10d640d6.png');
+INSERT INTO `goods_files` VALUES (5, '/public\\uploads20190429\\88409bc9cbf2cd48248687d73a4b4f6c.png');
+INSERT INTO `goods_files` VALUES (6, '/public\\uploads20190429\\91377e4d0f844f4f313a991918fbf2ff.png');
+INSERT INTO `goods_files` VALUES (7, '/public\\uploads20190429\\ebe541c334c2e012e4756bf99c2c755a.png');
+
+-- ----------------------------
 -- Table structure for goods_type
 -- ----------------------------
 DROP TABLE IF EXISTS `goods_type`;
@@ -212,5 +233,23 @@ INSERT INTO `ordersdetail` VALUES (2, 11, '洗发水', 2, '55');
 INSERT INTO `ordersdetail` VALUES (3, 12, 'jeans', 1, '280');
 INSERT INTO `ordersdetail` VALUES (4, 13, 'skirts', 2, '100');
 INSERT INTO `ordersdetail` VALUES (5, 13, 'trouser', 2, '50');
+
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `user_password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  `update_time` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES (2, 'acbca', '4bb8de7c0b70dac91e49a76356cd73e2', '2019-04-19 15:36:46', '2019-04-26 14:32:48');
 
 SET FOREIGN_KEY_CHECKS = 1;
