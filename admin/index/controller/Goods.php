@@ -9,7 +9,7 @@ class Goods extends Common
 	public function product_list(){
 		// $start_time = '';
 		// $end_time = '';
-		if($_POST){
+		if($_POST){//输入查询信息时
 			$search = $_POST['search'];
 			$word=$search;
 			$goods = model('goods');
@@ -21,7 +21,7 @@ class Goods extends Common
 				'word' => $word
 			]);
 			return $this->fetch();
-		} else{
+		} else{//没有输入查询信息时
 			$goods = model('goods');
 			$data = $goods->select();
 			$count = count($data);
