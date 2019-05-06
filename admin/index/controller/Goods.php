@@ -2,7 +2,7 @@
 namespace app\index\controller;
 
 use think\Controller;
-
+use think\org\Upload;
 class Goods extends Common
 {	
 	//商品管理页
@@ -150,7 +150,8 @@ class Goods extends Common
 			'inventory' => $_POST['inventory'],
 			'freight' => $_POST['freight'],
 			'status' => $_POST['status'],
-			'text' => $_POST['editorValue']
+			'text' => $_POST['editorValue'],
+			'filepath' => implode(',', $_POST['imagepath']),
 		]);
 
 		$result = $goods->save();
@@ -240,22 +241,30 @@ class Goods extends Common
 		}
 	}
 
-	// 图片上传控制器(半成)
-	public function uploadpic(){
-		$file = $this->request->file('file');//file是传文件的名称，这是webloader插件固定写入的。因为webloader插件会写入一个隐藏input，这里与TP5的写法有点区别
-	    $file->size = 524288000;
-        $Path = 'public' . DS . 'uploads';
-        $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
-	 
-	    if($info){
-	        // 成功上传后 获取上传信息
-	        // 输出 jpg 地址
-	        $filePath = "/".$Path. DS .$info->getSaveName();
-	        $filePath = str_replace("\\","/",$filePath);   //替换\为/
-	        return json(['success'=>true,'filePath'=>$filePath]);
-	    }else{
-	        // 上传失败获取错误信息
-	        echo $file->getError();
-	    }
+	
+	public function upload(){
+		 // 获取表单上传文件
+		 $files = request()->file();
+		 foreach($files as $file){
+			 // 移动到框架应用根目录/public/uploads/ 目录下
+			 $info = $file->rule('date')->move(ROOT_PATH . 'public' . DS . 'uploads');
+			 $keyName = $file -> getInfo()['name'];
+			 if($info){
+				 $db=db('goods_files');
+				 $filename = '/'.'public' . DS . 'uploads'.$info->getSaveName();
+				 $filename =str_replace('\\', '/', $filename);
+				 //$data['id']=$keyName;
+				 $data['filepath']=$filename;
+				 $res=$db->insert($data);
+				 $id = db('goods_files')->getLastInsID();
+				 $filedata=['id'=>$id,'paths'=>$data['filepath']];
+
+				 echo json_encode($filedata);
+
+			 }else{
+				 // 上传失败获取错误信息
+				 echo $file->getError();
+			 }
+		 }
 	}
 }
