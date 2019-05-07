@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : test
+ Source Server         : MY连接
  Source Server Type    : MySQL
  Source Server Version : 50725
  Source Host           : localhost:3306
@@ -11,7 +11,7 @@
  Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 08/04/2019 08:18:09
+ Date: 06/05/2019 16:55:31
 */
 
 SET NAMES utf8mb4;
@@ -122,7 +122,7 @@ CREATE TABLE `goods`  (
   `tpid` int(255) NULL DEFAULT NULL COMMENT '分类路径',
   `unit` char(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品的单位',
   `attributes` enum('7','6','5','4','3','2','1') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品的属性,1、推荐 2、新上 3、热卖 4、促销 5、包邮 6、限时卖 7、不参与会员折扣',
-  `imagepath` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品图片id',
+  `filepath` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品图片id',
   `number` int(11) NULL DEFAULT NULL COMMENT '商品编号',
   `barcode` int(255) NULL DEFAULT NULL COMMENT '条形码',
   `curprice` int(11) NULL DEFAULT NULL COMMENT '现价',
@@ -135,16 +135,29 @@ CREATE TABLE `goods`  (
   `status` enum('1','0') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否上架,0为上架,1为下架,默认0上架',
   `reorder` int(255) NULL DEFAULT NULL,
   `text` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  `update_time` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
-INSERT INTO `goods` VALUES (9, '女装大佬', 27, 1, '1', '1', '', 1, 111, 1, 1, 1, 1, 1, 1, 1, '0', 0, '<p>www</p>');
-INSERT INTO `goods` VALUES (10, 'lolita', 34, 27, '件', '1', '', 12, 1212, 1000, 900, 600, 20, 20, 0, 5, '0', 12, '<p>www</p>');
-INSERT INTO `goods` VALUES (11, '康师傅', 34, 27, '件', '5', '', 8, 1212, 400, 400, 300, 100, 100, 0, 0, '1', 11, '<p>www</p>');
-INSERT INTO `goods` VALUES (12, '凯夫拉一型', 32, 31, '件', '4', '', 23, 22323, 80000, 80000, 60000, 10, 10, 0, 10, '1', 23, '<p>wwwww</p>');
+INSERT INTO `goods` VALUES (13, '芦笋', 44, 42, '盒', '1', NULL, 1, NULL, 40, NULL, 30, 2, NULL, NULL, 10, '0', NULL, '<p>111</p>', NULL, NULL);
+INSERT INTO `goods` VALUES (14, '西红柿', 45, 43, '斤', '1', NULL, 1, NULL, 9, NULL, 6, 40, NULL, NULL, 12, '0', NULL, '<p>123</p>', NULL, NULL);
+INSERT INTO `goods` VALUES (15, '香椿', 50, 43, '把', '1', NULL, 1, NULL, 5, NULL, 3, 10, NULL, NULL, 7, '0', NULL, '<p>12222</p>', NULL, NULL);
+INSERT INTO `goods` VALUES (16, '菠菜', 49, 43, '把', '1', NULL, 34, NULL, 10, NULL, 8, 10, NULL, NULL, 10, '0', NULL, '<p>11111111111111</p>', NULL, NULL);
+INSERT INTO `goods` VALUES (17, '草鱼', 48, 47, '斤', '1', NULL, 24, NULL, 10, NULL, 8, 10, NULL, NULL, 20, '0', NULL, '<p>1555</p>', NULL, NULL);
+
+-- ----------------------------
+-- Table structure for goods_files
+-- ----------------------------
+DROP TABLE IF EXISTS `goods_files`;
+CREATE TABLE `goods_files`  (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `filepath` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 82 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for goods_type
@@ -157,18 +170,38 @@ CREATE TABLE `goods_type`  (
   `path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `level` int(255) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 51 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of goods_type
 -- ----------------------------
-INSERT INTO `goods_type` VALUES (1, '服装', 1, '0,1', 1);
-INSERT INTO `goods_type` VALUES (2, '西服', 1, '0,1,2', 2);
-INSERT INTO `goods_type` VALUES (3, '鞋', 0, '0,3', 1);
-INSERT INTO `goods_type` VALUES (27, '女装', 1, '0,1,27', 2);
-INSERT INTO `goods_type` VALUES (31, '防弹衣', 0, '0,31', 1);
-INSERT INTO `goods_type` VALUES (32, '凯夫拉', 31, '0,31,32', 2);
-INSERT INTO `goods_type` VALUES (34, '小裙子', 27, '0,1,27,34', 3);
-INSERT INTO `goods_type` VALUES (36, '小皮鞋', 3, '0,3,36', 2);
+INSERT INTO `goods_type` VALUES (41, '蔬菜', 0, '0,41', 1);
+INSERT INTO `goods_type` VALUES (42, '进口蔬菜', 41, '0,41,42', 2);
+INSERT INTO `goods_type` VALUES (43, '国产蔬菜', 41, '0,41,43', 2);
+INSERT INTO `goods_type` VALUES (44, '芦笋', 42, '0,41,42,44', 3);
+INSERT INTO `goods_type` VALUES (45, '西红柿', 43, '0,41,43,45', 3);
+INSERT INTO `goods_type` VALUES (46, '水产', 0, '0,46', 1);
+INSERT INTO `goods_type` VALUES (47, '鱼', 46, '0,46,47', 2);
+INSERT INTO `goods_type` VALUES (48, '草鱼', 47, '0,46,47,48', 3);
+INSERT INTO `goods_type` VALUES (49, '菠菜', 43, '0,41,43,49', 3);
+INSERT INTO `goods_type` VALUES (50, '香椿', 43, '0,41,43,50', 3);
+
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `user_password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  `update_time` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES (2, 'acbca', '972cca37a2e97b54154560196d7440f4', '2019-04-19 15:36:46', '2019-04-19 15:36:46');
 
 SET FOREIGN_KEY_CHECKS = 1;
