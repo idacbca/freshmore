@@ -13,7 +13,9 @@ class Goods extends Common
             $goods = model('goods');
             $tpid = model('goods_type');
             $id = $tpid->where('pid',input('id'))->column('id');
-            foreach($id as $m){
+           // var_dump($id);
+            if($id){
+                foreach($id as $m){
                     $data = $goods->where('tid', $m)
                     ->whereOr('tpid', $m)
                     ->select();
@@ -27,7 +29,22 @@ class Goods extends Common
                 'idpath' => $idpath, 
                 'title' => '鲜多多生鲜网 - 商城'
             ]);
-            return $this->fetch();                          
+            return $this->fetch(); 
+            }else{
+                $data = $goods->where('tid', input('id'))
+                ->whereOr('tpid', input('id'))
+                ->select();
+
+                $this->assign([
+                    'product' => $data,
+                    'type' => $type,
+                    'idpath' => $idpath, 
+                    'title' => '鲜多多生鲜网 - 商城'
+                ]);
+                return $this->fetch(); 
+
+            }
+                                     
         } else{
             $type = $this->getCatgory();
             $idpath = $this->getPath();
