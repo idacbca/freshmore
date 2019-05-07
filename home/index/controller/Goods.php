@@ -12,26 +12,27 @@ class Goods extends Common
             $idpath = $this->getPath();
             $goods = model('goods');
             $tpid = model('goods_type');
-            $id = $tpid->where('pid',input('id'));
-          //  var_dump($id);           
-            $data = $goods->where('tid', input('id'))
-                ->whereOr('tpid', input('id'))
-                ->select();
-            // var_dump($data);
+            $id = $tpid->where('pid',input('id'))->column('id');
+            foreach($id as $m){
+                    $data = $goods->where('tid', $m)
+                    ->whereOr('tpid', $m)
+                    ->select();
+                    //var_dump($data); 
+                    
+            } 
+            //var_dump($data);                           
             $this->assign([
                 'product' => $data,
                 'type' => $type,
                 'idpath' => $idpath, 
                 'title' => '鲜多多生鲜网 - 商城'
             ]);
-            return $this->fetch();
+            return $this->fetch();                          
         } else{
             $type = $this->getCatgory();
-            $id = 
             $idpath = $this->getPath();
             $goods = model('goods');
             $data = $goods->select();
-            // var_dump($idpath);
             $this->assign([
                 'product' => $data,
                 'type' => $type,
@@ -48,10 +49,8 @@ class Goods extends Common
         if(input('id')){
             $type = $this->getCatgory();
             $goods = model('goods');
-          //  $tid = $goods->where('tid', input('id'))->select();
             $idpath = $this->getPath();
             $data = $goods->where('id', input('id'))->select();
-            //var_dump($data);
             $this->assign([
                 'details' => $data,
                 'idpath' => $idpath,
@@ -81,15 +80,34 @@ class Goods extends Common
         ]);
         return $this->fetch();
     }
+    
     public function searchGoods(){
+        $goodsname = $_POST['goodsname'];
         $m = db('goods');
-        //$id = $m->where('id',input('id'))->select();
-        $name = $m->where('goodsname', input('goodsname'));
-        var_dump($name);
-        if($name) return $name;
-        else echo '0';
-        return $this->fetch();
-        
+        $type = $this->getCatgory();
+        $idpath = $this->getPath();
+        $data = $m->where('goodsname','like','%'.$goodsname.'%')->select();
+        if($data){
+            $this->assign([
+                'product' => $data,
+                'data' => $data,
+                'idpath' => $idpath,
+                'type' => $type
+				
+            ]);
+            return $this->fetch("shop_left_sidebar");
+        } else{
+            $this->assign([
+                'product' => $data,
+                'idpath' => $idpath,
+                'type' => $type
+				
+            ]);
+            return $this->fetch("shop_left_sidebar");
+        }
+			           
+			
+      
     }
     
 }

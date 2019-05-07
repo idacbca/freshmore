@@ -51,9 +51,23 @@ class Common extends Controller
         foreach($arr as $k=>&$pathname){           
             $arr[$k] = $m->where('id',$pathname)->value('name');               
         }
-        var_dump($arr);
+       
         return $arr;
     }
 
-
+    public function getGoodsPath(){
+        $m = db('goods_type');
+        $n = db('goods');
+        $id = $n->where('tid',input('id'));
+        $idpath = $m->where('id',$id)->value('path');
+      //  $idpath = $m->where('id',$id)->value('path');
+        $arr2 = explode(',',$idpath);
+        $arr = array_filter($arr2);
+        $pathname2 = array();
+        foreach($arr as $k=>&$pathname){           
+            $arr[$k] = $m->where('id',$pathname)->value('name');               
+        }
+        
+        return $arr;
+    }
 }

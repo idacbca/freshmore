@@ -151,14 +151,14 @@
                                     <h6 class="widget-title">分类</h6>
                                     <ul>  
                                         {foreach $type as $data}
-                                        <li><a href="product_details.html">{$data['name']} <span></span></a></li>
+                                        <li><a href="{:url('index/goods/shop_left_sidebar', ['id'=>$data.id])}">{$data['name']} <span></span></a></li>
                                         {/foreach}
                                     </ul>
                                 </aside>
 
                     
 
-                                <aside class="single-widget widget-filter">
+                                <!-- <aside class="single-widget widget-filter">
                                     <h6 class="widget-title">单价区间</h6>
                                     <div class="widget-filter-inner">
                                         <div class="range-slider" data-range_min="1" data-range_max="515" data-cur_min="180" data-cur_max="200">
@@ -176,7 +176,7 @@
                                         </div>
                                         
                                     </div>
-                                </aside>
+                                </aside> -->
 
                           
                             </div>
