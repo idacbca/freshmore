@@ -43,11 +43,14 @@ class Orders extends Controller
         public function orders_del_ajax()
         {
 		$id = $_POST['id'];
-		$db = db('orders');
-		$re = $db->where('orderid', $id)->delete();
+        $db = db('orders');
+        $re = $db->where('orderid', $id)->delete();
+		
 		if($re){
-			echo 1;
-		}else echo 0;
+            echo 1;
+               }
+        
+        else echo 0;
         }
 
         
@@ -66,13 +69,36 @@ class Orders extends Controller
 
         public function ordersdetail_del_ajax()
         {
-		$id = $_POST['id'];
-		$db = db('ordersdetail');
+        $id = $_POST['id'];
+        
+        $db = db('ordersdetail');
+        
 		$re = $db->where('id', $id)->delete();
 		if($re){
 			echo 1;
 		}else echo 0;
         }
+
+        // 设置订单发货ajax
+	public function orders_start_ajax(){
+		$id = $_POST['id'];
+		$db = db('orders');
+        $va = $db->where('orderid', $id)->where('status', 0)->select();
+		if($va){
+            echo 1;
+            $re = $db->where('orderid', $id)->update(['orderstate' => '0']);
+		}else echo 0;
+	}
+
+	// 设置订单未发货ajax
+	public function orders_stop_ajax(){
+		$id = $_POST['id'];
+		$db = db('orders');
+		$re = $db->where('orderid', $id)->update(['orderstate' => '1']);
+		if($re){
+			echo 1;
+		}else echo 0;
+	}
 } 
 
 

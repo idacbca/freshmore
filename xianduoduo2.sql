@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : test
+ Source Server         : duoduo
  Source Server Type    : MySQL
- Source Server Version : 50725
+ Source Server Version : 50720
  Source Host           : localhost:3306
  Source Schema         : xianduoduo
 
  Target Server Type    : MySQL
- Target Server Version : 50725
+ Target Server Version : 50720
  File Encoding         : 65001
 
- Date: 05/05/2019 15:38:04
+ Date: 09/05/2019 21:21:08
 */
 
 SET NAMES utf8mb4;
@@ -147,6 +147,41 @@ INSERT INTO `goods` VALUES (11, '康师傅', 34, 27, '件', '5', '', 8, 1212, 40
 INSERT INTO `goods` VALUES (12, '凯夫拉一型', 32, 31, '件', '4', '', 23, 22323, 80000, 80000, 60000, 10, 10, 0, 10, '1', 23, '<p>wwwww</p>');
 
 -- ----------------------------
+-- Table structure for goods_copy2
+-- ----------------------------
+DROP TABLE IF EXISTS `goods_copy2`;
+CREATE TABLE `goods_copy2`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '商品自增id',
+  `goodsname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品的名字',
+  `tid` int(11) NULL DEFAULT NULL COMMENT '分类id',
+  `tpid` int(255) NULL DEFAULT NULL COMMENT '分类路径',
+  `unit` char(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品的单位',
+  `attributes` enum('7','6','5','4','3','2','1') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品的属性,1、推荐 2、新上 3、热卖 4、促销 5、包邮 6、限时卖 7、不参与会员折扣',
+  `imagepath` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品图片id',
+  `number` int(11) NULL DEFAULT NULL COMMENT '商品编号',
+  `barcode` int(255) NULL DEFAULT NULL COMMENT '条形码',
+  `curprice` int(11) NULL DEFAULT NULL COMMENT '现价',
+  `oriprice` int(11) NULL DEFAULT NULL COMMENT '市场价',
+  `cosprice` int(11) NULL DEFAULT NULL COMMENT '成本价',
+  `inventory` int(255) NULL DEFAULT NULL COMMENT '库存量',
+  `restrict` int(255) NULL DEFAULT NULL COMMENT '限制购买量',
+  `already` int(255) NULL DEFAULT NULL COMMENT '已经购买量',
+  `freight` int(255) NULL DEFAULT NULL COMMENT '运费',
+  `status` enum('1','0') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否上架,0为上架,1为下架,默认0上架',
+  `reorder` int(255) NULL DEFAULT NULL,
+  `text` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of goods_copy2
+-- ----------------------------
+INSERT INTO `goods_copy2` VALUES (9, '女装大佬', 27, 1, '1', '1', '', 1, 111, 1, 1, 1, 1, 1, 1, 1, '0', 0, '<p>www</p>');
+INSERT INTO `goods_copy2` VALUES (10, 'lolita', 34, 27, '件', '1', '', 12, 1212, 1000, 900, 600, 20, 20, 0, 5, '0', 12, '<p>www</p>');
+INSERT INTO `goods_copy2` VALUES (11, '康师傅', 34, 27, '件', '5', '', 8, 1212, 400, 400, 300, 100, 100, 0, 0, '1', 11, '<p>www</p>');
+INSERT INTO `goods_copy2` VALUES (12, '凯夫拉一型', 32, 31, '件', '4', '', 23, 22323, 80000, 80000, 60000, 10, 10, 0, 10, '1', 23, '<p>wwwww</p>');
+
+-- ----------------------------
 -- Table structure for goods_files
 -- ----------------------------
 DROP TABLE IF EXISTS `goods_files`;
@@ -202,15 +237,18 @@ CREATE TABLE `orders`  (
   `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '运送地址',
   `orderstate` int(1) NOT NULL COMMENT '1 已签收 2已送达 3运送中',
   `payinfo` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '支付信息',
+  `status` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '0 已支付 1 未支付',
+  `create_time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '创建时间',
+  `update_time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`orderid`) USING BTREE
 ) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
-INSERT INTO `orders` VALUES (11, '张三', '北京', 1, '120');
-INSERT INTO `orders` VALUES (12, '李四', '上海', 2, '280');
-INSERT INTO `orders` VALUES (13, '王五', '天津', 3, '300');
+INSERT INTO `orders` VALUES (11, '张三', '北京', 1, '120', '1', '', '');
+INSERT INTO `orders` VALUES (12, '李四', '上海', 0, '280', '0', '', '');
+INSERT INTO `orders` VALUES (13, '王五', '天津', 1, '300', '1', '', '');
 
 -- ----------------------------
 -- Table structure for ordersdetail
