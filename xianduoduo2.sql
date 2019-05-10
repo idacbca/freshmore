@@ -11,7 +11,7 @@
  Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 05/05/2019 15:38:04
+ Date: 10/05/2019 16:15:15
 */
 
 SET NAMES utf8mb4;
@@ -245,11 +245,12 @@ CREATE TABLE `user`  (
   `create_time` datetime(0) NULL DEFAULT NULL,
   `update_time` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES (2, 'acbca', '4bb8de7c0b70dac91e49a76356cd73e2', '2019-04-19 15:36:46', '2019-04-26 14:32:48');
+INSERT INTO `user` VALUES (3, 'acbca1', '4bb8de7c0b70dac91e49a76356cd73e2', '2019-05-10 16:11:34', '2019-05-10 16:11:34');
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : MY连接
+ Source Server         : test
  Source Server Type    : MySQL
  Source Server Version : 50725
  Source Host           : localhost:3306
@@ -11,7 +11,7 @@
  Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 06/05/2019 16:55:31
+ Date: 10/05/2019 16:16:30
 */
 
 SET NAMES utf8mb4;
@@ -185,6 +185,48 @@ INSERT INTO `goods_type` VALUES (47, '鱼', 46, '0,46,47', 2);
 INSERT INTO `goods_type` VALUES (48, '草鱼', 47, '0,46,47,48', 3);
 INSERT INTO `goods_type` VALUES (49, '菠菜', 43, '0,41,43,49', 3);
 INSERT INTO `goods_type` VALUES (50, '香椿', 43, '0,41,43,50', 3);
+
+-- ----------------------------
+-- Table structure for orders
+-- ----------------------------
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE `orders`  (
+  `orderid` int(6) NOT NULL COMMENT '商品编号',
+  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '顾客',
+  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '运送地址',
+  `orderstate` int(1) NOT NULL COMMENT '1 已签收 2已送达 3运送中',
+  `payinfo` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '支付信息',
+  PRIMARY KEY (`orderid`) USING BTREE
+) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of orders
+-- ----------------------------
+INSERT INTO `orders` VALUES (11, '张三', '北京', 1, '120');
+INSERT INTO `orders` VALUES (12, '李四', '上海', 2, '280');
+INSERT INTO `orders` VALUES (13, '王五', '天津', 3, '300');
+
+-- ----------------------------
+-- Table structure for ordersdetail
+-- ----------------------------
+DROP TABLE IF EXISTS `ordersdetail`;
+CREATE TABLE `ordersdetail`  (
+  `id` int(6) NOT NULL COMMENT 'id编号',
+  `orderid` int(6) NOT NULL COMMENT '订单编号',
+  `goods` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商品名称',
+  `quantity` int(4) NOT NULL COMMENT '数量',
+  `unitprice` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '单价',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ordersdetail
+-- ----------------------------
+INSERT INTO `ordersdetail` VALUES (1, 11, '面包', 2, '5');
+INSERT INTO `ordersdetail` VALUES (2, 11, '洗发水', 2, '55');
+INSERT INTO `ordersdetail` VALUES (3, 12, 'jeans', 1, '280');
+INSERT INTO `ordersdetail` VALUES (4, 13, 'skirts', 2, '100');
+INSERT INTO `ordersdetail` VALUES (5, 13, 'trouser', 2, '50');
 
 -- ----------------------------
 -- Table structure for user
