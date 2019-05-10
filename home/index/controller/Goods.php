@@ -64,9 +64,10 @@ class Goods extends Common
     public function product_details()
     {
         if(input('id')){
+            //var_dump(input('id'));
             $type = $this->getCatgory();
             $goods = model('goods');
-            $idpath = $this->getPath();
+            $idpath = $this->getGoodsPath();
             $data = $goods->where('id', input('id'))->select();
             $this->assign([
                 'details' => $data,
@@ -77,7 +78,7 @@ class Goods extends Common
         } else{
             $type = $this->getCatgory();
             $goods = model('goods');
-            $idpath = $this->getPath();
+            $idpath = $this->getGoodsPath();
             $data = $goods->select();
             $this->assign([
                 'details' => $data,
@@ -122,9 +123,28 @@ class Goods extends Common
             ]);
             return $this->fetch("shop_left_sidebar");
         }
-			           
+    }
+    // public function orderWay(){
+    //     $orderby=switch(){
+
+    //     }
+    //     $id = $_POST['id'];
+    //     $popular = $_POST['popular'];
+    //     $price = $_POST['price'];
+    //     $time = $_POST['time'];
+	// 	$db = db('goods');
+	// 	$re = $db->orderRaw('id');
+	// 	if($re){
+	// 		echo 1;
+    //     }else echo 0;
+    //     return $this->fetch("shop_left_sidebar");
+
+        	  
+ 
+    // }
+                 
 			
       
-    }
+    
     
 }

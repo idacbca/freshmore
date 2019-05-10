@@ -58,7 +58,7 @@ class Common extends Controller
     public function getGoodsPath(){
         $m = db('goods_type');
         $n = db('goods');
-        $id = $n->where('tid',input('id'));
+        $id = $n->where('id',input('id'))->value('tid');
         $idpath = $m->where('id',$id)->value('path');
       //  $idpath = $m->where('id',$id)->value('path');
         $arr2 = explode(',',$idpath);
