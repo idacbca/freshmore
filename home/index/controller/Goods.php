@@ -10,18 +10,22 @@ class Goods extends Common
         if(input('id')){
             $type = $this->getCatgory();
             $idpath = $this->getPath();
-            $goods = model('goods');
+            $goods = db('goods');
             $tpid = model('goods_type');
-            $id = $tpid->where('pid',input('id'))->column('id');
-           // var_dump($id);
+            $id = $tpid->where('pid',input('id'))->column('id');//父类为传过来的id
+            // var_dump($id);
+            $data = array();
             if($id){
                 foreach($id as $m){
-                    $data = $goods->where('tid', $m)
-                    ->whereOr('tpid', $m)
+                    $data2 = $goods->where('tid|tpid', $m) 
                     ->select();
-                    //var_dump($data); 
-                    
-            } 
+                    //var_dump($data2);
+                    if($data2 != null){
+                        array_push($data,$data2);
+                    }
+                     
+            }
+            //var_dump($data2); 
             //var_dump($data);                           
             $this->assign([
                 'product' => $data,
@@ -30,7 +34,7 @@ class Goods extends Common
                 'title' => '鲜多多生鲜网 - 商城'
             ]);
             return $this->fetch(); 
-            }else{
+            } else{//三级分类
                 $data = $goods->where('tid', input('id'))
                 ->whereOr('tpid', input('id'))
                 ->select();
@@ -48,8 +52,9 @@ class Goods extends Common
         } else{
             $type = $this->getCatgory();
             $idpath = $this->getPath();
-            $goods = model('goods');
-            $data = $goods->select();
+            $goods = db('goods');
+            $data2 = $goods->select();
+            $data[0]= $data2;
             $this->assign([
                 'product' => $data,
                 'type' => $type,
