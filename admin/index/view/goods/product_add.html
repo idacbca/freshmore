@@ -250,12 +250,6 @@
             </div>
 		</div>
 
-		<!-- <div class="form-group">
-            <div class="file-loading">
-                <input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="2" data-theme="fas">
-            </div>
-        </div> -->
-
     
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">详细内容：</label>
@@ -327,6 +321,7 @@ $(document).ready(function() {
             showCaption:true,//是否显示标题
             showPreview:true,//是否显示预览图，默认true
             showRemove:true,//是否显示删除/清空按钮，默认true。
+			showCancel:false,//
             browseClass:"btn btn-primary",//按钮样式
             previewFileIcon:"<i class='glyphicon glyphicon-king'></i>",
             maxFileCount:10,//允许同时上传的最大文件数
@@ -362,9 +357,11 @@ $(document).ready(function() {
 		console.log(data.response['id']);
 		var div=$('<input type="hidden" name="imagepath[]" class="imagepath" value="'+data.response['id']+'"/>');
 		$('#imageimage').after(div);
+
+	
 		
 
-    });
+		});
 
 $(function(){
 	var ue = UE.getEditor('editor');

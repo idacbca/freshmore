@@ -37,6 +37,14 @@ class Goods extends Common
 	public function product_del_ajax(){
 		$id = $_POST['id'];
 		$db = db('goods');
+		
+		$path= $db->where('id',$id)->column('filepath');
+		$images=explode(',',$path);
+		$file= db('goods_files');
+		foreach($images as $v){
+           $file->where('id'.$v)->delete();
+        }
+		
 		$re = $db->where('id', $id)->delete();
 		if($re){
 			echo 1;
@@ -71,10 +79,21 @@ class Goods extends Common
 		}
 		$this->assign('data', $data);
 
+		
 		$db = db('goods');
 		$id = input('param.id');
 		$goods = $db->find($id);
+
+		$images=explode(',',$goods['filepath']);
+		$i=model('GoodsFiles');
+        $image=[];
+        foreach($images as $v){
+           array_push($image,$i->find($v));
+        }
+
+		
 		$this->assign('goods', $goods);
+		$this->assign('image',$image);
 		return $this->fetch();
 	}
 
@@ -107,20 +126,42 @@ class Goods extends Common
 
 		$goods = model('goods');
 		$tid = explode(",", $_POST['tid']);
-		$result = $goods->save([
-		    'goodsname'  =>  $_POST['goodsname'],
-		    'tid' => $tid[0],
-			'tpid' => $tid[1],
-			'unit' => $_POST['unit'],
-			'attributes' => $_POST['attributes'],
-			'number' => $_POST['number'],
-			'curprice' => $_POST['curprice'],
-			'cosprice' => $_POST['cosprice'],
-			'inventory' => $_POST['inventory'],
-			'freight' => $_POST['freight'],
-			'status' => $_POST['status'],
-			'text' => $_POST['editorValue']
-		],['id' => $_POST['id']]);
+		
+		
+		if(isset($_POST['imagepath'])){
+				$result = $goods->save([
+				'goodsname'  =>  $_POST['goodsname'],
+				'tid' => $tid[0],
+				'tpid' => $tid[1],
+				'unit' => $_POST['unit'],
+				'attributes' => $_POST['attributes'],
+				'number' => $_POST['number'],
+				'curprice' => $_POST['curprice'],
+				'cosprice' => $_POST['cosprice'],
+				'inventory' => $_POST['inventory'],
+				'freight' => $_POST['freight'],
+				'status' => $_POST['status'],
+				'text' => $_POST['editorValue'],
+				'filepath' =>implode(',', $_POST['imagepath'])
+			],['id' => $_POST['id']]);
+		}else{
+			$result = $goods->save([
+				'goodsname'  =>  $_POST['goodsname'],
+				'tid' => $tid[0],
+				'tpid' => $tid[1],
+				'unit' => $_POST['unit'],
+				'attributes' => $_POST['attributes'],
+				'number' => $_POST['number'],
+				'curprice' => $_POST['curprice'],
+				'cosprice' => $_POST['cosprice'],
+				'inventory' => $_POST['inventory'],
+				'freight' => $_POST['freight'],
+				'status' => $_POST['status'],
+				'text' => $_POST['editorValue'],
+				
+			],['id' => $_POST['id']]);
+
+		}
 
 		if($result){
 			$this->success('商品修改成功！', 'product_list');
@@ -276,7 +317,7 @@ class Goods extends Common
 			 $keyName = $file -> getInfo()['name'];
 			 if($info){
 				 $db=db('goods_files');
-				 $filename = '/'.'public' . DS . 'uploads'.$info->getSaveName();
+				 $filename =  DS . 'uploads'.'/'.$info->getSaveName();
 				 $filename =str_replace('\\', '/', $filename);
 				 //$data['id']=$keyName;
 				 $data['filepath']=$filename;
@@ -292,4 +333,15 @@ class Goods extends Common
 			 }
 		 }
 	}
+	//商品图片删除
+	public function product_del_images(){
+        $db=db('goods_files');
+        $result=$db->delete($_GET['id']);
+        if($result){
+            echo 1;
+        }else{
+            echo 0;
+        }
+    }
+    
 }
