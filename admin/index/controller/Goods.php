@@ -93,6 +93,7 @@ class Goods extends Common
 
 		
 		$this->assign('goods', $goods);
+		
 		$this->assign('image',$image);
 		return $this->fetch();
 	}
@@ -335,8 +336,10 @@ class Goods extends Common
 	}
 	//商品图片删除
 	public function product_del_images(){
-        $db=db('goods_files');
-        $result=$db->delete($_GET['id']);
+		$db=db('goods_files');
+		$id= $_GET['id'];
+		$result=$db->delete($id);
+		
         if($result){
             echo 1;
         }else{

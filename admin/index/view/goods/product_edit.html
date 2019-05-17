@@ -240,11 +240,17 @@
         </div>
 	</div>
 	
+		
 	{foreach $image as $v}
-						<div class="row cl" id="imageDelete{$v['id']}" ><input type="hidden" name="imagepath[]" class="imagepath" value="{$v['id']}"/><img src="{$v['filepath']}"; class="img-responsive img-thumbnail" width="150"><a class="close" style="position:absolute; top: 0px; right: -14px;" title="删除这张图片" onclick="deleteImage('{$v['id']}')">×</a></div>
+	{if condition="($v['filepath']!=null)"}
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-2">删除图片：</label>
+						<div class="formControls col-xs-8 col-sm-9" id="imageDelete{$v['id']}" ><input type="hidden" name="imagepath[]" class="imagepath" value="{$v['id']}"/><img src="{$v['filepath']}"; style="width: 20%"><a title="删除这张图片" onclick="deleteImage('{$v['id']}')">×</a></div></div>
+						{/if}
 
 			{/foreach}
-
+		
+	
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">详细内容：</label>
 			<div class="formControls col-xs-8 col-sm-9"> 
