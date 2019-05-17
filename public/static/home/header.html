@@ -136,7 +136,6 @@
 							<li><a href="{:url('index/goods/shop_left_sidebar')}">商品分类</a>
 								<ul>
                                    {foreach $type as $data}
-                                   
                                     <li><a href="{:url('index/goods/shop_left_sidebar', ['id'=>$data.id])}">{$data['name']}</a>
 										<ul>
                                             {foreach $data['chlid'] as $data2}

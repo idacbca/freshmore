@@ -77,10 +77,11 @@
                             <div class="row justify-content-center shop-page-products products-wrapper">
 
                                 <!-- Single Product -->
-                                {foreach $product as $vo}
+                                {foreach $product as $vi}
+                                {foreach $vi as $vo}
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                                     <div class="product-item">
-
+                                     
                                         <div class="product-item-images">
                                             <a href="{:url('index/goods/product_details', ['id'=>$vo.id])}" class="product-item-image-inner">
                                                 <img src="/static/home/img/product/thumbnail-size/product-image-3.jpg" alt="product image">
@@ -98,21 +99,23 @@
                                                     <span class="active"><i class="fa fa-star"></i></span>
                                                     <span class="active"><i class="fa fa-star"></i></span>
                                                     <span class="active"><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
+                                                    <span class="active"><i class="fa fa-star"></i></span>
+
                                                 </div>
                                                 <div class="price-box">
                                                     <span class="pricebox-price">￥{$vo.curprice}/ {$vo.unit}</span>
                                                 </div>
                                             </div>
                                             <p>{$vo.text}</p>
-                                            <div class="product-item-content-right">
+                                            <!-- <div class="product-item-content-right">
                                                 <ul>
                                                     <li><a href="#" data-toggle="tooltip" title="Compare"><i class="fa fa-exchange"></i></a></li>
                                                 </ul>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
+                                {/foreach}
                                 {/foreach}
                                 <!--// Single Product -->
 
