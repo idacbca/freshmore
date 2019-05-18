@@ -81,14 +81,21 @@
                                 <span class="pricebox-price">价格：￥{$value.curprice}/ {$value.unit}</span>
                             </div>
 
-                            <div class="product-details-quantity">
-                                <div class="quantity-select">
-                                    <input type="text" value="1">
-                                </div>
-                                <a href="#" class="add-to-cart-button">
+                            <form action="{:url('cartadd')}" method="POST" id="myform">
+
+                                <div class="product-details-quantity">
+                                    <div class="quantity-select">
+                                        <input type="text" name="quantity" value="1">
+                                    </div>
+                                    <input type="text" name="goodsid" value="{$value.id}" hidden>
+                            </form> 
+                                <a href="#" onclick="document.getElementById('myform').submit();return false;" class="add-to-cart-button">
                                     <span>ADD TO CART</span>
-                                </a>
-                            </div>
+                               </a>
+                            
+                                </div>
+                            
+                            
 
                             <!-- <div class="product-details-color">
                                 <span>Color :</span>

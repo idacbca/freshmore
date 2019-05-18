@@ -39,7 +39,7 @@ class Orders extends Controller
                     return $this->fetch();
           }   
                                }   
-       
+       //删除订单
         public function orders_del_ajax()
         {
 		$id = $_POST['id'];
@@ -67,6 +67,7 @@ class Orders extends Controller
 
         }
 
+        //删除订单详情
         public function ordersdetail_del_ajax()
         {
         $id = $_POST['id'];

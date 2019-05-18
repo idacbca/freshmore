@@ -72,7 +72,7 @@ class Users extends Common
                 $re = $user->save();
                 if($re){
                     $this->success('注册成功！', url('index/index/index'));
-                }
+                       }
             } else{
                 $this->error('用户名已被使用！');
             }

@@ -4,6 +4,42 @@
 	{include file="../public/static/home/head.html" title="$title" /}
 </head>
 
+<script type="text/javascript" src="/static/admin/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="/static/admin/lib/layer/2.4/layer.js"></script>  
+
+
+<script type="text/javascript" src="/static/admin/lib/My97DatePicker/4.8/WdatePicker.js"></script> 
+<script type="text/javascript" src="/static/admin/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="/static/admin/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript">
+
+	function cart_del(obj,id){
+	layer.confirm('确认要取消购买此商品吗？',function(index){
+		$.ajax({
+			type: 'POST',
+			data: {id:id},
+			url: "{:url('cart_del_ajax')}",
+			dataType: 'json',
+			success: function(data){
+				
+				if(data == 1){
+					layer.msg('取消成功!',{icon:1,time:1000});
+				             }
+
+				else{
+					layer.msg('取消失败!',{icon:3,time:1000});
+				    }
+				setInterval(function(){window.location.reload()}, 1000);
+			                        },
+			error:function(data) {
+				console.log(data.msg);
+			                     },
+		       });	 
+		});
+   }
+
+   
+</script>
 <body>
 	
 
@@ -32,6 +68,8 @@
 							</thead>
 							<tbody>
 
+								{foreach $cartdetail as $vo}
+
 								<tr>
 									<td>
 										<a href="product-details-right-sidebar.html" class="product-image">
@@ -39,74 +77,29 @@
 										</a>
 									</td>
 									<td>
-										<a href="product-details-right-sidebar.html" class="product-title">Aenean sagittis</a>
+										<a href="product-details-right-sidebar.html" class="product-title">{$vo.goodsname}</a>
 									</td>
-									<td>£75.00</td>
+
+									<td>{$vo.unitprice}</td>
+
+									<td>{$vo.quantity}</td>
+
 									<td>
-										<div class="quantity-select">
-											<input type="text" value="1">
-										</div>
+										<span class="total-price">{$vo.totalprice}</span>
 									</td>
 									<td>
-										<span class="total-price">£75.00</span>
-									</td>
-									<td>
-										<button class="remove-product"><i class="fa fa-remove"></i></button>
+                                    <button class="remove-product"  onClick="cart_del(this, {$vo.selfid})">
+
+                                            <i class="fa fa-remove" ></i>
+								   </button>
 									</td>
 								</tr>
-
-								<tr>
-									<td>
-										<a href="product-details-right-sidebar.html" class="product-image">
-											<img src="/static/home/img/product/small-size/product-image-2.jpg" alt="product image">
-										</a>
-									</td>
-									<td>
-										<a href="product-details-right-sidebar.html" class="product-title">Elementum felis</a>
-									</td>
-									<td>£75.00</td>
-									<td>
-										<div class="quantity-select">
-											<input type="text" value="1">
-										</div>
-									</td>
-									<td>
-										<span class="total-price">£75.00</span>
-									</td>
-									<td>
-										<button class="remove-product"><i class="fa fa-remove"></i></button>
-									</td>
-								</tr>
-
-								<tr>
-									<td>
-										<a href="product-details-right-sidebar.html" class="product-image">
-											<img src="/static/home/img/product/small-size/product-image-3.jpg" alt="product image">
-										</a>
-									</td>
-									<td>
-										<a href="product-details-right-sidebar.html" class="product-title">Aenean sagittis</a>
-									</td>
-									<td>£75.00</td>
-									<td>
-										<div class="quantity-select">
-											<input type="text" value="1">
-										</div>
-									</td>
-									<td>
-										<span class="total-price">£75.00</span>
-									</td>
-									<td>
-										<button class="remove-product"><i class="fa fa-remove"></i></button>
-									</td>
-								</tr>
-
+								
+								{/foreach}
 							</tbody>
 						</table>
-					</div>
-					<!--// Cart Products -->
-
-					<!-- Cart Content -->
+					</div>	
+							
 					<div class="cart-content">
 						<div class="row justify-content-between">
 							
@@ -117,20 +110,20 @@
 										<tbody>
 											<tr class="cart-subtotal">
 												<th>小计</th>
-												<td>£715.00</td>
+												<td>£{$totalprice}</td>
 											</tr>
 											<tr class="cart-shipping">
 												<th>运费</th>
-												<td>£7.00</td>
+												<td>£{$freight}</td>
 											</tr>
 											<tr class="cart-total">
 												<th>合计</th>
-												<td>£722.00</td>
+												<td>£{$total}</td>
 											</tr>
 										</tbody>
 									</table>
-									<a href="#" class="add-to-cart-button sn-button-lg">
-										<span><a href='/checkout/checkout.html'>支付</a></span>
+									<a href="{:url('checkout')}" class="add-to-cart-button sn-button-lg">
+										<span>支付</span>
 									</a>
 								</div>
 							</div>
