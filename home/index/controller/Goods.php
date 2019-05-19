@@ -72,23 +72,27 @@ class Goods extends Common
             //var_dump(input('id'));
             $type = $this->getCatgory();
             $goods = model('goods');
+            $img = $this->getimgPath();
             $idpath = $this->getGoodsPath();
             $data = $goods->where('id', input('id'))->select();
             $this->assign([
                 'details' => $data,
                 'idpath' => $idpath,
-                'type' => $type
+                'type' => $type,
+                'img' => $img
             ]);
             return $this->fetch();
         } else{
             $type = $this->getCatgory();
             $goods = model('goods');
             $idpath = $this->getGoodsPath();
+            $img = $this->getimgPath();
             $data = $goods->select();
             $this->assign([
                 'details' => $data,
                 'type' => $type,
-                'idpath' => $idpath
+                'idpath' => $idpath,
+                'img' => $img
             ]);
             return $this->fetch();
         }

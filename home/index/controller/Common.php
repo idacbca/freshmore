@@ -70,4 +70,13 @@ class Common extends Controller
         
         return $arr;
     }
+    public function getimgPath(){
+        $n = db('goods');
+        $m = db('goods_files');
+        $img = $n->where('id',input('id'))->value('filepath');
+        //var_dump($img);
+        $imgpath = $m->where('id',$img)->value('filepath');
+        var_dump($imgpath);
+        return $imgpath;
+    }
 }
