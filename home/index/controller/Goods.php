@@ -247,14 +247,6 @@ else echo 0;
    
     }
 
-    public function checkout()
-    {
-    	$type = $this->getCatgory();
-        $this->assign([
-            'title' => '鲜多多生鲜网 - 结算',
-            'type' => $type
-        ]);
-        return $this->fetch();
-    }
+    
     
 }

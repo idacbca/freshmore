@@ -11,7 +11,7 @@
  Target Server Version : 50720
  File Encoding         : 65001
 
- Date: 18/05/2019 22:23:10
+ Date: 19/05/2019 15:48:32
 */
 
 SET NAMES utf8mb4;
@@ -126,16 +126,15 @@ CREATE TABLE `cartdetail`  (
   `update_time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '更新时间',
   `selfid` int(10) NOT NULL AUTO_INCREMENT COMMENT '自增id',
   PRIMARY KEY (`selfid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cartdetail
 -- ----------------------------
 INSERT INTO `cartdetail` VALUES (3, 9, '女装大佬', '1', '1', 1, '2019-05-18 20:58:38', '2019-05-18 20:58:38', 9);
 INSERT INTO `cartdetail` VALUES (4, 11, '康师傅', '400', '2400', 6, '2019-05-18 21:12:53', '2019-05-18 21:12:53', 17);
-INSERT INTO `cartdetail` VALUES (0, 0, '', '', '', 0, '2019-05-18 21:13:23', '2019-05-18 21:13:23', 18);
-INSERT INTO `cartdetail` VALUES (3, 10, 'lolita', '1000', '2000', 2, '2019-05-18 22:16:19', '2019-05-18 22:16:19', 20);
-INSERT INTO `cartdetail` VALUES (3, 11, '康师傅', '400', '2000', 5, '2019-05-18 22:16:40', '2019-05-18 22:16:40', 21);
+INSERT INTO `cartdetail` VALUES (3, 11, '康师傅', '400', '4000', 10, '2019-05-18 22:16:40', '2019-05-18 22:16:40', 21);
+INSERT INTO `cartdetail` VALUES (0, 0, '', '', '', 0, '2019-05-19 14:53:34', '2019-05-19 14:53:34', 25);
 
 -- ----------------------------
 -- Table structure for goods
@@ -168,8 +167,8 @@ CREATE TABLE `goods`  (
 -- Records of goods
 -- ----------------------------
 INSERT INTO `goods` VALUES (9, '女装大佬', 27, 1, '1', '1', '', 1, 111, 1, 1, 1, 0, 1, 1, 1, '0', 0, '<p>www</p>');
-INSERT INTO `goods` VALUES (10, 'lolita', 34, 27, '件', '1', '', 12, 1212, 1000, 900, 600, 10, 20, 0, 5, '0', 12, '<p>www</p>');
-INSERT INTO `goods` VALUES (11, '康师傅', 34, 27, '件', '5', '', 8, 1212, 400, 400, 300, 87, 100, 0, 0, '1', 11, '<p>www</p>');
+INSERT INTO `goods` VALUES (10, 'lolita', 34, 27, '件', '1', '', 12, 1212, 1000, 900, 600, 12, 20, 0, 5, '0', 12, '<p>www</p>');
+INSERT INTO `goods` VALUES (11, '康师傅', 34, 27, '件', '5', '', 8, 1212, 400, 400, 300, 82, 100, 0, 0, '1', 11, '<p>www</p>');
 INSERT INTO `goods` VALUES (12, '凯夫拉一型', 32, 31, '件', '4', '', 23, 22323, 80000, 80000, 60000, 10, 10, 0, 10, '1', 23, '<p>wwwww</p>');
 
 -- ----------------------------
@@ -258,23 +257,22 @@ INSERT INTO `goods_type` VALUES (36, '小皮鞋', 3, '0,3,36', 2);
 -- ----------------------------
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders`  (
-  `orderid` int(6) NOT NULL COMMENT '商品编号',
+  `orderid` int(6) NOT NULL AUTO_INCREMENT COMMENT '商品编号',
   `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '顾客',
   `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '运送地址',
-  `orderstate` int(1) NOT NULL COMMENT '1 已签收 2已送达 3运送中',
+  `orderstate` int(1) NOT NULL COMMENT '0已发货 1 未发货',
+  `freight` int(255) NOT NULL COMMENT '订单运费',
   `payinfo` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '支付信息',
-  `status` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '0 已支付 1 未支付',
   `create_time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '创建时间',
   `update_time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`orderid`) USING BTREE
-) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
-INSERT INTO `orders` VALUES (11, '张三', '北京', 1, '120', '1', '', '');
-INSERT INTO `orders` VALUES (12, '李四', '上海', 0, '280', '0', '', '');
-INSERT INTO `orders` VALUES (13, '王五', '天津', 1, '300', '1', '', '');
+INSERT INTO `orders` VALUES (11, '张三', '北京', 1, 0, '120', '', '');
+INSERT INTO `orders` VALUES (13, '王五', '天津', 1, 0, '300', '', '');
 
 -- ----------------------------
 -- Table structure for ordersdetail

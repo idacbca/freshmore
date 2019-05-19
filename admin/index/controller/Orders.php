@@ -84,10 +84,9 @@ class Orders extends Controller
 	public function orders_start_ajax(){
 		$id = $_POST['id'];
 		$db = db('orders');
-        $va = $db->where('orderid', $id)->where('status', 0)->select();
-		if($va){
+        $re = $db->where('orderid', $id)->update(['orderstate' => '0']);
+		if($re){
             echo 1;
-            $re = $db->where('orderid', $id)->update(['orderstate' => '0']);
 		}else echo 0;
 	}
 

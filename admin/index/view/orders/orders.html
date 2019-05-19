@@ -53,11 +53,12 @@
                     <th width="100">顾客</th>
 										<th width="90">运送地址</th>
 										
-										<th width="100">支付状态</th>
-                   
-                    <th width="100">运输状态</th>
+										
+										<th width="100">运输状态</th>
+										
+										<th width="100">运费</th>
                     
-					<th width="100">支付信息</th>
+					<th width="100">总金额</th>
 					<th width="100">详细信息</th>
 					<th width="100">编辑</th>
 				</tr>
@@ -71,14 +72,7 @@
 								<td width="100"><center>{$vo.username}</center></td>
 								<td width="120"><center>{$vo.address}</center></td>
 								
-								<td class="td-status">
-									<strong>{switch name="$vo.status"}
-													{case value="0"}已支付{/case}
-													{case value="1"}未支付{/case}
-												  {default /}default
-													{/switch}
-									</strong>
-								</td>
+								
 						
 								<td class="td-status">
 									<strong>{switch name="$vo.orderstate"}
@@ -88,7 +82,7 @@
 									{/switch}</strong>
 								</td>
 								
-								 
+								<td width="100"><center>{$vo.freight}元</center></td> 
 								
 								<td class="text-l" width="100"><center>{$vo.payinfo}元</center></td><!--这个价格计算得改下-->
 								<td class="text-l" width="100"><center><a href="{:url('ordersdetail', ['id'=>$vo.orderid])}"><i class="Hui-iconfont">&#xe6df;</i></a></center></td>
@@ -231,7 +225,7 @@ function orders_start(obj,id){
 					layer.msg('已更改!',{icon: 6,time:1000});
 					setInterval(function(){window.location.reload()}, 1000);
 				} else{
-					layer.msg('此订单为无效订单，无法发货!',{icon: 5,time:1000});
+					layer.msg('更改失败，权限不足!',{icon: 5,time:1000});
 				}
 			},
 			error:function(data) {
