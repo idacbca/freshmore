@@ -13,7 +13,7 @@ class Goods extends Common
             $goods = db('goods');
             $tpid = model('goods_type');
             $id = $tpid->where('pid',input('id'))->column('id');//父类为传过来的id
-            // var_dump($id);
+            //var_dump($id);
             $data = array();
             if($id){
                 foreach($id as $m){
@@ -38,9 +38,10 @@ class Goods extends Common
                 $data = $goods->where('tid', input('id'))
                 ->whereOr('tpid', input('id'))
                 ->select();
-
+                $data2[0]= $data;
+                //var_dump($data2); 
                 $this->assign([
-                    'product' => $data,
+                    'product' => $data2,
                     'type' => $type,
                     'idpath' => $idpath, 
                     'title' => '鲜多多生鲜网 - 商城'

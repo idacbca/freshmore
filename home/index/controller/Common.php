@@ -75,7 +75,7 @@ class Common extends Controller
         $m = db('goods_files');
         $img = $n->where('id',input('id'))->value('filepath');
         //var_dump($img);
-        $imgpath = $m->where('id',$img)->value('filepath');
+        $imgpath = $m->where('id',$img)->select();
         var_dump($imgpath);
         return $imgpath;
     }

@@ -30,40 +30,28 @@
                     <!-- Product Details Inner -->
                     
                     <div class="product-details">
-                        {foreach $details as $value}
+                        
 
                         <!-- Product Details Left -->
                         <div class="product-details-left">
+                            {foreach $img as $imgpath}
                             <div class="product-details-images slider-navigation-2">
-                                <a href="{:url('/public/uploads/20190510')}">
-                                    <img src="/static/home/img/product/thumbnail-size/product-image-1.jpg" alt="product image">
-                                </a>
-                                <a href="img/product/thumbnail-size/product-image-2.jpg">
-                                    <img src="/static/home/img/product/thumbnail-size/product-image-2.jpg" alt="product image">
-                                </a>
-                                <a href="img/product/large-size/product-image-3.jpg">
-                                    <img src="/static/home/img/product/thumbnail-size/product-image-14.jpg" alt="product image">
-                                </a>
-                                <a href="img/product/large-size/product-image-4.jpg">
-                                    <img src="/static/home/img/product/thumbnail-size/product-image-15.jpg" alt="product image">
-                                </a>
-                                <a href="img/product/large-size/product-image-5.jpg">
-                                    <img src="/static/home/img/product/thumbnail-size/product-image-20.jpg" alt="product image">
+                                <a href="img/product/thumbnail-size/product-image-1.jpg">
+                                    <img head=100 src="{$imgpath.filepath}" alt="product image">
                                 </a>
                             </div>
-                            <div class="product-details-thumbs slider-navigation-2">										
-                                <img src="/static/home/img/product/small-size/product-image-1.jpg" alt="product image thumb">
-                                <img src="/static/home/img/product/small-size/product-image-2.jpg" alt="product image thumb">
-                                <img src="/static/home/img/product/small-size/product-image-3.jpg" alt="product image thumb">
-                                <img src="/static/home/img/product/small-size/product-image-4.jpg" alt="product image thumb">
-                                <img src="/static/home/img/product/small-size/product-image-5.jpg" alt="product image thumb">
+                            <div class="product-details-thumbs slider-navigation-2">							
+                                <img src="{$imgpath.filepath}" alt="product image thumb">
                             </div>
+                            {/foreach}    
+
                         </div>
                         <!--// Product Details Left -->
 
                         <!-- Product Details Right --> 
                     
-                        <div class="product-details-right">   
+                        <div class="product-details-right">
+                             {foreach $details as $value}   
                             <h5 class="product-title">{$value.goodsname}</h5>
                             
                             <div class="ratting-stock-availbility">
