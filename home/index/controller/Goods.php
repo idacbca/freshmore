@@ -12,6 +12,7 @@ class Goods extends Common
             $idpath = $this->getPath();
             $goods = db('goods');
             $tpid = model('goods_type');
+            $img = $this->getimgPath();
             $id = $tpid->where('pid',input('id'))->column('id');//父类为传过来的id
             //var_dump($id);
             $data = array();
@@ -31,7 +32,8 @@ class Goods extends Common
                 'product' => $data,
                 'type' => $type,
                 'idpath' => $idpath, 
-                'title' => '鲜多多生鲜网 - 商城'
+                'title' => '鲜多多生鲜网 - 商城'，
+                'img' => $img
             ]);
             return $this->fetch(); 
             } else{//三级分类
@@ -44,7 +46,8 @@ class Goods extends Common
                     'product' => $data2,
                     'type' => $type,
                     'idpath' => $idpath, 
-                    'title' => '鲜多多生鲜网 - 商城'
+                    'title' => '鲜多多生鲜网 - 商城'，
+                    'img' => $img
                 ]);
                 return $this->fetch(); 
 
