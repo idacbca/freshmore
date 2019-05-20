@@ -106,6 +106,28 @@ INSERT INTO `auth_rule` (`id`, `name`, `title`, `type`, `status`, `condition`) V
 	(23, 'Users/admin_del_ajax', '角色删除', 1, 1, '');
 /*!40000 ALTER TABLE `auth_rule` ENABLE KEYS */;
 
+-- 导出  表 xianduoduo.cartdetail 结构
+CREATE TABLE IF NOT EXISTS `cartdetail` (
+  `id` int(6) NOT NULL COMMENT '用户id',
+  `goodsid` int(6) NOT NULL COMMENT '商品id',
+  `goodsname` varchar(255) NOT NULL COMMENT '商品名称',
+  `unitprice` char(6) NOT NULL COMMENT '单价',
+  `totalprice` varchar(6) NOT NULL COMMENT '总价',
+  `quantity` int(6) NOT NULL COMMENT '商品数量',
+  `create_time` varchar(255) NOT NULL COMMENT '创建时间',
+  `update_time` varchar(255) NOT NULL COMMENT '更新时间',
+  `selfid` int(10) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  PRIMARY KEY (`selfid`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+-- 正在导出表  xianduoduo.cartdetail 的数据：~2 rows (大约)
+DELETE FROM `cartdetail`;
+/*!40000 ALTER TABLE `cartdetail` DISABLE KEYS */;
+INSERT INTO `cartdetail` (`id`, `goodsid`, `goodsname`, `unitprice`, `totalprice`, `quantity`, `create_time`, `update_time`, `selfid`) VALUES
+	(4, 11, '康师傅', '400', '2400', 6, '2019-05-18 21:12:53', '2019-05-18 21:12:53', 17),
+	(0, 0, '', '', '', 0, '2019-05-19 21:16:53', '2019-05-19 21:16:53', 27);
+/*!40000 ALTER TABLE `cartdetail` ENABLE KEYS */;
+
 -- 导出  表 xianduoduo.goods 结构
 CREATE TABLE IF NOT EXISTS `goods` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '商品自增id',
@@ -130,25 +152,27 @@ CREATE TABLE IF NOT EXISTS `goods` (
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
--- 正在导出表  xianduoduo.goods 的数据：~13 rows (大约)
+-- 正在导出表  xianduoduo.goods 的数据：~15 rows (大约)
 DELETE FROM `goods`;
 /*!40000 ALTER TABLE `goods` DISABLE KEYS */;
 INSERT INTO `goods` (`id`, `goodsname`, `tid`, `tpid`, `unit`, `attributes`, `filepath`, `number`, `barcode`, `curprice`, `oriprice`, `cosprice`, `inventory`, `restrict`, `already`, `freight`, `status`, `reorder`, `text`, `create_time`, `update_time`) VALUES
-	(13, '芦笋', 44, 42, '盒', '1', NULL, 1, NULL, 40, NULL, 30, 2, NULL, NULL, 10, '0', NULL, '<p>111</p>', NULL, NULL),
-	(14, '西红柿', 45, 43, '斤', '1', NULL, 1, NULL, 9, NULL, 6, 40, NULL, NULL, 12, '0', NULL, '<p>123</p>', NULL, NULL),
-	(15, '香椿', 50, 43, '把', '1', NULL, 1, NULL, 5, NULL, 3, 10, NULL, NULL, 7, '0', NULL, '<p>12222</p>', NULL, NULL),
-	(16, '菠菜', 49, 43, '把', '1', NULL, 34, NULL, 10, NULL, 8, 10, NULL, NULL, 10, '0', NULL, '<p>11111111111111</p>', NULL, NULL),
+	(14, '西红柿', 45, 43, '斤', '1', NULL, 1, NULL, 9, NULL, 6, 40, NULL, NULL, 12, '0', NULL, '<p>123</p>', NULL, '2019-05-20 13:13:56'),
 	(17, '草鱼', 48, 47, '斤', '1', NULL, 24, NULL, 10, NULL, 8, 10, NULL, NULL, 20, '0', NULL, '<p>1555</p>', NULL, NULL),
-	(18, '菜花', 56, 43, '个', '1', '1', 11111, NULL, 6, NULL, 4, 100, NULL, NULL, 10, '0', NULL, '<p>1212</p>', '2019-05-10 16:37:08', '2019-05-10 16:37:08'),
-	(19, '土豆', 54, 43, '斤', '1', '2', 1333, NULL, 3, NULL, 1, 30, NULL, NULL, 5, '0', NULL, '<p>144</p>', '2019-05-10 16:37:59', '2019-05-10 16:37:59'),
-	(20, '长茄子', 67, 43, '斤', '1', '3', 3333, NULL, 7, NULL, 5, 11, NULL, NULL, 4, '0', NULL, '<p>15623</p>', '2019-05-10 16:38:48', '2019-05-10 16:38:48'),
-	(21, '胡萝卜', 66, 43, '斤', '1', '4', 43333, NULL, 7, NULL, 4, 30, NULL, NULL, 5, '0', NULL, '<p>333333</p>', '2019-05-10 16:39:52', '2019-05-10 16:39:52'),
-	(22, '油菜', 61, 43, '斤', '1', '5', 12111, NULL, 6, NULL, 4, 2, NULL, NULL, 5, '0', NULL, '<p>油菜</p>', '2019-05-10 16:42:03', '2019-05-10 16:42:03'),
-	(23, '玉米', 63, 43, '个', '1', '6', 1444, NULL, 3, NULL, 2, 11, NULL, NULL, 10, '0', NULL, '<p>玉米</p>', '2019-05-10 16:46:44', '2019-05-10 16:46:44'),
-	(24, '荷兰豆', 60, 42, '斤', '1', '7', 544, NULL, 10, NULL, 8, 10, NULL, NULL, 5, '0', NULL, '<p>荷兰豆</p>', '2019-05-10 16:51:41', '2019-05-10 16:51:41'),
-	(25, '荔浦芋头', 58, 43, '斤', '1', '8', 12, NULL, 9, NULL, 6, 30, NULL, NULL, 10, '0', NULL, '<p>芋头</p>', '2019-05-10 16:52:45', '2019-05-10 16:52:45');
+	(19, '土豆', 54, 43, '斤', '1', '28,2', 1333, NULL, 3, NULL, 1, 30, NULL, NULL, 5, '0', NULL, '<p>144</p>', '2019-05-10 16:37:59', '2019-05-20 13:14:08'),
+	(25, '荔浦芋头', 58, 43, '斤', '1', '8', 12, NULL, 9, NULL, 6, 30, NULL, NULL, 10, '0', NULL, '<p>芋头</p>', '2019-05-10 16:52:45', '2019-05-10 16:52:45'),
+	(26, '圣女果', 73, 52, '盒', '1', '27,9', 31001, NULL, 4, NULL, 2, 444, NULL, NULL, 3, '0', NULL, '<p>圣女果新鲜</p>', '2019-05-17 09:41:12', '2019-05-20 13:13:30'),
+	(27, '国产柠檬', 75, 53, '个', '3', '25,10', 31011, NULL, 6, NULL, 4, 545, NULL, NULL, 2, '0', NULL, '<p>可口</p>', '2019-05-17 09:42:55', '2019-05-20 13:12:55'),
+	(28, '青提', 71, 53, '份', '1', '29,24,11', 31002, NULL, 8, NULL, 5, 235, NULL, NULL, 1, '0', NULL, '<p>甜</p>', '2019-05-17 09:44:14', '2019-05-20 14:24:51'),
+	(29, '红富士苹果', 69, 53, '份', '1', '26,12', 31003, NULL, 12, NULL, 9, 5455, NULL, NULL, 4, '0', NULL, '<p>烟台红富士<br/></p>', '2019-05-17 09:46:09', '2019-05-20 13:13:11'),
+	(30, '山东小土豆', 79, 43, '盒', '1', '20,13', 10011, NULL, 4, NULL, 3, 5453, NULL, NULL, 1, '0', NULL, '<p>新鲜上市！</p>', '2019-05-17 09:58:17', '2019-05-20 13:11:36'),
+	(31, '吉林黑糯玉米', 63, 43, '根', '1', '23,14', 31004, NULL, 7, NULL, 2, 222, NULL, NULL, 1, '0', NULL, '<p>软糯</p>', '2019-05-17 10:00:02', '2019-05-20 13:12:31'),
+	(32, '埃及橙子', 77, 52, '个', '2', '22,15', 31006, NULL, 10, NULL, 7, 44, NULL, NULL, 1, '0', NULL, '<p>好吃</p>', '2019-05-17 10:07:15', '2019-05-20 13:12:17'),
+	(33, '新西兰苹果', 78, 52, '盒', '2', '21,16', 31010, NULL, 15, NULL, 10, 43, NULL, NULL, 7, '0', NULL, '<p>新上架</p>', '2019-05-17 10:11:02', '2019-05-20 13:12:04'),
+	(34, '芦笋', 44, 42, '把', '3', '17', 10003, NULL, 3, NULL, 2, 67, NULL, NULL, 0, '0', NULL, '<p>鲜</p>', '2019-05-17 16:00:43', '2019-05-17 16:00:43'),
+	(35, '洋芋', 57, 42, '个', '2', '18', 10012, NULL, 8, NULL, 7, 32, NULL, NULL, 2, '0', NULL, '<p>糯</p>', '2019-05-17 16:02:03', '2019-05-17 16:02:03'),
+	(36, '荷兰豆', 60, 42, '0', '1', '19', 10014, NULL, 4, NULL, 3, 23, NULL, NULL, 1, '0', NULL, '<p>脆</p>', '2019-05-17 16:02:54', '2019-05-17 16:02:54');
 /*!40000 ALTER TABLE `goods` ENABLE KEYS */;
 
 -- 导出  表 xianduoduo.goods_files 结构
@@ -156,9 +180,9 @@ CREATE TABLE IF NOT EXISTS `goods_files` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `filepath` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
--- 正在导出表  xianduoduo.goods_files 的数据：~8 rows (大约)
+-- 正在导出表  xianduoduo.goods_files 的数据：~27 rows (大约)
 DELETE FROM `goods_files`;
 /*!40000 ALTER TABLE `goods_files` DISABLE KEYS */;
 INSERT INTO `goods_files` (`id`, `filepath`) VALUES
@@ -169,7 +193,28 @@ INSERT INTO `goods_files` (`id`, `filepath`) VALUES
 	(5, '/public/uploads20190510/d3fcfe02ec0b74a00bea58ca5f884bec.jpg'),
 	(6, '/public/uploads20190510/723c7b6ffd101d1e98fccc07aabfcd61.jpg'),
 	(7, '/public/uploads20190510/7df044c1f623fc8d8cde890b863df75a.jpg'),
-	(8, '/public/uploads20190510/5bed417c10a1a8c7b1d7c48af3300024.jpg');
+	(8, '/public/uploads20190510/5bed417c10a1a8c7b1d7c48af3300024.jpg'),
+	(9, '/public/uploads20190517/205591dd7e44f8730442611d145d6c58.jpg'),
+	(10, '/public/uploads20190517/a66ff7ec5f619de6a777c878465a4271.jpg'),
+	(11, '/public/uploads20190517/b6630027d2d9ed287b71d5dbefc43915.jpg'),
+	(12, '/public/uploads20190517/3064969095974c4c96afbce5db43bf02.jpg'),
+	(13, '/public/uploads20190517/bce784c0a431480d41fd4efb9a6460e8.jpg'),
+	(14, '/public/uploads20190517/3541313f1fd7b655c2d8f30c835ae360.jpg'),
+	(15, '/public/uploads20190517/a25166a4a9fa463f146400ce69cbfc52.jpg'),
+	(16, '/public/uploads20190517/420110e6cda9bd814da3c7b024d16320.jpg'),
+	(17, '/public/uploads20190517/192d3c543390f4428a24ed3c0facae03.jpg'),
+	(18, '/public/uploads20190517/ef4e99827c25ddf8a1cb640fa6417f8f.jpg'),
+	(19, '/public/uploads20190517/6b57e5247be1886c9ddda721dd1fae47.jpg'),
+	(20, '/uploads/20190520/081e97b740f947ee422b4070d2a6ac1b.jpg'),
+	(21, '/uploads/20190520/1193628977aad24fb845f0ea80c23344.jpg'),
+	(22, '/uploads/20190520/923e3b192ec5c093127b95bc2212ff4c.jpg'),
+	(23, '/uploads/20190520/0605a2355873c7d2e3e55bb5d727feac.jpg'),
+	(24, '/uploads/20190520/200706a59469a49df3284a95224d98f9.jpg'),
+	(25, '/uploads/20190520/5cf7c9ba45d42989d61b2ac41a26f287.jpg'),
+	(26, '/uploads/20190520/258f596ac3e36a89504cebb4b801f3c9.jpg'),
+	(27, '/uploads/20190520/90ec87423feb62890b79b26a73faa07d.jpg'),
+	(28, '/uploads/20190520/53b8f32473b2e41717bdb981d53af3c4.jpg'),
+	(29, '/uploads/20190520/dea041ec534871cfdc3325e281b7de6c.jpg');
 /*!40000 ALTER TABLE `goods_files` ENABLE KEYS */;
 
 -- 导出  表 xianduoduo.goods_type 结构
@@ -180,9 +225,9 @@ CREATE TABLE IF NOT EXISTS `goods_type` (
   `path` varchar(255) NOT NULL,
   `level` int(255) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
--- 正在导出表  xianduoduo.goods_type 的数据：~28 rows (大约)
+-- 正在导出表  xianduoduo.goods_type 的数据：~26 rows (大约)
 DELETE FROM `goods_type`;
 /*!40000 ALTER TABLE `goods_type` DISABLE KEYS */;
 INSERT INTO `goods_type` (`id`, `name`, `pid`, `path`, `level`) VALUES
@@ -194,66 +239,64 @@ INSERT INTO `goods_type` (`id`, `name`, `pid`, `path`, `level`) VALUES
 	(46, '水产', 0, '0,46', 1),
 	(47, '鱼', 46, '0,46,47', 2),
 	(48, '草鱼', 47, '0,46,47,48', 3),
-	(49, '菠菜', 43, '0,41,43,49', 3),
-	(50, '香椿', 43, '0,41,43,50', 3),
 	(51, '水果', 0, '0,51', 1),
 	(52, '进口水果', 51, '0,51,52', 2),
 	(53, '国产水果', 51, '0,51,53', 2),
 	(54, '土豆', 43, '0,41,43,54', 3),
-	(55, '白菜', 43, '0,41,43,55', 3),
-	(56, '菜花', 43, '0,41,43,56', 3),
 	(57, '洋芋', 42, '0,41,42,57', 3),
 	(58, '荔浦芋头', 43, '0,41,43,58', 3),
-	(59, '秋葵', 43, '0,41,43,59', 3),
 	(60, '荷兰豆', 42, '0,41,42,60', 3),
-	(61, '油菜', 43, '0,41,43,61', 3),
-	(62, '圆白菜', 43, '0,41,43,62', 3),
 	(63, '玉米', 43, '0,41,43,63', 3),
-	(64, '苦菊', 43, '0,41,43,64', 3),
-	(65, '大葱', 43, '0,41,43,65', 3),
-	(66, '胡萝卜', 43, '0,41,43,66', 3),
-	(67, '长茄子', 43, '0,41,43,67', 3),
-	(68, '紫甘蓝', 43, '0,41,43,68', 3);
+	(69, '红富士', 53, '0,51,53,69', 3),
+	(71, '青提', 53, '0,51,53,71', 3),
+	(73, '圣女果', 52, '0,51,52,73', 3),
+	(75, '国产柠檬', 53, '0,51,53,75', 3),
+	(77, '埃及橙子', 52, '0,51,52,77', 3),
+	(78, '新西兰苹果', 52, '0,51,52,78', 3),
+	(79, '小土豆', 43, '0,41,43,79', 3);
 /*!40000 ALTER TABLE `goods_type` ENABLE KEYS */;
 
 -- 导出  表 xianduoduo.orders 结构
 CREATE TABLE IF NOT EXISTS `orders` (
-  `orderid` int(6) NOT NULL COMMENT '商品编号',
+  `orderid` int(6) NOT NULL AUTO_INCREMENT COMMENT '订单编号',
+  `id` int(255) NOT NULL COMMENT '用户id',
   `username` varchar(255) NOT NULL COMMENT '顾客',
-  `address` varchar(255) NOT NULL COMMENT '运送地址',
-  `orderstate` int(1) NOT NULL COMMENT '1 已签收 2已送达 3运送中',
+  `orderstate` int(1) NOT NULL COMMENT '0已发货 1 未发货',
+  `freight` int(255) NOT NULL COMMENT '订单运费',
   `payinfo` varchar(255) NOT NULL COMMENT '支付信息',
+  `create_time` varchar(255) NOT NULL COMMENT '创建时间',
+  `update_time` varchar(255) NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`orderid`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM AUTO_INCREMENT=83 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
--- 正在导出表  xianduoduo.orders 的数据：3 rows
+-- 正在导出表  xianduoduo.orders 的数据：2 rows
 DELETE FROM `orders`;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` (`orderid`, `username`, `address`, `orderstate`, `payinfo`) VALUES
-	(11, '张三', '北京', 1, '120'),
-	(12, '李四', '上海', 2, '280'),
-	(13, '王五', '天津', 3, '300');
+INSERT INTO `orders` (`orderid`, `id`, `username`, `orderstate`, `freight`, `payinfo`, `create_time`, `update_time`) VALUES
+	(80, 3, '16110120', 1, 5, '8406', '2019-05-20 15:52:39', '2019-05-20 15:52:39'),
+	(82, 3, '16110120', 1, 5, '4205', '2019-05-20 16:01:30', '2019-05-20 16:01:30');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 
 -- 导出  表 xianduoduo.ordersdetail 结构
 CREATE TABLE IF NOT EXISTS `ordersdetail` (
-  `id` int(6) NOT NULL COMMENT 'id编号',
   `orderid` int(6) NOT NULL COMMENT '订单编号',
   `goods` varchar(255) NOT NULL COMMENT '商品名称',
   `quantity` int(4) NOT NULL COMMENT '数量',
   `unitprice` varchar(10) NOT NULL COMMENT '单价',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+  `id` int(255) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `商品编号` (`orderid`) USING BTREE
+) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- 正在导出表  xianduoduo.ordersdetail 的数据：5 rows
 DELETE FROM `ordersdetail`;
 /*!40000 ALTER TABLE `ordersdetail` DISABLE KEYS */;
-INSERT INTO `ordersdetail` (`id`, `orderid`, `goods`, `quantity`, `unitprice`) VALUES
-	(1, 11, '面包', 2, '5'),
-	(2, 11, '洗发水', 2, '55'),
-	(3, 12, 'jeans', 1, '280'),
-	(4, 13, 'skirts', 2, '100'),
-	(5, 13, 'trouser', 2, '50');
+INSERT INTO `ordersdetail` (`orderid`, `goods`, `quantity`, `unitprice`, `id`) VALUES
+	(82, '康师傅', 3, '400', 49),
+	(82, 'lolita', 3, '1000', 48),
+	(80, '康师傅', 11, '400', 46),
+	(80, 'lolita', 4, '1000', 47),
+	(80, '女装大佬', 1, '1', 45);
 /*!40000 ALTER TABLE `ordersdetail` ENABLE KEYS */;
 
 -- 导出  表 xianduoduo.user 结构
