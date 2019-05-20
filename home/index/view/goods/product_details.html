@@ -34,15 +34,21 @@
 
                         <!-- Product Details Left -->
                         <div class="product-details-left">
-                            {foreach $img as $imgpath}
+                            {foreach $img as $img2}
+                                {foreach $img2 as $imgpath}
                             <div class="product-details-images slider-navigation-2">
                                 <a href="img/product/thumbnail-size/product-image-1.jpg">
-                                    <img head=100 src="{$imgpath.filepath}" alt="product image">
+                                    <img  src="{$imgpath.filepath}" alt="product image">
                                 </a>
                             </div>
-                            <div class="product-details-thumbs slider-navigation-2">							
+                               {/foreach}    
+                            {/foreach}
+                            {foreach $img as $img2}
+                            {foreach $img2 as $imgpath}
+                            <div class="product-details-thumbs slider-navigation-2">			
                                 <img src="{$imgpath.filepath}" alt="product image thumb">
                             </div>
+                            {/foreach}    
                             {/foreach}    
 
                         </div>
@@ -51,7 +57,7 @@
                         <!-- Product Details Right --> 
                     
                         <div class="product-details-right">
-                             {foreach $details as $value}   
+                         {foreach $details as $value}   
                             <h5 class="product-title">{$value.goodsname}</h5>
                             
                             <div class="ratting-stock-availbility">
@@ -89,11 +95,14 @@
                                     <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                                     <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                                 </ul>
-                            </div>     
-                        </div>
+								  
+							 </div>  
+						{/foreach}   
+						</div>
+						
                     </div>
                         <!--// Product Details Right -->
-                        {/foreach}
+                       
                     
                     <!--// Product Details Inner -->
                     

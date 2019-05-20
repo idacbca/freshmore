@@ -74,9 +74,16 @@ class Common extends Controller
         $n = db('goods');
         $m = db('goods_files');
         $img = $n->where('id',input('id'))->value('filepath');
-        //var_dump($img);
-        $imgpath = $m->where('id',$img)->select();
-        var_dump($imgpath);
-        return $imgpath;
+        $img2 = explode(',',$img);
+        //var_dump($img2);
+        $imgpath = array();
+        foreach($img2 as $img3){
+            $imgpath2 = $m->where('id',$img3)->select();
+            //var_dump($imgpath2);
+            array_push($imgpath,$imgpath2);
+        }
+        
+       //var_dump($imgpath);
+       return $imgpath;
     }
 }
