@@ -20,10 +20,8 @@ class Goods extends Common
                 foreach($id as $m){
                     $data2 = $goods->where('tid|tpid', $m) 
                     ->select();
-<<<<<<< HEAD
                     //var_dump($data); 
      } 
-=======
                     //var_dump($data2);
                     if($data2 != null){
                         array_push($data,$data2);
@@ -31,7 +29,6 @@ class Goods extends Common
                      
             }
             //var_dump($data2); 
->>>>>>> b339c556843dbeaf510cd0cfea9954ca429ae488
             //var_dump($data);                           
             $this->assign([
                 'product' => $data,
@@ -264,34 +261,9 @@ else echo 0;
             ]);
             return $this->fetch("shop_left_sidebar");
         }
-<<<<<<< HEAD
    
     }
 
-=======
-    }
-    // public function orderWay(){
-    //     $orderby=switch(){
-
-    //     }
-    //     $id = $_POST['id'];
-    //     $popular = $_POST['popular'];
-    //     $price = $_POST['price'];
-    //     $time = $_POST['time'];
-	// 	$db = db('goods');
-	// 	$re = $db->orderRaw('id');
-	// 	if($re){
-	// 		echo 1;
-    //     }else echo 0;
-    //     return $this->fetch("shop_left_sidebar");
-
-        	  
- 
-    // }
-                 
-			
-      
->>>>>>> b339c556843dbeaf510cd0cfea9954ca429ae488
     
     
 }
