@@ -45,19 +45,30 @@
                                 <div class="shop-toolbar-sortby">
                                     <span>排序方式</span>
                                     <select name="shop-toolbar-sortby">
-                                        <option value="0">默认排序</option>
-                                        <option value="1">人气</option>
-                                        <option value="2">价格</option>
-                                        <option value="3">上架时间</option>
+                                        <option value="id">默认排序</option>
+                                        <option value="popular">人气</option>
+                                        <option value="price">价格</option>
+                                        <option value="time">上架时间</option>
                                     </select>
                                 </div>
 
-                                <ul class="shop-toolbar-pagination">
-                                    <li class="active"><a href="shop.html">1</a></li>
-                                    <li><a href="shop.html">2</a></li>
-                                    <li><a href="shop.html">3</a></li>
-                                    <li><a href="shop.html">→</a></li>
-                                </ul>
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                      <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                          <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                      </li>
+                                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                      <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                          <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                      </li>
+                                    </ul>
+                                  </nav>
 
                             </div>
                             <!--// Shop Page Toolbars -->
@@ -66,10 +77,11 @@
                             <div class="row justify-content-center shop-page-products products-wrapper">
 
                                 <!-- Single Product -->
-                                {foreach $product as $vo}
+                                {foreach $product as $vi}
+                                {foreach $vi as $vo}
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                                     <div class="product-item">
-
+                                     
                                         <div class="product-item-images">
                                             <a href="{:url('index/goods/product_details', ['id'=>$vo.id])}" class="product-item-image-inner">
                                                 <img src="/static/home/img/product/thumbnail-size/product-image-3.jpg" alt="product image">
@@ -87,23 +99,22 @@
                                                     <span class="active"><i class="fa fa-star"></i></span>
                                                     <span class="active"><i class="fa fa-star"></i></span>
                                                     <span class="active"><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
+
                                                 </div>
                                                 <div class="price-box">
                                                     <span class="pricebox-price">￥{$vo.curprice}/ {$vo.unit}</span>
                                                 </div>
                                             </div>
                                             <p>{$vo.text}</p>
-                                            <div class="product-item-content-right">
+                                            <!-- <div class="product-item-content-right">
                                                 <ul>
-                                                    <li><a class="quick-view-trigger" href="#" data-toggle="tooltip" title="Quick View"><i class="fa fa-eye"></i></a></li>
-                                                    <li><a href="#" data-toggle="tooltip" title="Add to Wishlist"><i class="fa fa-heart"></i></a></li>
                                                     <li><a href="#" data-toggle="tooltip" title="Compare"><i class="fa fa-exchange"></i></a></li>
                                                 </ul>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
+                                {/foreach}
                                 {/foreach}
                                 <!--// Single Product -->
 
@@ -123,19 +134,30 @@
                                 <div class="shop-toolbar-sortby">
                                     <span>排序方式</span>
                                     <select name="shop-toolbar-sortby">
-                                        <option value="0">默认排序</option>
+                                        <option value="id">默认排序</option>
                                         <option value="1">人气</option>
-                                        <option value="2">价格</option>
-                                        <option value="3">上架时间</option>
+                                        <option value="price">价格</option>
+                                        <option value="time">上架时间</option>
                                     </select>
                                 </div>
 
-                                <ul class="shop-toolbar-pagination">
-                                    <li class="active"><a href="shop.html">1</a></li>
-                                    <li><a href="shop.html">2</a></li>
-                                    <li><a href="shop.html">3</a></li>
-                                    <li><a href="shop.html">→</a></li>
-                                </ul>
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                      <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                          <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                      </li>
+                                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                      <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                          <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                      </li>
+                                    </ul>
+                                  </nav>
 
                             </div>
                             <!--// Shop Page Toolbars -->
@@ -293,130 +315,35 @@
         <!--// Footer Area -->
         
         <!-- Quick View Modal -->
-        <div class="quick-view-modal">
-            <div class="quick-view-modal-inner">
-                <div class="container">
-                    <div class="product-details">
-            
-                        <!-- Product Details Left -->
-                        <div class="product-details-left">
-                            <div class="product-details-images slider-navigation-2">
-                                <a href="img/product/large-size/product-image-1.jpg">
-                                    <img src="/static/home/img/product/thumbnail-size/product-image-1.jpg" alt="product image">
-                                </a>
-                                <a href="img/product/thumbnail-size/product-image-2.jpg">
-                                    <img src="/static/home/img/product/thumbnail-size/product-image-2.jpg" alt="product image">
-                                </a>
-                                <a href="img/product/large-size/product-image-3.jpg">
-                                    <img src="/static/home/img/product/thumbnail-size/product-image-14.jpg" alt="product image">
-                                </a>
-                                <a href="img/product/large-size/product-image-4.jpg">
-                                    <img src="/static/home/img/product/thumbnail-size/product-image-15.jpg" alt="product image">
-                                </a>
-                                <a href="img/product/large-size/product-image-5.jpg">
-                                    <img src="/static/home/img/product/thumbnail-size/product-image-20.jpg" alt="product image">
-                                </a>
-                            </div>
-                            <div class="product-details-thumbs slider-navigation-2">										
-                                <img src="/static/home/img/product/small-size/product-image-1.jpg" alt="product image thumb">
-                                <img src="/static/home/img/product/small-size/product-image-2.jpg" alt="product image thumb">
-                                <img src="/static/home/img/product/small-size/product-image-3.jpg" alt="product image thumb">
-                                <img src="/static/home/img/product/small-size/product-image-4.jpg" alt="product image thumb">
-                                <img src="/static/home/img/product/small-size/product-image-5.jpg" alt="product image thumb">
-                            </div>
-                        </div>
-                        <!--// Product Details Left -->
-            
-                        <!-- Product Details Right -->
-                        <div class="product-details-right">
-                            <h5 class="product-title">Aenean Eu Tristique</h5>
-                            
-                            <div class="ratting-stock-availbility">
-                                <div class="ratting-box">
-                                    <span><i class="fa fa-star"></i></span>
-                                    <span><i class="fa fa-star"></i></span>
-                                    <span><i class="fa fa-star"></i></span>
-                                    <span><i class="fa fa-star"></i></span>
-                                    <span><i class="fa fa-star"></i></span>
-                                </div>
-                                <span class="stock-available">In stock</span>
-                            </div>
-                            
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla. adipiscing cursus eu, suscipit id nulla.</p>
-                            
-                            <div class="price-box">
-                                <span class="pricebox-price">£80.00</span>
-                            </div>
-            
-                            <div class="product-details-quantity">
-                                <div class="quantity-select">
-                                    <input type="text" value="1">
-                                </div>
-                                <a href="#" class="add-to-cart-button">
-                                    <span>ADD TO CART</span>
-                                </a>
-                            </div>
-            
-                            <div class="product-details-color">
-                                <span>Color :</span>
-                                <ul>
-                                    <li class="red"><span></span></li>
-                                    <li class="green checked"><span></span></li>
-                                    <li class="blue"><span></span></li>
-                                    <li class="black"><span></span></li>
-                                </ul>
-                            </div>
-            
-                            <div class="product-details-size">
-                                <span>Size :</span>
-                                <ul>
-                                    <li class="checked"><span>S</span></li>
-                                    <li><span>M</span></li>
-                                    <li><span>L</span></li>
-                                    <li><span>XL</span></li>
-                                    <li><span>XXL</span></li>
-                                </ul>
-                            </div>
-            
-                            <div class="product-details-categories">
-                                <span>Categories :</span>
-                                <ul>
-                                    <li><a href="shop.html">Accessories</a></li>
-                                    <li><a href="shop.html">Kids</a></li>
-                                    <li><a href="shop.html">Women</a></li>
-                                </ul>
-                            </div>
-            
-                            <div class="product-details-tags">
-                                <span>Tags :</span>
-                                <ul>
-                                    <li><a href="shop.html">Electronic</a></li>
-                                    <li><a href="shop.html">Television</a></li>
-                                </ul>
-                            </div>
-            
-                            <div class="product-details-socialshare">
-                                <span>Share :</span>
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                </ul>
-                            </div> 
-                        </div>
-                        <!--// Product Details Right -->
-            
-                    </div>
-                </div>
-            </div>
-            <button class="close-quickview-modal"><i class="fa fa-close"></i></button>
-        </div>
+        
         <!--// Quick View Modal -->
 
        
 	</div>
-	<!--// Wrapper -->
+    <!--// Wrapper -->
+    <!-- <script type="text/javascript">
+    $.ajax({
+	//
+	url:"{'data.json'}",
+	type:'get',
+    success: function(resp) {
+    console.log(resp); //原始数据
+    var data = resp;
+  //原生javascript sort() 方法
+    data.data.sort(function(good1, good2) {
+   /* 用价格排序由小到大 */
+    return good1.price1 > good2.price1;
+  });
+  console.log(data.data);//排序后的数据
+  },
+  error: function(resp) {
+  alert("系统繁忙，请稍后再试...");
+  }
+ 
+
+});
+
+
+</script> -->
 </body>
 </html>

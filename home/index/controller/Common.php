@@ -58,7 +58,7 @@ class Common extends Controller
     public function getGoodsPath(){
         $m = db('goods_type');
         $n = db('goods');
-        $id = $n->where('tid',input('id'));
+        $id = $n->where('id',input('id'))->value('tid');
         $idpath = $m->where('id',$id)->value('path');
       //  $idpath = $m->where('id',$id)->value('path');
         $arr2 = explode(',',$idpath);
@@ -70,4 +70,42 @@ class Common extends Controller
         
         return $arr;
     }
+    public function getimgPath(){
+        $n = db('goods');
+        $m = db('goods_files');
+        $img = $n->where('id',input('id'))->value('filepath');
+        $img2 = explode(',',$img);
+        //var_dump($img2);
+        $imgpath = array();
+        foreach($img2 as $img3){
+            $imgpath2 = $m->where('id',$img3)->select();
+            //var_dump($imgpath2);
+            array_push($imgpath,$imgpath2);
+        }
+        
+       //var_dump($imgpath);
+       return $imgpath;
+    }
+    // public function getPimgPath(){
+    //     $n = db('goods');
+    //     $m = db('goods_files');
+    //     $t = db('goods_type');
+    //     //$img = $t->where('id',input('id'))->value('filepath');
+    //     $id = $t->where('pid',input('id'))->select();
+    //     var_dump($id);
+    //     $idpath = $n->where('pid',$id)->whereOr('tpid',$id)
+    //     ->value('path');
+    //     //$idpath = $m->where('id',$id)->value('path');
+    //     $arr2 = explode(',',$idpath);
+    //     $arr = array_filter($arr2);
+    //     $imgpath = array();
+    //     foreach($img2 as $img3){
+    //         $imgpath2 = $m->where('id',$img3)->select();
+    //         //var_dump($imgpath2);
+    //         array_push($imgpath,$imgpath2);
+    //     }
+        
+    //    //var_dump($imgpath);
+    //    return $imgpath;
+    // }
 }

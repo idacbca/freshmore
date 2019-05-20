@@ -10,35 +10,49 @@ class Goods extends Common
         if(input('id')){
             $type = $this->getCatgory();
             $idpath = $this->getPath();
-            $goods = model('goods');
+            $goods = db('goods');
             $tpid = model('goods_type');
-            $id = $tpid->where('pid',input('id'))->column('id');
-           // var_dump($id);
+            //$img = $this->getPimgPath();
+            $id = $tpid->where('pid',input('id'))->column('id');//父类为传过来的id
+            //var_dump($img);
+            $data = array();
             if($id){
                 foreach($id as $m){
-                    $data = $goods->where('tid', $m)
-                    ->whereOr('tpid', $m)
+                    $data2 = $goods->where('tid|tpid', $m) 
                     ->select();
+<<<<<<< HEAD
                     //var_dump($data); 
      } 
+=======
+                    //var_dump($data2);
+                    if($data2 != null){
+                        array_push($data,$data2);
+                    }
+                     
+            }
+            //var_dump($data2); 
+>>>>>>> b339c556843dbeaf510cd0cfea9954ca429ae488
             //var_dump($data);                           
             $this->assign([
                 'product' => $data,
                 'type' => $type,
                 'idpath' => $idpath, 
-                'title' => '鲜多多生鲜网 - 商城'
+                'title' => '鲜多多生鲜网 - 商城',
+                //'img' => $img
             ]);
             return $this->fetch(); 
-            }else{
+            } else{//三级分类
                 $data = $goods->where('tid', input('id'))
                 ->whereOr('tpid', input('id'))
                 ->select();
-
+                $data2[0]= $data;
+                //var_dump($data2); 
                 $this->assign([
-                    'product' => $data,
+                    'product' => $data2,
                     'type' => $type,
                     'idpath' => $idpath, 
-                    'title' => '鲜多多生鲜网 - 商城'
+                    'title' => '鲜多多生鲜网 - 商城',
+                    //'img' => $img
                 ]);
              return $this->fetch(); 
 
@@ -47,8 +61,9 @@ class Goods extends Common
         } else{
             $type = $this->getCatgory();
             $idpath = $this->getPath();
-            $goods = model('goods');
-            $data = $goods->select();
+            $goods = db('goods');
+            $data2 = $goods->select();
+            $data[0]= $data2;
             $this->assign([
                 'product' => $data,
                 'type' => $type,
@@ -151,25 +166,30 @@ else echo 0;
     public function product_details()
     {
         if(input('id')){
+            //var_dump(input('id'));
             $type = $this->getCatgory();
             $goods = model('goods');
-            $idpath = $this->getPath();
+            $img = $this->getimgPath();
+            $idpath = $this->getGoodsPath();
             $data = $goods->where('id', input('id'))->select();
             $this->assign([
                 'details' => $data,
                 'idpath' => $idpath,
-                'type' => $type
+                'type' => $type,
+                'img' => $img
             ]);
             return $this->fetch();
         } else{
             $type = $this->getCatgory();
             $goods = model('goods');
-            $idpath = $this->getPath();
+            $idpath = $this->getGoodsPath();
+            $img = $this->getimgPath();
             $data = $goods->select();
             $this->assign([
                 'details' => $data,
                 'type' => $type,
-                'idpath' => $idpath
+                'idpath' => $idpath,
+                'img' => $img
             ]);
             return $this->fetch();
         }
@@ -244,9 +264,34 @@ else echo 0;
             ]);
             return $this->fetch("shop_left_sidebar");
         }
+<<<<<<< HEAD
    
     }
 
+=======
+    }
+    // public function orderWay(){
+    //     $orderby=switch(){
+
+    //     }
+    //     $id = $_POST['id'];
+    //     $popular = $_POST['popular'];
+    //     $price = $_POST['price'];
+    //     $time = $_POST['time'];
+	// 	$db = db('goods');
+	// 	$re = $db->orderRaw('id');
+	// 	if($re){
+	// 		echo 1;
+    //     }else echo 0;
+    //     return $this->fetch("shop_left_sidebar");
+
+        	  
+ 
+    // }
+                 
+			
+      
+>>>>>>> b339c556843dbeaf510cd0cfea9954ca429ae488
     
     
 }

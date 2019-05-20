@@ -18,50 +18,42 @@
             <!-- Product Page Wrapper -->
             <div class="product-page-wrapper section-padding-bottom-md">
                 <div class="container">
+                    
 
                     <!-- Shop Breadcrumb -->
                     <div class="shop-breadcrumb">
                         <ul>
-                            {foreach $type as $data}
-                            <li><a href="index.html">{$data.name}</a></li>
+                            {foreach  $idpath as $p}
+                            <li><a href="index.html">{$p}</a></li>
                             {/foreach}    
-
+                    </div>
                     <!-- Product Details Inner -->
+                    
                     <div class="product-details">
-                        {foreach $details as $value}
+                        
 
                         <!-- Product Details Left -->
                         <div class="product-details-left">
+                            {foreach $img as $img2}
+                                {foreach $img2 as $imgpath}
                             <div class="product-details-images slider-navigation-2">
-                                <a href="img/product/large-size/product-image-1.jpg">
-                                    <img src="/static/home/img/product/thumbnail-size/product-image-1.jpg" alt="product image">
-                                </a>
-                                <a href="img/product/thumbnail-size/product-image-2.jpg">
-                                    <img src="/static/home/img/product/thumbnail-size/product-image-2.jpg" alt="product image">
-                                </a>
-                                <a href="img/product/large-size/product-image-3.jpg">
-                                    <img src="/static/home/img/product/thumbnail-size/product-image-14.jpg" alt="product image">
-                                </a>
-                                <a href="img/product/large-size/product-image-4.jpg">
-                                    <img src="/static/home/img/product/thumbnail-size/product-image-15.jpg" alt="product image">
-                                </a>
-                                <a href="img/product/large-size/product-image-5.jpg">
-                                    <img src="/static/home/img/product/thumbnail-size/product-image-20.jpg" alt="product image">
+                                <a href="img/product/thumbnail-size/product-image-1.jpg">
+                                    <img  src="{$imgpath.filepath}" alt="product image">
                                 </a>
                             </div>
-                            <div class="product-details-thumbs slider-navigation-2">										
-                                <img src="/static/home/img/product/small-size/product-image-1.jpg" alt="product image thumb">
-                                <img src="/static/home/img/product/small-size/product-image-2.jpg" alt="product image thumb">
-                                <img src="/static/home/img/product/small-size/product-image-3.jpg" alt="product image thumb">
-                                <img src="/static/home/img/product/small-size/product-image-4.jpg" alt="product image thumb">
-                                <img src="/static/home/img/product/small-size/product-image-5.jpg" alt="product image thumb">
+                            <div class="product-details-thumbs slider-navigation-2">			
+                                <img src="{$imgpath.filepath}" alt="product image thumb">
                             </div>
+                            {/foreach}    
+                            {/foreach}    
+
                         </div>
                         <!--// Product Details Left -->
 
                         <!-- Product Details Right --> 
-                        
-                        <div class="product-details-right">   
+                    
+                        <div class="product-details-right">
+                         {foreach $details as $value}   
                             <h5 class="product-title">{$value.goodsname}</h5>
                             
                             <div class="ratting-stock-availbility">
@@ -97,44 +89,6 @@
                             
                             
 
-                            <!-- <div class="product-details-color">
-                                <span>Color :</span>
-                                <ul>
-                                    <li class="red"><span></span></li>
-                                    <li class="green checked"><span></span></li>
-                                    <li class="blue"><span></span></li>
-                                    <li class="black"><span></span></li>
-                                </ul>
-                            </div> -->
-
-                            <!-- <div class="product-details-size">
-                                <span>Size :</span>
-                                <ul>
-                                    <li class="checked"><span>S</span></li>
-                                    <li><span>M</span></li>
-                                    <li><span>L</span></li>
-                                    <li><span>XL</span></li>
-                                    <li><span>XXL</span></li>
-                                </ul>
-                            </div> -->
-
-                            <!-- <div class="product-details-categories">
-                                <span>分类 ：</span>
-                                <ul>
-                                    {foreach  $idpath as $p} 
-                                    <li><a href="shop.html">{$p}</a></li>
-                                    {/foreach}
-                                </ul>
-                            </div> -->
-
-                            <!-- <div class="product-details-tags">
-                                <span>Tags :</span>
-                                <ul>
-                                    <li><a href="shop.html">Electronic</a></li>
-                                    <li><a href="shop.html">Television</a></li>
-                                </ul>
-                            </div> -->
-
                             <div class="product-details-socialshare">
                                 <span>Share :</span>
                                 <ul>
@@ -144,33 +98,28 @@
                                     <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                                     <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                                 </ul>
-                            </div> 
-                            
-                        </div>
-                        
-                        <!--// Product Details Right -->
-                        {/foreach}
+								  
+							</div>  
+						{/foreach}   
+						</div>
+						
                     </div>
+                        <!--// Product Details Right -->
+                       
+                    
                     <!--// Product Details Inner -->
                     
                     <!-- Product Details Review -->
                     <div class="product-descripton-review">
 
                         <ul class="nav" id="product-description-review" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="product-description-tab" data-toggle="tab" href="#product-description" role="tab" aria-controls="product-description" aria-selected="true">Description</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="product-reviews-tab" data-toggle="tab" href="#product-reviews" role="tab" aria-controls="product-reviews" aria-selected="false">Reviews (1)</a>
-                            </li>
+
+
                         </ul>
 
                         <div class="tab-content" id="product-description-review-content">
                             <div class="tab-pane fade show active" id="product-description" role="tabpanel" aria-labelledby="product-description-tab">
-                                <div class="product-description">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla.</p>
-                                    <p>Pellentesque aliquet, sem eget laoreet ultrices, ipsum metus feugiat sem, quis fermentum turpis eros eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in accumsan elit odio quis mi. Cras neque metus, consequat et blandit et, luctus a nunc. Etiam gravida vehicula tellus, in imperdiet ligula euismod eget.</p>
-                                </div>
+                               
                             </div>
                             <div class="tab-pane fade" id="product-reviews" role="tabpanel" aria-labelledby="product-reviews-tab">
                                 <div class="product-review">
@@ -238,6 +187,7 @@
 
                 </div>
                                         
+               
             </div>
             <!--// Product Page Wrapper -->
 
