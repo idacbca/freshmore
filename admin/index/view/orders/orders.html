@@ -51,7 +51,7 @@
 					<th width="25"><input type="checkbox" name="" value=""></th>
 					<th width="80">订单号</th>
                     <th width="100">顾客</th>
-										<th width="90">运送地址</th>
+										
 										
 										
 										<th width="100">运输状态</th>
@@ -59,7 +59,9 @@
 										<th width="100">运费</th>
                     
 					<th width="100">总金额</th>
-					<th width="100">详细信息</th>
+					<th width="100">创建时间</th>
+					 <th width="100">详细信息</th>
+					
 					<th width="100">编辑</th>
 				</tr>
 			</thead>
@@ -70,7 +72,7 @@
 								<td><input type="checkbox" value="1" name=""></td>
 								<td width="80"><center>{$vo.orderid}</center></td>
 								<td width="100"><center>{$vo.username}</center></td>
-								<td width="120"><center>{$vo.address}</center></td>
+								
 								
 								
 						
@@ -84,7 +86,8 @@
 								
 								<td width="100"><center>{$vo.freight}元</center></td> 
 								
-								<td class="text-l" width="100"><center>{$vo.payinfo}元</center></td><!--这个价格计算得改下-->
+								<td class="text-l" width="100"><center>{$vo.payinfo}元</center></td>
+								<td width="100"><center>{$vo.create_time}</center></td> 
 								<td class="text-l" width="100"><center><a href="{:url('ordersdetail', ['id'=>$vo.orderid])}"><i class="Hui-iconfont">&#xe6df;</i></a></center></td>
 
 									

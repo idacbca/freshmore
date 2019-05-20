@@ -45,8 +45,12 @@ class Orders extends Controller
 		$id = $_POST['id'];
         $db = db('orders');
         $re = $db->where('orderid', $id)->delete();
-		
-		if($re){
+        
+        $db1 = db('ordersdetail');
+        
+        $ra = $db1->where('orderid', $id)->delete();
+        
+		if($re&&$ra){
             echo 1;
                }
         
