@@ -79,12 +79,14 @@
                                 <!-- Single Product -->
                                 {foreach $product as $vi}
                                 {foreach $vi as $vo}
+                                
+                                
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                                     <div class="product-item">
                                      
                                         <div class="product-item-images">
                                             <a href="{:url('index/goods/product_details', ['id'=>$vo.id])}" class="product-item-image-inner">
-                                                <img src="/static/home/img/product/thumbnail-size/product-image-3.jpg" alt="product image">
+                                                <img src alt="product image">
                                             </a>
                                             <a href="cart.html" class="add-to-cart-button">
                                                 <span>加入购物车</span>
@@ -114,6 +116,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                
+                                
                                 {/foreach}
                                 {/foreach}
                                 <!--// Single Product -->

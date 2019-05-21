@@ -12,30 +12,55 @@ class Goods extends Common
             $idpath = $this->getPath();
             $goods = db('goods');
             $tpid = model('goods_type');
-            //$img = $this->getPimgPath();
             $id = $tpid->where('pid',input('id'))->column('id');//父类为传过来的id
-            //var_dump($img);
+            //var_dump($id);
             $data = array();
+            $path = array();
             if($id){
                 foreach($id as $m){
                     $data2 = $goods->where('tid|tpid', $m) 
                     ->select();
-                    //var_dump($data); 
-                } 
-                    //var_dump($data2);
+                    //var_dump($data2); 
                     if($data2 != null){
                         array_push($data,$data2);
                     }
+                    
                      
-            
-            //var_dump($data2); 
-            //var_dump($data);                           
+                }
+                foreach($data as $n){
+                    foreach($n as $v){
+                        $img = $v['filepath'];
+                        array_push($path,$img);
+                        
+                    }
+                }
+                //var_dump($path);
+                $k = db('goods_files');
+                $imgpath = array();
+                $filepath = array();
+                foreach($path as $path2){
+                    $img = explode(',',$path2);
+                    foreach($img as $img2){
+                        $imgpath2 = $k->where('id',$img2)->find();
+                        //var_dump($imgpath2);
+                        array_push($imgpath,$imgpath2);
+                    } 
+
+                }
+               
+                foreach($imgpath as $q){
+                    $filepath2 = $q['filepath'];
+                    array_push($filepath,$filepath2);
+                }  
+            //var_dump($data);
+            //var_dump($filepath);
+            $id = $this->replacevalue($data,$filepath);                        
             $this->assign([
                 'product' => $data,
                 'type' => $type,
                 'idpath' => $idpath, 
                 'title' => '鲜多多生鲜网 - 商城',
-                //'img' => $img
+                'filepath' => $filepath
             ]);
             return $this->fetch(); 
             } else{//三级分类
