@@ -59,6 +59,8 @@
 										<th width="100">运费</th>
                     
 					<th width="100">总金额</th>
+					<th width="100">运送地址</th>
+					<th width="100">电话号码</th>
 					<th width="100">创建时间</th>
 					 <th width="100">详细信息</th>
 					
@@ -87,7 +89,10 @@
 								<td width="100"><center>{$vo.freight}元</center></td> 
 								
 								<td class="text-l" width="100"><center>{$vo.payinfo}元</center></td>
+								<td width="100"><center>{$vo.address}</center></td>
+								<td width="100"><center>{$vo.telephone}</center></td>
 								<td width="100"><center>{$vo.create_time}</center></td> 
+
 								<td class="text-l" width="100"><center><a href="{:url('ordersdetail', ['id'=>$vo.orderid])}"><i class="Hui-iconfont">&#xe6df;</i></a></center></td>
 
 									
