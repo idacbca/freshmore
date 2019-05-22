@@ -10,6 +10,7 @@ class Goods extends Common
         if(input('id')){
             $type = $this->getCatgory();
             $idpath = $this->getPath();
+            //$page = $this->userlistAction();
             $goods = db('goods');
             $tpid = model('goods_type');
             $id = $tpid->where('pid',input('id'))->column('id');//父类为传过来的id
@@ -33,7 +34,7 @@ class Goods extends Common
                         array_push($data,$data2);
                     } 
                 }
-            array_push($data3,$data2);        
+           // array_push($data3,$data2);        
             $this->assign([
                 'product' => $data,
                 'type' => $type,
