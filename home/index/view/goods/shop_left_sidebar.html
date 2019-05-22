@@ -77,6 +77,7 @@
                             <div class="row justify-content-center shop-page-products products-wrapper">
 
                                 <!-- Single Product -->
+                                
                                 {foreach $product as $vi}
                                 {foreach $vi as $vo}
                                 
@@ -86,7 +87,7 @@
                                      
                                         <div class="product-item-images">
                                             <a href="{:url('index/goods/product_details', ['id'=>$vo.id])}" class="product-item-image-inner">
-                                                <img src alt="product image">
+                                                <img src="{$vo.filepath}" alt="{$vo.filepath}">
                                             </a>
                                             <a href="cart.html" class="add-to-cart-button">
                                                 <span>加入购物车</span>
@@ -116,6 +117,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                                 
                                 
                                 {/foreach}

@@ -47,12 +47,10 @@ class Common extends Controller
         //$idpath = $m->where('id',$id)->value('path');
         $arr2 = explode(',',$idpath);
         $arr = array_filter($arr2);
-        $pathname2 = array();
-        //var_dump($arr);
         foreach($arr as $k=>&$pathname){           
             $arr[$k] = $m->where('id',$pathname)->value('name');               
         }
-        //var_dump($arr);
+        
         return $arr;
     }
 
