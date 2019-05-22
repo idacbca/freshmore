@@ -35,6 +35,7 @@ class Checkout extends Common
            }
 
            $total=$totalprice+$freight;
+        
         $this->assign([
             'title' => '鲜多多生鲜网 - 结算',
             'type' => $type,
@@ -61,13 +62,20 @@ class Checkout extends Common
         {
             $this->error("亲，请先添加商品！","index/index/index");
         }
+        $user = model('user');
+        $data = $user->where('user_name',$username)->find();
 
+        if(is_null($data['address'])||is_null($data['telephone'])){
+            $this->error("请先填写个人信息");
+        }else{
         $orders->data([
             'id'=>$id,
             'username'=>$username,
             'orderstate'=>$orderstate,
             'freight'=>$freight,
-            'payinfo'=>$payinfo
+            'payinfo'=>$payinfo,
+            'address'=>$data['address'],
+            'telephone'=>$data['telephone']
                   ]);
              
 
@@ -94,7 +102,7 @@ $data=['orderid'=>$orderid,'goods'=>$vo['goodsname'],'quantity'=>$vo['quantity']
               $this->success("添加成功","index/index/index");
           }
        
-       
+        }
     }
 
 //ajax生成订单

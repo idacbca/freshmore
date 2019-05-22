@@ -11,7 +11,7 @@
  Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 22/05/2019 23:17:49
+ Date: 23/05/2019 01:00:25
 */
 
 SET NAMES utf8mb4;
@@ -126,13 +126,17 @@ CREATE TABLE `cartdetail`  (
   `update_time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '更新时间',
   `selfid` int(10) NOT NULL AUTO_INCREMENT COMMENT '自增id',
   PRIMARY KEY (`selfid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 39 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 52 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cartdetail
 -- ----------------------------
 INSERT INTO `cartdetail` VALUES (4, 11, '康师傅', '400', '2400', 6, '2019-05-18 21:12:53', '2019-05-18 21:12:53', 17);
-INSERT INTO `cartdetail` VALUES (0, 0, '', '', '', 0, '2019-05-19 21:16:53', '2019-05-19 21:16:53', 27);
+INSERT INTO `cartdetail` VALUES (7, 26, '圣女果', '4', '16', 4, '2019-05-23 00:45:53', '2019-05-23 00:45:53', 45);
+INSERT INTO `cartdetail` VALUES (7, 17, '草鱼', '10', '20', 2, '2019-05-23 00:47:17', '2019-05-23 00:47:17', 47);
+INSERT INTO `cartdetail` VALUES (7, 31, '吉林黑糯玉米', '7', '21', 3, '2019-05-23 00:47:37', '2019-05-23 00:47:37', 48);
+INSERT INTO `cartdetail` VALUES (7, 19, '土豆', '3', '21', 7, '2019-05-23 00:50:54', '2019-05-23 00:50:54', 50);
+INSERT INTO `cartdetail` VALUES (7, 14, '西红柿', '9', '72', 8, '2019-05-23 00:51:19', '2019-05-23 00:51:19', 51);
 
 -- ----------------------------
 -- Table structure for goods
@@ -166,19 +170,19 @@ CREATE TABLE `goods`  (
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
-INSERT INTO `goods` VALUES (14, '西红柿', 45, 43, '斤', '1', '43,42', 1, NULL, 9, NULL, 6, 26, NULL, NULL, 12, '0', NULL, '<p>123</p>', NULL, '2019-05-22 18:03:01');
-INSERT INTO `goods` VALUES (17, '草鱼', 48, 47, '斤', '1', '34,33', 24, NULL, 10, NULL, 8, 6, NULL, NULL, 20, '0', NULL, '<p>1555</p>', NULL, '2019-05-21 12:17:35');
-INSERT INTO `goods` VALUES (19, '土豆', 54, 43, '斤', '1', '28', 1333, NULL, 3, NULL, 1, 30, NULL, NULL, 5, '0', NULL, '<p>144</p>', '2019-05-10 16:37:59', '2019-05-20 13:14:08');
+INSERT INTO `goods` VALUES (14, '西红柿', 45, 43, '斤', '1', '43,42', 1, NULL, 9, NULL, 6, 8, NULL, NULL, 12, '0', NULL, '<p>特红</p>', NULL, '2019-05-22 18:03:01');
+INSERT INTO `goods` VALUES (17, '草鱼', 48, 47, '斤', '1', '34,33', 24, NULL, 10, NULL, 8, 4, NULL, NULL, 20, '0', NULL, '<p>肉嫩</p>', NULL, '2019-05-21 12:17:35');
+INSERT INTO `goods` VALUES (19, '土豆', 54, 43, '斤', '1', '28', 1333, NULL, 3, NULL, 1, 23, NULL, NULL, 5, '0', NULL, '<p>高淀粉</p>', '2019-05-10 16:37:59', '2019-05-20 13:14:08');
 INSERT INTO `goods` VALUES (25, '荔浦芋头', 58, 43, '斤', '1', '36,35', 12, NULL, 9, NULL, 6, 30, NULL, NULL, 10, '0', NULL, '<p>芋头</p>', '2019-05-10 16:52:45', '2019-05-21 12:18:46');
-INSERT INTO `goods` VALUES (26, '圣女果', 73, 52, '盒', '1', '37,27', 31001, NULL, 4, NULL, 2, 439, NULL, NULL, 3, '0', NULL, '<p>圣女果新鲜</p>', '2019-05-17 09:41:12', '2019-05-21 12:19:29');
+INSERT INTO `goods` VALUES (26, '圣女果', 73, 52, '盒', '1', '37,27', 31001, NULL, 4, NULL, 2, 425, NULL, NULL, 3, '0', NULL, '<p>圣女果新鲜</p>', '2019-05-17 09:41:12', '2019-05-21 12:19:29');
 INSERT INTO `goods` VALUES (27, '国产柠檬', 75, 53, '个', '3', '25', 31011, NULL, 6, NULL, 4, 545, NULL, NULL, 2, '0', NULL, '<p>可口</p>', '2019-05-17 09:42:55', '2019-05-20 13:12:55');
 INSERT INTO `goods` VALUES (28, '青提', 71, 53, '份', '1', '29,24', 31002, NULL, 8, NULL, 5, 235, NULL, NULL, 1, '0', NULL, '<p>甜</p>', '2019-05-17 09:44:14', '2019-05-20 14:24:51');
 INSERT INTO `goods` VALUES (29, '红富士苹果', 69, 53, '份', '1', '26', 31003, NULL, 12, NULL, 9, 5455, NULL, NULL, 4, '0', NULL, '<p>烟台红富士<br/></p>', '2019-05-17 09:46:09', '2019-05-20 13:13:11');
 INSERT INTO `goods` VALUES (30, '山东小土豆', 79, 43, '盒', '1', '20', 10011, NULL, 4, NULL, 3, 5453, NULL, NULL, 1, '0', NULL, '<p>新鲜上市！</p>', '2019-05-17 09:58:17', '2019-05-20 13:11:36');
-INSERT INTO `goods` VALUES (31, '吉林黑糯玉米', 63, 43, '根', '1', '23', 31004, NULL, 7, NULL, 2, 222, NULL, NULL, 1, '0', NULL, '<p>软糯</p>', '2019-05-17 10:00:02', '2019-05-20 13:12:31');
+INSERT INTO `goods` VALUES (31, '吉林黑糯玉米', 63, 43, '根', '1', '23', 31004, NULL, 7, NULL, 2, 219, NULL, NULL, 1, '0', NULL, '<p>软糯</p>', '2019-05-17 10:00:02', '2019-05-20 13:12:31');
 INSERT INTO `goods` VALUES (32, '埃及橙子', 77, 52, '个', '2', '22', 31006, NULL, 10, NULL, 7, 44, NULL, NULL, 1, '0', NULL, '<p>好吃</p>', '2019-05-17 10:07:15', '2019-05-20 13:12:17');
 INSERT INTO `goods` VALUES (33, '新西兰苹果', 78, 52, '盒', '2', '21', 31010, NULL, 15, NULL, 10, 43, NULL, NULL, 7, '0', NULL, '<p>新上架</p>', '2019-05-17 10:11:02', '2019-05-20 13:12:04');
-INSERT INTO `goods` VALUES (34, '芦笋', 44, 42, '把', '3', '32,31,30', 10003, NULL, 3, NULL, 2, 65, NULL, NULL, 0, '0', NULL, '<p>鲜</p>', '2019-05-17 16:00:43', '2019-05-21 12:16:42');
+INSERT INTO `goods` VALUES (34, '芦笋', 44, 42, '把', '3', '32,31,30', 10003, NULL, 3, NULL, 2, 54, NULL, NULL, 0, '0', NULL, '<p>鲜</p>', '2019-05-17 16:00:43', '2019-05-21 12:16:42');
 INSERT INTO `goods` VALUES (35, '洋芋', 57, 42, '个', '2', '41,40', 10012, NULL, 8, NULL, 7, 32, NULL, NULL, 2, '0', NULL, '<p>糯</p>', '2019-05-17 16:02:03', '2019-05-21 12:21:19');
 INSERT INTO `goods` VALUES (36, '荷兰豆', 60, 42, '0', '1', '39,38', 10014, NULL, 4, NULL, 3, 23, NULL, NULL, 1, '0', NULL, '<p>脆</p>', '2019-05-17 16:02:54', '2019-05-21 12:20:26');
 
@@ -276,13 +280,18 @@ CREATE TABLE `orders`  (
   `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '地址',
   `telephone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '电话号码',
   PRIMARY KEY (`orderid`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 84 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 89 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
-INSERT INTO `orders` VALUES (80, 3, '16110120', 1, 5, '8406', '2019-05-20 15:52:39', '2019-05-20 15:52:39', NULL, NULL);
-INSERT INTO `orders` VALUES (82, 3, '16110120', 1, 5, '4205', '2019-05-20 16:01:30', '2019-05-20 16:01:30', NULL, NULL);
+INSERT INTO `orders` VALUES (80, 3, '16110120', 1, 5, '8406', '2019-05-20 15:52:39', '2019-05-20 15:52:39', '1111', '1111');
+INSERT INTO `orders` VALUES (82, 3, '16110120', 1, 5, '4205', '2019-05-20 16:01:30', '2019-05-20 16:01:30', '1111', '1111');
+INSERT INTO `orders` VALUES (84, 6, 'admin1', 1, 12, '81', '2019-05-23 00:01:50', '2019-05-23 00:01:50', '1111', '1111');
+INSERT INTO `orders` VALUES (85, 6, 'admin1', 1, 12, '48', '2019-05-23 00:28:05', '2019-05-23 00:28:05', '111', '111');
+INSERT INTO `orders` VALUES (86, 7, '16110106', 1, 3, '23', '2019-05-23 00:29:53', '2019-05-23 00:29:53', '111', '1111');
+INSERT INTO `orders` VALUES (87, 7, '16110106', 1, 3, '23', '2019-05-23 00:35:49', '2019-05-23 00:35:49', '1111', '1111');
+INSERT INTO `orders` VALUES (88, 7, '16110106', 1, 0, '18', '2019-05-23 00:37:58', '2019-05-23 00:37:58', '1111', '1111');
 
 -- ----------------------------
 -- Table structure for ordersdetail
@@ -296,7 +305,7 @@ CREATE TABLE `ordersdetail`  (
   `id` int(255) NOT NULL AUTO_INCREMENT COMMENT '自增id',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `商品编号`(`orderid`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 54 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 60 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ordersdetail
@@ -306,6 +315,12 @@ INSERT INTO `ordersdetail` VALUES (82, 'lolita', 3, '1000', 48);
 INSERT INTO `ordersdetail` VALUES (80, '康师傅', 11, '400', 46);
 INSERT INTO `ordersdetail` VALUES (80, 'lolita', 4, '1000', 47);
 INSERT INTO `ordersdetail` VALUES (80, '女装大佬', 1, '1', 45);
+INSERT INTO `ordersdetail` VALUES (84, '芦笋', 5, '3', 54);
+INSERT INTO `ordersdetail` VALUES (84, '西红柿', 6, '9', 55);
+INSERT INTO `ordersdetail` VALUES (85, '西红柿', 4, '9', 56);
+INSERT INTO `ordersdetail` VALUES (86, '圣女果', 5, '4', 57);
+INSERT INTO `ordersdetail` VALUES (87, '圣女果', 5, '4', 58);
+INSERT INTO `ordersdetail` VALUES (88, '芦笋', 6, '3', 59);
 
 -- ----------------------------
 -- Table structure for user
@@ -321,14 +336,15 @@ CREATE TABLE `user`  (
   `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `telephone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (NULL, 2, 'acbca', '972cca37a2e97b54154560196d7440f4', '2019-04-19 15:36:46', '2019-04-19 15:36:46', '11111', NULL);
-INSERT INTO `user` VALUES (NULL, 3, 'winnie', 'e10adc3949ba59abbe56e057f20f883e', '2019-05-11 09:44:15', '2019-05-11 09:44:15', NULL, NULL);
-INSERT INTO `user` VALUES (NULL, 4, '16110120', '94d39231f2f1d3711e9011570063ac2b', '2019-05-20 19:37:43', '2019-05-20 19:37:43', NULL, NULL);
+INSERT INTO `user` VALUES (NULL, 2, 'acbca', '972cca37a2e97b54154560196d7440f4', '2019-04-19 15:36:46', '2019-04-19 15:36:46', '11111', '1111');
+INSERT INTO `user` VALUES (NULL, 3, 'winnie', 'e10adc3949ba59abbe56e057f20f883e', '2019-05-11 09:44:15', '2019-05-11 09:44:15', '1111', '111');
+INSERT INTO `user` VALUES (NULL, 4, '16110120', '94d39231f2f1d3711e9011570063ac2b', '2019-05-20 19:37:43', '2019-05-20 19:37:43', '1111', '1111');
 INSERT INTO `user` VALUES ('12333', 6, 'admin1', '81dc9bdb52d04dc20036dbd8313ed055', '2019-05-22 22:56:13', '2019-05-22 23:17:27', '11111', '1234567');
+INSERT INTO `user` VALUES ('12345', 7, '16110106', 'e10adc3949ba59abbe56e057f20f883e', '2019-05-23 00:29:19', '2019-05-23 00:35:43', '1111', '1111');
 
 SET FOREIGN_KEY_CHECKS = 1;
