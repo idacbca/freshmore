@@ -68,7 +68,8 @@ class Users extends Common
             if(!$name){
                 $user->data([
                     'user_name' => $data['user_name'],
-                    'user_password' => $data['user_password']
+                    'user_password' => $data['user_password'],
+                    'nickname' => $data['user_name']
                 ]);
                 $re = $user->save();
                 if($re){
