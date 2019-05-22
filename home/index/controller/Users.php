@@ -2,6 +2,7 @@
 namespace app\index\controller;
 
 use think\Controller;
+use \think\Session;
 
 class Users extends Common
 {
@@ -96,6 +97,64 @@ class Users extends Common
             'title' => '鲜多多生鲜网 - 账户中心',
             'type' => $type
         ]);
+
+
+        $db = db('user');
+        $cid=Session::get('cid');
+		$user = $db->find($cid);
+			$this->assign([
+				'user' => $user
+			]);
     	return $this->fetch();
+    }
+
+    public function user_edit(){
+        $user = model('user');
+        $cid=Session::get('cid');
+        $result = $user->save([
+            'nickname'  =>  $_POST['nickname'],
+            'address' => $_POST['address'],
+            'telephone' => $_POST['telephone'],
+                ],['id' => $cid]);
+            if($result){
+                $this->success('个人信息修改成功！', 'my_account');
+            } else{
+                $this->error('个人信息修改失败！');
+            }
+               
+    }
+        
+
+        public function password_edit(){
+            $user = model('user');
+            $cid=Session::get('cid');
+            $info=$user->where('id',$cid)->find();
+            $password=md5($_POST['user_password']);
+            $a=md5($_POST['newpassword']);
+            $b=md5($_POST['again']);
+            if($password==$info['user_password']){
+                if($password!=$a){
+                    if($a==$b){
+                        $result = $user->save([
+                            'user_password' => $a,
+                        ],['id' => $cid]);
+                        if($result){    
+                            session(null);
+                            $re = session('?cid');
+                            if(!$re){
+                            $this->success('修改密码成功，请重新登录', url('index/users/login'));
+                        } 
+                        } else{
+                            $this->error('密码修改失败');
+                        }
+                    }else{
+                        $this->error('两次新密码不同！');
+                    }
+                }else{
+                    $this->error('原密码错误不能与新密码相同！');
+                }
+            }else{
+                $this->error('原密码错误！');
+            }
     }
 }
