@@ -39,6 +39,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" id="account-details-tab" data-toggle="tab" href="#account-details" role="tab" aria-controls="account-details" aria-selected="false">信息修改</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="account-details-tab" data-toggle="tab" href="#password" role="tab" aria-controls="account-details" aria-selected="false">修改密码</a>
+                                </li>
                               
                                 <li class="nav-item">
                                     <a class="nav-link" id="account-logout-tab"  href="{:url('logout')}" role="tab"  aria-selected="false">注销登录</a>
@@ -89,7 +92,7 @@
                                             <div class="col">
                                                 <h4 class="small-title">我的地址</h4>
                                                 <address>
-                                                    1234 Heaven Stress, Beverly Hill OldYork UnitedState of Lorem
+                                                    {$user.address}
                                                 </address>
                                             </div>
                                           
@@ -98,36 +101,53 @@
                                 </div>
                                 <div class="tab-pane fade" id="account-details" role="tabpanel" aria-labelledby="account-details-tab">
                                     <div class="myaccount-details">
-                                        <form action="#" class="sn-form">
+                                        <form action="{:url('user_edit')}" class="sn-form" method="POST">
                                             <div class="sn-form-inner">
 												<div class="single-input single-input-half">
 													<label for="昵称修改">昵称修改</label>
-													<input type="text" id="昵称修改">
+													<input name="nickname" type="text" id="nickname" value="{$user.nickname}">
 												</div>
 												<div class="single-input single-input-half">
 													<label for="更新地址">更新地址</label>
-													<input type="text" id="更新地址">
-												</div>
-												
+													<input name="address" type="text" id="address" value="{$user.address}">
+                                                </div>
+                                                <div class="single-input single-input-half">
+                                                        <label for="更新地址">更新联系电话</label>
+                                                        <input name="telephone" type="text" id="telephone" value="{$user.telephone}">
+                                                    </div>
 												<div class="single-input">
-													<label for="原密码">原密码</label>
-													<input type="password" id="原密码">
-												</div>
-												<div class="single-input">
-													<label for="新密码">新密码</label>
-													<input type="password" id="新密码">
-												</div>
-												<div class="single-input">
-													<label for="account-details-confpass">再输一遍</label>
-													<input type="password" id="再输一遍">
-												</div>
-												<div class="single-input">
-													<button class="sn-button sn-button-dark" type="submit"><span>保存更改</span></button>
+													<button class="sn-button sn-button-dark" type="submit" ><span>保存</span></button>
 												</div>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
+
+                                <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="account-details-tab">
+                                    <div class="myaccount-details">
+                                        <form action="{:url('password_edit')}" class="sn-form" method="POST">
+                                                <div class="sn-form-inner">	
+												<div class="single-input">
+													<label for="原密码">原密码</label>
+													<input name="user_password" type="password" id="user_password">
+												</div>
+												<div class="single-input">
+													<label for="新密码">新密码</label>
+													<input name="newpassword" type="password" id="newpassword">
+												</div>
+												<div class="single-input">
+													<label for="account-details-confpass">再输一遍</label>
+													<input name="again" type="password" id="again" >
+												</div>
+												<div class="single-input">
+													<button class="sn-button sn-button-dark" type="submit" ><span>保存更改</span></button>
+												</div>
+                                            </div>
+                                        
+                                        </form>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>

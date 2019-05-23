@@ -34,18 +34,23 @@
 
                         <!-- Product Details Left -->
                         <div class="product-details-left">
-                            {foreach $img as $img2}
-                                {foreach $img2 as $imgpath}
                             <div class="product-details-images slider-navigation-2">
+								{foreach $img as $img2}
+								{foreach $img2 as $imgpath}
                                 <a href="img/product/thumbnail-size/product-image-1.jpg">
-                                    <img  src="{$imgpath.filepath}" alt="product image">
-                                </a>
+                                    <img  src="{$imgpath.filepath}" width=500px height=300px alt="product image">
+								</a>
+								{/foreach}    
+								{/foreach}    	
                             </div>
-                            <div class="product-details-thumbs slider-navigation-2">			
-                                <img src="{$imgpath.filepath}" alt="product image thumb">
+                            <div class="product-details-thumbs slider-navigation-2">
+								{foreach $img as $img2}
+								{foreach $img2 as $imgpath}			
+								<img src="{$imgpath.filepath}" width=160px height=150px alt="product image thumb">
+								{/foreach}    
+								{/foreach}    	
                             </div>
-                            {/foreach}    
-                            {/foreach}    
+
 
                         </div>
                         <!--// Product Details Left -->
@@ -79,16 +84,12 @@
                                     <div class="quantity-select">
                                         <input type="text" name="quantity" value="1">
                                     </div>
-                                    <input type="text" name="goodsid" value="{$value.id}" hidden>
+									<input type="text" name="goodsid" value="{$value.id}" hidden>
+								</div>
                             </form> 
                                 <a href="#" onclick="document.getElementById('myform').submit();return false;" class="add-to-cart-button">
-                                    <span>ADD TO CART</span>
-                               </a>
-                            
-                                </div>
-                            
-                            
-
+                                    <span>添加购物车</span>
+                               </a>                                                                            
                             <div class="product-details-socialshare">
                                 <span>Share :</span>
                                 <ul>

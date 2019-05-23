@@ -39,23 +39,23 @@
 												{foreach $cartdetail as $vo}
 												<tr>
 												<td class="text-left">{$vo.goodsname} <span>× {$vo.quantity}</span></td>
-												<td class="text-right">£{$vo.totalprice}</td>
+												<td class="text-right">￥{$vo.totalprice}</td>
 												</tr>
 												{/foreach}
 												
 											</tbody>
-											<tfoot>
+											<tfoot >
 												<tr>
-													<th class="text-left">CART SUBTOTAL</th>
-													<td class="text-right">£{$totalprice}</td>
+													<th class="text-left">商品总价</th>
+													<td class="text-right">￥{$totalprice}</td>
 												</tr>
 												<tr>
-													<th class="text-left">SHIPPING</th>
-													<td class="text-right">Flat Rate: £{$freight}</td>
+													<th class="text-left">运费</th>
+													<td class="text-right">￥{$freight}</td>
 												</tr>
 												<tr class="total-price">
-													<th class="text-left">ORDER TOTAL</th>
-													<td class="text-right">£{$total}</td>
+													<th class="text-left">订单总额</th>
+													<td class="text-right">￥{$total}</td>
 												</tr>
 											</tfoot>
 										</table>

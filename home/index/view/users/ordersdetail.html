@@ -25,106 +25,63 @@
             <!-- Account Page Area -->
             <div class="account-page-area section-padding-md">
                 <div class="container">
-                    <div class="row">
+                    <!-- <div class="row"> -->
 
-                        <div class="col-lg-3">
+                        <!-- <div class="col-lg-3">
                             <ul class="nav myaccount-tab-trigger" id="account-page-tab" role="tablist">
                                 
                                 <li class="nav-item">
-                                    <a class="nav-link" id="account-orders-tab" data-toggle="tab" href="#account-orders" role="tab" aria-controls="account-orders" aria-selected="false">我的订单</a>
+                                    <a class="nav-link" id="account-orders-tab" data-toggle="tab" href="#account-orders" role="tab" aria-controls="account-orders" aria-selected="false">订单详情</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="account-address-tab" data-toggle="tab" href="#account-address" role="tab" aria-controls="account-address" aria-selected="false">我的地址</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="account-details-tab" data-toggle="tab" href="#account-details" role="tab" aria-controls="account-details" aria-selected="false">信息修改</a>
-                                </li>
+                               
+                                
                               
-                                <li class="nav-item">
-                                    <a class="nav-link" id="account-logout-tab"  href="{:url('logout')}" role="tab"  aria-selected="false">注销登录</a>
-                                </li>
+                            
                             </ul>
-                        </div>
+                        </div> -->
 
-                        <div class="col-lg-9">
-                            <div class="tab-content myaccount-tab-content" id="account-page-tab-content">
-                                <div class="tab-pane fade" id="account-orders" role="tabpanel" aria-labelledby="account-orders-tab">
+                          <!-- <div class="col-lg-12">  -->
+                             <!-- <div class="tab-content myaccount-tab-content" id="account-page-tab-content"> -->
+                               <!-- <div class="tab-pane fade" id="account-orders" role="tabpanel" aria-labelledby="account-orders-tab">  -->
                                     <div class="myaccount-orders">
-                                        <h4 class="small-title">我的订单</h4>
-                                        <div class="table-responsive">
+                                        <div class='row'>
+                                        
+                                        <h4 class="small-title">订单详情</h4>
+                                        
+                                       
+                                    
+                                        <div class="table-responsive ">
                                             <table class="table table-bordered table-hover">
                                                 <tbody>
                                                     
                                                     <tr>			
-                                                        <th>商品名称</th>
-                                                        <th>数量</th>
-                                                        <th>单价</th>
+                                                        <th width="100">商品名称</th>
+                                                        <th width="100">数量</th>
+                                                        <th width="100">单价</th>
                                                         
-                                                        <th></th>
+                                                        
                                                     </tr>
                                                     
-                                                    {foreach $data as $vo}
+                                                    {foreach $ordersdetail as $vo}
                                                     <tr>		
-                                                        <td>{$vo.orderid}</td>
-                                                        <td>{$vo.goods}</td>
-                                                       
-                                                        <td>{$vo.quantity}</td>
-                                                        <td>{$vo.price}</td>
+                                                        
+                                                        <td width="100">{$vo.goods}</td>
+                                                        <td width="100">{$vo.quantity}</td>
+                                                        <td width="100">{$vo.unitprice}</td>
                                                         
                                                     </tr>
                                                     {/foreach}
-                                                    
+                                                     
                                                 </tbody>
                                             </table>
+                                            <div style="text-align:right">
+                                            <button onClick="javascript :history.back(-1);" class="btn btn-default radius" style="text-right">&nbsp;&nbsp;返回上级&nbsp;&nbsp;</button>
+                                            </div>   
                                         </div>
-                                    </div>
+                                    </div> 
                                 </div>
-                                <div class="tab-pane fade" id="account-address" role="tabpanel" aria-labelledby="account-address-tab">
-                                    <div class="myaccount-address">
-                                       
-                                        <div class="row">
-                                            <div class="col">
-                                                <h4 class="small-title">我的地址</h4>
-                                                <address>
-                                                    1234 Heaven Stress, Beverly Hill OldYork UnitedState of Lorem
-                                                </address>
-                                            </div>
-                                          
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="account-details" role="tabpanel" aria-labelledby="account-details-tab">
-                                    <div class="myaccount-details">
-                                        <form action="#" class="sn-form">
-                                            <div class="sn-form-inner">
-												<div class="single-input single-input-half">
-													<label for="昵称修改">昵称修改</label>
-													<input type="text" id="昵称修改">
-												</div>
-												<div class="single-input single-input-half">
-													<label for="更新地址">更新地址</label>
-													<input type="text" id="更新地址">
-												</div>
-												
-												<div class="single-input">
-													<label for="原密码">原密码</label>
-													<input type="password" id="原密码">
-												</div>
-												<div class="single-input">
-													<label for="新密码">新密码</label>
-													<input type="password" id="新密码">
-												</div>
-												<div class="single-input">
-													<label for="account-details-confpass">再输一遍</label>
-													<input type="password" id="再输一遍">
-												</div>
-												<div class="single-input">
-													<button class="sn-button sn-button-dark" type="submit"><span>保存更改</span></button>
-												</div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
+                                
+                               
                             </div>
                         </div>
                     </div>

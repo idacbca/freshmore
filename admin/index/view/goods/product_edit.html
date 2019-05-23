@@ -348,7 +348,11 @@ $(document).ready(function() {
             // previewFileIcon:"<i class='glyphicon glyphicon-king'></i>",
             maxFileCount:10,//允许同时上传的最大文件数
             dropZoneEnabled:true,//是否显示拖拽区域
+			layoutTemplates: {
 
+                        actionZoom: '',   //去除上传预览缩略图中的查看详情预览的缩略图标。
+                       
+                    },
             initialPreviewConfig:{
                 caption:ctrlName,
                 width:'120px',

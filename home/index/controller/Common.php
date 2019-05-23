@@ -47,12 +47,10 @@ class Common extends Controller
         //$idpath = $m->where('id',$id)->value('path');
         $arr2 = explode(',',$idpath);
         $arr = array_filter($arr2);
-        $pathname2 = array();
-        //var_dump($arr);
         foreach($arr as $k=>&$pathname){           
             $arr[$k] = $m->where('id',$pathname)->value('name');               
         }
-        //var_dump($arr);
+        
         return $arr;
     }
 
@@ -98,5 +96,64 @@ class Common extends Controller
         
          
         return $arr1;
+    }
+    public function userlistAction() 
+    {
+        //分页
+        //当前页，默认为1
+        $curPage = isset($_GET['curPage']) ? $_GET['curPage'] : 1;
+
+        //获取所有的用户数据
+        // 在 getTotalRows() 里面我是用count(id) as total 查询的
+        $totalRows = $this->_db->getTotalRows();
+        $totalRows = $totalRows['total'];
+
+        //自定义一个最大的页码数
+        $rowsPerPage = 10;
+
+        //获取数据
+        $offset = ($curPage - 1) * $rowsPerPage;
+
+         //查询每页用户列表
+         // 在 selectAll() 中，根据偏移量,使用limit 查询每页的数据
+        $ret = $this->_db->selectAll($offset, $rowsPerPage);
+
+        //总页数
+        $totalpage = ceil($totalRows / $rowsPerPage);
+
+        //存储页面字符串
+        $pageNumString = '';
+
+        if ($curPage <= 5) {
+            $begin = 1;
+            $end = $totalpage >= 10 ? 10 : $totalpage;
+        } else {
+            $end = $curPage + 5 > $totalpage ? $totalpage : $curPage + 5;
+            $begin = $end - 9 <= 1 ? 1 : $end - 9;
+        }
+
+        //上一页
+        $prev = $curPage - 1 <= 1 ? 1: $curPage - 1;
+        $pageNumString .= "<li><a href='/user/userlist?curPage=1'>首页</a></li>";
+        $pageNumString .= "<li><a href='/user/userlist?curPage=$prev'>&laquo;</a></li>";
+
+        //根据起始页与终止页将当前页面的页码显示出来
+        for ($i = $begin; $i <= $end;$i ++) {
+            //使用if实现高亮显示当前点击的页码
+            //这是 bootstrap的全局样式
+            if ($curPage == $i) {
+                $pageNumString .= "<li class='active'><a href='/user/userlist?curPage=$i'>$i</a></li>";
+            } else {
+                $pageNumString .= "<li><a href='/user/userlist?curPage=$i'>$i</a></li>";
+            }
+        }
+
+        //实现下一页
+        $next = $curPage + 1 >= $totalpage ? $totalpage : $curPage + 1;
+        $pageNumString .= "<li><a href='/user/userlist?curPage=$next'>&raquo;</a></li>";
+        $pageNumString .= "<li><a href='/user/userlist?curPage=$totalpage'>尾页</a></li>";
+
+        $this->getView()->assign('pageNumString', $pageNumString);     
+        $this->getView()->assign("ret",$ret);
     }
 }

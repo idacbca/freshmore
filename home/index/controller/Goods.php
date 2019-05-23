@@ -10,81 +10,69 @@ class Goods extends Common
         if(input('id')){
             $type = $this->getCatgory();
             $idpath = $this->getPath();
+            //$page = $this->userlistAction();
             $goods = db('goods');
             $tpid = model('goods_type');
             $id = $tpid->where('pid',input('id'))->column('id');//父类为传过来的id
-            //var_dump($id);
+            $k = db('goods_files');
             $data = array();
-            $path = array();
+            $imgid = array();
+            $imgpath = array();
+            $data3 = array();
             if($id){
                 foreach($id as $m){
                     $data2 = $goods->where('tid|tpid', $m) 
-                    ->select();
-                    //var_dump($data2); 
+                    ->select();//多个二维数组
+                    foreach($data2 as $h=>&$y){
+                        $imgid = $k->where('id', $data2[$h]['filepath']) 
+                    ->value('filepath');//多个一维数组
+                        $data2[$h]['filepath']=$imgid;
+                        array_push($imgpath,$imgid);
+
+                    }
                     if($data2 != null){
                         array_push($data,$data2);
-                    }
-                    
-                     
-                }
-                foreach($data as $n){
-                    foreach($n as $v){
-                        $img = $v['filepath'];
-                        array_push($path,$img);
-                        
-                    }
-                }
-                //var_dump($path);
-                $k = db('goods_files');
-                $imgpath = array();
-                $filepath = array();
-                foreach($path as $path2){
-                    $img = explode(',',$path2);
-                    foreach($img as $img2){
-                        $imgpath2 = $k->where('id',$img2)->find();
-                        //var_dump($imgpath2);
-                        array_push($imgpath,$imgpath2);
                     } 
-
                 }
-               
-                foreach($imgpath as $q){
-                    $filepath2 = $q['filepath'];
-                    array_push($filepath,$filepath2);
-                }  
-            //var_dump($data);
-            //var_dump($filepath);
-            $id = $this->replacevalue($data,$filepath);                        
+           // array_push($data3,$data2);        
             $this->assign([
                 'product' => $data,
                 'type' => $type,
                 'idpath' => $idpath, 
                 'title' => '鲜多多生鲜网 - 商城',
-                'filepath' => $filepath
             ]);
             return $this->fetch(); 
             } else{//三级分类
                 $data = $goods->where('tid', input('id'))
                 ->whereOr('tpid', input('id'))
                 ->select();
+                $imgid = $k->where('id', $data[0]['filepath']) //获取图片
+                    ->value('filepath');
+                $data[0]['filepath']=$imgid;
+                $img = $this->getimgPath();
                 $data2[0]= $data;
-                //var_dump($data2); 
                 $this->assign([
                     'product' => $data2,
                     'type' => $type,
                     'idpath' => $idpath, 
                     'title' => '鲜多多生鲜网 - 商城',
-                    //'img' => $img
                 ]);
              return $this->fetch(); 
 
-                 }
+            }
                                      
-        } else{
+        } else{//点击商品分类
             $type = $this->getCatgory();
             $idpath = $this->getPath();
             $goods = db('goods');
+            $k = db('goods_files');
             $data2 = $goods->select();
+            foreach($data2 as $info=>$is){
+                $imgid = $k->where('id', $is['filepath']) //获取图片
+                ->value('filepath');
+                $data2[$info]['filepath']=$imgid;
+
+            }
             $data[0]= $data2;
             $this->assign([
                 'product' => $data,
@@ -92,7 +80,6 @@ class Goods extends Common
                 'idpath' => $idpath, 
                 'title' => '鲜多多生鲜网 - 商城'
             ]);
-
             return $this->fetch();
         }
     }
@@ -238,8 +225,8 @@ class Goods extends Common
         $start=$freight;
      }
     }
-  //消费大于五万免运费
-    if($totalprice>=50000)
+  //消费大于200元免运费
+    if($totalprice>=200)
         {
             $freight=0;
         }

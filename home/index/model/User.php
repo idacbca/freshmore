@@ -7,3 +7,4 @@ class User extends Model
 {
 	protected $autoWriteTimestamp = 'datetime';
 }
+?>
