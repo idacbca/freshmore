@@ -1,12 +1,207 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>鲜多多生鲜</title>
+	{include file="../public/static/home/head.html" title="$title" /}
 </head>
 <body>
-    <p>欢迎来到鲜多多</p>
+
+	<!-- Wrapper -->
+	<div id="wrapper" class="wrapper">
+		{include file="../public/static/home/header.html" /}
+
+		<!-- Hero Area -->
+		<div class="hero-area slider-navigation-1">
+			<div class="single-hero-item d-flex align-items-center"style="background-image: url(/static/home/img/hero-image/hero1.jpg);">
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-6 col-lg-8 col-md-9 offset-xl-1 offset-0">
+							<div class="hero-content">
+								<h1>近期折扣</h1>
+								<p style="color:white ;font-size :40px;">心选新疆青提30%off</p>
+								<a href="{:url('index/goods/shop_left_sidebar')}" class="sn-button">
+									<span>去购物</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="single-hero-item d-flex align-items-center"style="background-image: url(/static/home/img/hero-image/hero2.jpg);">
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-6 col-lg-8 col-md-9 offset-xl-1 offset-0">
+							<div class="hero-content">
+								<h1>近期折扣</h1>
+								<p style="color:white ;font-size :40px;">鲜采国产柠檬25%off</p>
+								<a href="{:url('index/goods/shop_left_sidebar')}" class="sn-button">
+									<span>去购物</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--// Hero Area -->
+
+		<!-- Page Conttent -->
+		<main class="page-content">
+
+			<!-- Banners Area -->
+			<div class="banner-area section-padding-md">
+				<div class="container">
+					<div class="row banners-masonry-active banners-wrapper">
+
+						<!-- Single Banner -->
+						<div class="col-lg-8 col-12 masonry-item">
+                                                <!-- <span>加入购物车</span> -->
+							<a href="{:url('index/goods/product_details', ['id'=>26])}" class="banner mt-30">
+								<img src="/static/home/img/banners/tomato.jpg" alt="best banner image">
+								<div class="banner-content text-center">					
+									<h3>圣女果低至10元一盒</h3>
+									<p>Get more jewelry accessories from Sahara spring jewelry Collection 2018</p>
+								</div>
+							</a>	
+						</div>
+						<!--// Single Banner -->
+
+						<!-- Single Banner -->
+						<div class="col-lg-4 col-md-6 col-12 masonry-item">
+							<a href="{:url('index/goods/shop_left_sidebar', ['id'=>42])}" class="banner mt-30">
+								<img src="/static/home/img/banners/vegetables.jpg" alt="best banner image">
+								<div class="banner-content banner-content-2 text-center">					
+									<h3>进口蔬菜新鲜上市</h3>
+									<p>Sale away with 58 new styles up 80 % off</p>
+								</div>
+							</a>	
+						</div>
+						<!--// Single Banner -->
+
+						<!-- Single Banner -->
+						<div class="col-lg-4 col-md-6 col-12 masonry-item">
+							<a href="{:url('index/goods/product_details', ['id'=>29])}" class="banner mt-30">
+								<img src="/static/home/img/banners/apples.jpg" alt="best banner image">
+								<div class="banner-content banner-content-2 text-center">					
+									<h3>烟台红富士苹果 </h3>
+									<p12>净重2.1kg以上 单果160-190g  自营</p>
+								</div>
+							</a>	
+						</div>
+						<!--// Single Banner -->
+
+						<!-- Single Banner -->
+						<div class="col-lg-4 col-md-6 col-12 masonry-item">
+							<a href="{:url('index/goods/product_details', ['id'=>30])}" class="banner mt-30">
+								<img src="/static/home/img/banners/potato.jpg" alt="best banner image">
+								<div class="banner-content banner-content-2 text-center">					
+									<h3>家美舒达 山东小土豆 约2.5kg 新鲜</h3>
+									<p>品质可靠！农家肥培育，无公害！粮菜皆宜，可脆可糯！</p>
+								</div>
+							</a>	
+						</div>
+						<!--// Single Banner -->
+
+						<!-- Single Banner -->
+						<div class="col-lg-4 col-md-6 col-12 masonry-item">
+							<a href="{:url('index/goods/product_details', ['id'=>31])}" class="banner mt-30">
+								<img src="/static/home/img/banners/corn.jpg" alt="best banner image">
+								<div class="banner-content banner-content-2 text-center">					
+									<h3>金田玉农业 吉林松原黑糯玉米6根礼盒装 约1.2kg非转基因即食玉米真空包装 新鲜</h3>
+									<p>【高营养黑色粗粮】饱满软糯有嚼劲，颗颗饱满黑珍珠 <br>$10.00</p>
+								</div>
+							</a>	
+						</div>
+						<!--// Single Banner -->
+
+						<!-- Single Banner -->
+						<div class="col-lg-4 col-md-6 col-12 masonry-item">
+							<a href="{:url('index/goods/product_details', ['id'=>32])}" class="banner mt-30">
+								<img src="/static/home/img/banners/orange.jpg" alt="best banner image">
+								<div class="banner-content banner-content-2 text-center">					
+									<h3>埃及鲜橙子</h3>
+									<p>海外直采 约2.5kg装 生鲜榨汁夏橙 自营进口</p>
+								</div>
+							</a>	
+						</div>
+						<!--// Single Banner -->
+
+						<!-- Single Banner -->
+						<div class="col-lg-4 col-md-6 col-12 masonry-item">
+							<a href="{:url('index/goods/product_details', ['id'=>33])}" class="banner mt-30">
+								<img src="/static/home/img/banners/app.jpg" alt="best banner image">
+								<div class="banner-content banner-content-2 text-center">					
+									<h3>新西兰POSY苹果</h3>
+									<p>埃及直采，尼罗河流域小气候滋养，沙漠阳光照射，橙香浓郁，汁水丰富【一口爱上阳光味道】新西兰POSY苹果大促</p>
+								</div>
+							</a>	
+						</div>
+						<!--// Single Banner -->
+
+						<!-- Single Banner -->
+						<div class="col-lg-4 col-md-6 col-12 masonry-item">
+							<a href="{:url('index/goods/shop_left_sidebar', ['id'=>46])}" class="banner mt-30">
+								<img src="/static/home/img/banners/seafood.jpg" alt="best banner image">
+								<div class="banner-content text-center">					
+									<h3>水产专区</h3>
+									<p>新鲜草鱼 点击购买！</p>
+								</div>
+							</a>	
+						</div>
+						<!--// Single Banner -->
+						
+						<!-- Single Banner -->
+						<div class="col-lg-4 col-md-6 col-12 masonry-item">
+							<a href="{:url('index/goods/shop_left_sidebar', ['id'=>51])}" class="banner mt-30">
+								<img src="/static/home/img/banners/fruit.jpg" alt="best banner image">
+								<div class="banner-content banner-content-2 text-center">					
+									<h3>水果专区</h3>
+									<p>特级红富士 当季新鲜脆甜</p>
+								</div>
+							</a>	
+						</div>
+						<!--// Single Banner -->
+
+					</div>
+				</div>
+			</div>
+			<!--// Banners Area -->
+
+			<!-- Features Area -->
+			<div class="features-area">
+				<div class="container">
+					<div class="row justify-content-center features-wrapper">
+
+					
+
+					</div>
+				</div>
+			</div>
+			<!--// Features Area -->
+
+			<!-- Newsletter & Brand Logos Area -->
+			<div class="newsletter-brandlogo-area section-padding-xs">
+				<div class="container">
+					<div class="row no-gutters align-items-center">
+
+		
+
+					</div>
+				</div>
+			</div>
+			<!--// Newsletter & Brand Logos Area -->
+
+		</main>
+		<!--// Page Conttent -->
+
+		<!-- Footer Area -->
+		{include file="../public/static/home/footer.html" /}
+		<!--// Footer Area -->
+
+
+	</div>
+	<!--// Wrapper -->
+
+ 
 </body>
 </html>

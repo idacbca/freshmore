@@ -1,0 +1,100 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+	{include file="../public/static/home/head.html" title="$title" /}
+</head>
+
+<body>
+	<!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+	<!-- Add your site or application content here -->
+
+	<!-- Wrapper -->
+	<div id="wrapper" class="wrapper">
+
+		{include file="../public/static/home/header.html" /}
+		<!-- Page Conttent -->
+		<main class="page-content">
+
+            <!-- My Account Page -->
+            <div class="my-account-area section-padding-md">
+
+                <!-- Register Form -->
+                <div class="col-lg-6 offset-lg-3">
+					<div class="login-form-wrapper">
+						<h5>注册</h5>
+						<form action="{:url('register_operate')}" method="post" class="sn-form sn-form-boxed" id="form_register">
+							<div class="sn-form-inner">
+								<div class="single-input">
+									<label for="register-form-name">用户名</label>
+									<input type="text" class="input-text" name="user_name" id="user_name">
+								</div>
+								<div class="single-input">
+									<label for="register-form-password">设置密码</label>
+									<input type="password" class="input-text" name="user_password" id="user_password">
+								</div>
+								<div class="single-input">
+									<label for="register-form-password">再输一遍</label>
+									<input type="password" class="input-text" name="user_password2" id="user_password2">
+								</div>
+								<div class="single-input">
+									<button type="submit" class="sn-button sn-button-dark btn-block">
+										<span>确认注册</span>
+									</button>
+								</div>
+							</div>
+						</form>
+                	</div>
+                </div>
+                <!--// Register Form -->
+
+            </div>
+              
+            <!--// My Account Page -->
+
+
+		</main>
+		<!--// Page Conttent -->
+
+		<!-- Footer Area -->
+		{include file="../public/static/home/footer.html" /}
+        <!--// Footer Area -->
+
+	</div>
+    <!--// Wrapper -->
+
+<script type="text/javascript" src="/static/home/lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
+<script type="text/javascript" src="/static/home/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+<script type="text/javascript" src="/static/home/lib/jquery.validation/1.14.0/messages_zh.js"></script> 
+<script type="text/javascript">
+$(function(){
+	$("#form_register").validate({
+		rules:{
+			user_name:{
+				required:true,
+				minlength:4,
+				maxlength:16
+			},
+			user_password:{
+				required:true
+			},
+			user_password2:{
+				required:true,
+				equalTo: "#user_password"
+			}
+		},
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+            form.submit();
+        } 
+	});
+});
+</script> 
+</body>
+
+</html>

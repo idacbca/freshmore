@@ -1,0 +1,108 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+
+<head>
+	{include file="../public/static/home/head.html" title="$title" /}
+</head>
+ 
+<body>
+	<!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+	<!-- Add your site or application content here -->
+
+	<!-- Wrapper -->
+	<div id="wrapper" class="wrapper">
+
+		<!-- Header -->
+		{include file="../public/static/home/header.html" /}
+
+		<!-- Page Conttent -->
+		<main class="page-content">
+
+            <!-- Account Page Area -->
+            <div class="account-page-area section-padding-md">
+                <div class="container">
+                    <!-- <div class="row"> -->
+
+                        <!-- <div class="col-lg-3">
+                            <ul class="nav myaccount-tab-trigger" id="account-page-tab" role="tablist">
+                                
+                                <li class="nav-item">
+                                    <a class="nav-link" id="account-orders-tab" data-toggle="tab" href="#account-orders" role="tab" aria-controls="account-orders" aria-selected="false">订单详情</a>
+                                </li>
+                               
+                                
+                              
+                            
+                            </ul>
+                        </div> -->
+
+                          <!-- <div class="col-lg-12">  -->
+                             <!-- <div class="tab-content myaccount-tab-content" id="account-page-tab-content"> -->
+                               <!-- <div class="tab-pane fade" id="account-orders" role="tabpanel" aria-labelledby="account-orders-tab">  -->
+                                    <div class="myaccount-orders">
+                                        <div class='row'>
+                                        
+                                        <h4 class="small-title">订单详情</h4>
+                                        
+                                       
+                                    
+                                        <div class="table-responsive ">
+                                            <table class="table table-bordered table-hover">
+                                                <tbody>
+                                                    
+                                                    <tr>			
+                                                        <th width="100">商品名称</th>
+                                                        <th width="100">数量</th>
+                                                        <th width="100">单价</th>
+                                                        
+                                                        
+                                                    </tr>
+                                                    
+                                                    {foreach $ordersdetail as $vo}
+                                                    <tr>		
+                                                        
+                                                        <td width="100">{$vo.goods}</td>
+                                                        <td width="100">{$vo.quantity}</td>
+                                                        <td width="100">{$vo.unitprice}</td>
+                                                        
+                                                    </tr>
+                                                    {/foreach}
+                                                     
+                                                </tbody>
+                                            </table>
+                                            <div style="text-align:right">
+                                            <button onClick="javascript :history.back(-1);" class="btn btn-default radius" style="text-right">&nbsp;&nbsp;返回上级&nbsp;&nbsp;</button>
+                                            </div>   
+                                        </div>
+                                    </div> 
+                                </div>
+                                
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--// Account Page Area -->
+
+		</main>
+		<!--// Page Conttent -->
+
+		<!-- Footer Area -->
+		{include file="../public/static/home/footer.html" /}
+        <!--// Footer Area -->
+
+
+	</div>
+    <!--// Wrapper -->
+    
+
+
+</body>
+
+
+ </html>

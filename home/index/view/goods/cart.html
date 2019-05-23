@@ -1,0 +1,270 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+<head>
+	{include file="../public/static/home/head.html" title="$title" /}
+</head>
+
+<script type="text/javascript" src="/static/admin/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="/static/admin/lib/layer/2.4/layer.js"></script>  
+
+
+<script type="text/javascript" src="/static/admin/lib/My97DatePicker/4.8/WdatePicker.js"></script> 
+<script type="text/javascript" src="/static/admin/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="/static/admin/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript">
+
+	function cart_del(obj,id){
+	layer.confirm('确认要取消购买此商品吗？',function(index){
+		$.ajax({
+			type: 'POST',
+			data: {id:id},
+			url: "{:url('cart_del_ajax')}",
+			dataType: 'json',
+			success: function(data){
+				
+				if(data == 1){
+					layer.msg('取消成功!',{icon:1,time:1000});
+				             }
+
+				else{
+					layer.msg('取消失败!',{icon:3,time:1000});
+				    }
+				setInterval(function(){window.location.reload()}, 1000);
+			                        },
+			error:function(data) {
+				console.log(data.msg);
+			                     },
+		       });	 
+		});
+   }
+
+   
+</script>
+<body>
+	
+
+	<!-- Wrapper -->
+	<div id="wrapper" class="wrapper">
+	{include file="../public/static/home/header.html" /}
+		<!-- Page Conttent -->
+		<main class="page-content">
+
+			<!-- Shopping Cart Area -->
+			<div class="cart-page-area section-padding-md bg-white">
+				<div class="container">
+					
+					<!-- Cart Products -->
+					<div class="cart-table table-responsive">
+						<table class="table table-bordered table-hover">
+							<thead>
+								<tr>			
+									<th class="cart-column-image" scope="col">图片</th>
+									<th class="cart-column-productname" scope="col">商品名</th>
+									<th class="cart-column-price" scope="col">单价</th>
+									<th class="cart-column-quantity" scope="col">数量</th>
+									<th class="cart-column-total" scope="col">总价</th>
+									<th class="cart-column-remove" scope="col">移除</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								{foreach $cartdetail as $vo}
+
+								<tr>
+									<td>
+										<a href="product-details-right-sidebar.html" class="product-image">
+											<img src="/static/home/img/product/small-size/product-image-1.jpg" alt="product image">
+										</a>
+									</td>
+									<td>
+										<a href="product-details-right-sidebar.html" class="product-title">{$vo.goodsname}</a>
+									</td>
+
+									<td>{$vo.unitprice}</td>
+
+									<td>{$vo.quantity}</td>
+
+									<td>
+										<span class="total-price">{$vo.totalprice}</span>
+									</td>
+									<td>
+                                    <button class="remove-product"  onClick="cart_del(this, {$vo.selfid})">
+
+                                            <i class="fa fa-remove" ></i>
+								   </button>
+									</td>
+								</tr>
+								
+								{/foreach}
+							</tbody>
+						</table>
+					</div>	
+							
+					<div class="cart-content">
+						<div class="row justify-content-between">
+							
+							<div class="col-lg-4 col-md-6 col-12 offset-lg-3">
+								<div class="cart-content-right">
+									<h2>最终价格</h2>
+									<table class="cart-pricing-table">
+										<tbody>
+											<tr class="cart-subtotal">
+												<th>小计</th>
+												<td>￥{$totalprice}</td>
+											</tr>
+											<tr class="cart-shipping">
+												<th>运费</th>
+												<td>￥{$freight}</td>
+											</tr>
+											<tr class="cart-total">
+												<th>合计</th>
+												<td>￥{$total}</td>
+											</tr>
+										</tbody>
+									</table>
+									<a href="{:url('index/checkout/checkout')}" class="add-to-cart-button sn-button-lg">
+										<span>前往支付</span>
+									</a>
+								</div>					</div>
+					<!--// Cart Content -->
+
+				</div>
+			</div>
+			<!--// Shopping Cart Area -->
+
+		</main>
+		<!--// Page Conttent -->
+
+		<!-- Footer Area -->
+		{include file="../public/static/home/footer.html" /} 
+        <!--// Footer Area -->
+        
+        <!-- Quick View Modal -->
+        <div class="quick-view-modal">
+            <div class="quick-view-modal-inner">
+                <div class="container">
+                    <div class="product-details">
+            
+                        <!-- Product Details Left -->
+                        <div class="product-details-left">
+                            <div class="product-details-images slider-navigation-2">
+                                <a href="img/product/large-size/product-image-1.jpg">
+                                    <img src="/static/home/img/product/thumbnail-size/product-image-1.jpg" alt="product image">
+                                </a>
+                                <a href="img/product/thumbnail-size/product-image-2.jpg">
+                                    <img src="/static/home/img/product/thumbnail-size/product-image-2.jpg" alt="product image">
+                                </a>
+                                <a href="img/product/large-size/product-image-3.jpg">
+                                    <img src="/static/home/img/product/thumbnail-size/product-image-14.jpg" alt="product image">
+                                </a>
+                                <a href="img/product/large-size/product-image-4.jpg">
+                                    <img src="/static/home/img/product/thumbnail-size/product-image-15.jpg" alt="product image">
+                                </a>
+                                <a href="img/product/large-size/product-image-5.jpg">
+                                    <img src="/static/home/img/product/thumbnail-size/product-image-20.jpg" alt="product image">
+                                </a>
+                            </div>
+                            <div class="product-details-thumbs slider-navigation-2">										
+                                <img src="/static/home/img/product/small-size/product-image-1.jpg" alt="product image thumb">
+                                <img src="/static/home/img/product/small-size/product-image-2.jpg" alt="product image thumb">
+                                <img src="/static/home/img/product/small-size/product-image-3.jpg" alt="product image thumb">
+                                <img src="/static/home/img/product/small-size/product-image-4.jpg" alt="product image thumb">
+                                <img src="/static/home/img/product/small-size/product-image-5.jpg" alt="product image thumb">
+                            </div>
+                        </div>
+                        <!--// Product Details Left -->
+            
+                        <!-- Product Details Right -->
+                        <div class="product-details-right">
+                            <h5 class="product-title">Aenean Eu Tristique</h5>
+                            
+                            <div class="ratting-stock-availbility">
+                                <div class="ratting-box">
+                                    <span><i class="fa fa-star"></i></span>
+                                    <span><i class="fa fa-star"></i></span>
+                                    <span><i class="fa fa-star"></i></span>
+                                    <span><i class="fa fa-star"></i></span>
+                                    <span><i class="fa fa-star"></i></span>
+                                </div>
+                                <span class="stock-available">In stock</span>
+                            </div>
+                            
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla. adipiscing cursus eu, suscipit id nulla.</p>
+                            
+                            <div class="price-box">
+                                <span class="pricebox-price">£80.00</span>
+                            </div>
+            
+                            <div class="product-details-quantity">
+                                <div class="quantity-select">
+                                    <input type="text" value="1">
+                                </div>
+                                <a href="#" class="add-to-cart-button">
+                                    <span>ADD TO CART</span>
+                                </a>
+                            </div>
+            
+                            <div class="product-details-color">
+                                <span>Color :</span>
+                                <ul>
+                                    <li class="red"><span></span></li>
+                                    <li class="green checked"><span></span></li>
+                                    <li class="blue"><span></span></li>
+                                    <li class="black"><span></span></li>
+                                </ul>
+                            </div>
+            
+                            <div class="product-details-size">
+                                <span>Size :</span>
+                                <ul>
+                                    <li class="checked"><span>S</span></li>
+                                    <li><span>M</span></li>
+                                    <li><span>L</span></li>
+                                    <li><span>XL</span></li>
+                                    <li><span>XXL</span></li>
+                                </ul>
+                            </div>
+            
+                            <div class="product-details-categories">
+                                <span>Categories :</span>
+                                <ul>
+                                    <li><a href="shop.html">Accessories</a></li>
+                                    <li><a href="shop.html">Kids</a></li>
+                                    <li><a href="shop.html">Women</a></li>
+                                </ul>
+                            </div>
+            
+                            <div class="product-details-tags">
+                                <span>Tags :</span>
+                                <ul>
+                                    <li><a href="shop.html">Electronic</a></li>
+                                    <li><a href="shop.html">Television</a></li>
+                                </ul>
+                            </div>
+            
+                            <div class="product-details-socialshare">
+                                <span>Share :</span>
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                </ul>
+                            </div> 
+                        </div>
+                        <!--// Product Details Right -->
+            
+                    </div>
+                </div>
+            </div>
+            <button class="close-quickview-modal"><i class="fa fa-close"></i></button>
+        </div>
+        <!--// Quick View Modal -->
+
+
+	</div>
+    <!--// Wrapper -->
+
+</body>
+</html>

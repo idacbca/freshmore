@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+<head>
+	{include file="../public/static/home/head.html" title="$title" /}
+</head>
+
+
+<body>
+	<!-- Wrapper -->
+	<div id="wrapper" class="wrapper">
+		{include file="../public/static/home/header.html" /}
+		
+		<!-- Page Conttent -->
+		<main class="page-content">
+
+            <!-- Checkout Area -->
+            <div class="checkout-area bg-white section-padding-md">
+                <div class="container">
+
+					
+
+					
+							<!--// Billing Details -->
+
+
+							<!-- Place Order -->
+							<div class="col-lg-6 offset-lg-3">
+								<div class="order-infobox">
+									<h3 class="small-title">你的订单</h3>
+										<div class="checkout-table table-responsive">
+										<table class="table">
+											<thead>
+												<tr>
+													<th class="text-left">商品</th>
+													<th class="text-right">价格</th>
+												</tr>
+											</thead>
+											<tbody>
+												{foreach $cartdetail as $vo}
+												<tr>
+												<td class="text-left">{$vo.goodsname} <span>× {$vo.quantity}</span></td>
+												<td class="text-right">￥{$vo.totalprice}</td>
+												</tr>
+												{/foreach}
+												
+											</tbody>
+											<tfoot >
+												<tr>
+													<th class="text-left">商品总价</th>
+													<td class="text-right">￥{$totalprice}</td>
+												</tr>
+												<tr>
+													<th class="text-left">运费</th>
+													<td class="text-right">￥{$freight}</td>
+												</tr>
+												<tr class="total-price">
+													<th class="text-left">订单总额</th>
+													<td class="text-right">￥{$total}</td>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+
+                               <form action="{:url('ordersadd')}" method="POST" id="myform">
+									<input type="text" name="freight" value="{$freight}" hidden>
+									<input type="text" name="total" value="{$total}" hidden>
+									
+								</form>
+				
+						 <button class="sn-button sn-button-fullwidth mt-30"  onclick="msg()">
+							<span>确认支付</span>
+						</button> 
+						 
+	<!-- <button class="sn-button sn-button-fullwidth mt-30"  onclick="orders_add(this, {$freight},{$total})">
+								<span>确认支付</span>
+	</button> 
+						 -->
+							   		
+								</div>
+							</div>
+							<!--// Place Order -->
+
+						</div>
+					
+
+                </div>
+            </div>
+            <!--// Checkout Area -->
+
+		</main>
+		<!--// Page Conttent -->
+
+		<!-- Footer -->
+		{include file="../public/static/home/footer.html" /}
+
+	</div>
+	<!--// Wrapper -->
+	
+    <!-- <script type="text/javascript" src="/static/admin/lib/layer/2.4/layer.js"></script>  
+
+	<script>
+	function orders_add(obj,freight,total){
+		layer.confirm('确认要支付吗？',function(index){
+			
+			$.ajax({
+				type: 'POST',
+				data: {freight:freight,
+				        total:total },
+				url: "{:url('orders_add_ajax')}",
+				dataType: 'json',
+				async: true,
+				timeout:5000,
+			   success:function(data){
+					 
+					if(data == 1){
+						layer.msg('支付成功!',{icon:1,time:1000});
+						window.location.href="{:url('index/checkout/checkout')}";
+						 }
+	
+					else{
+						layer.msg('支付失败!',{icon:3,time:1000});
+					}
+                    
+					setInterval(function(){window.location.reload()}, 1000);
+				},
+				error:function(data) {
+					console.log(data.msg);
+				},
+			});		
+		});
+	}
+
+	
+
+	</script> -->
+
+	<script>
+		function msg(){
+		if (confirm("您确认要支付吗？"))
+		document.getElementById('myform').submit();return false;
+		}
+	</script>
+</body>
+</html>
