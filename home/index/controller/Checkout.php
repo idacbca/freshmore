@@ -64,13 +64,14 @@ class Checkout extends Common
 
         if(is_null($data['address'])||is_null($data['telephone'])){
             $this->error("请先完善个人信息");
+        }
 
-        if($payinfo==0)
+       else if($payinfo==0)
         {
             $this->error("亲，请先添加商品！","index/index/index");
         }
         
-        }else{
+        else{
         $orders->data([
             'id'=>$id,
             'username'=>$username,

@@ -225,8 +225,8 @@ class Goods extends Common
         $start=$freight;
      }
     }
-  //消费大于200元免运费
-    if($totalprice>=200)
+  //消费大于99元免运费
+    if($totalprice>=99)
         {
             $freight=0;
         }

@@ -38,7 +38,18 @@
 		});
    }
 
-   
+function verify(){
+   if({$total}==0)
+   {
+       alert("请先添加商品");
+       window.location.href = "http://www.xianduoduo.com/index.php/index/index/index.html";
+       
+       return false;
+   }
+   else
+   return true;
+
+}
 </script>
 <body>
 	
@@ -122,9 +133,11 @@
 											</tr>
 										</tbody>
 									</table>
-									<a href="{:url('index/checkout/checkout')}" class="add-to-cart-button sn-button-lg">
+                        <a href="{:url('index/checkout/checkout')}" onclick="return verify()"
+                        class="add-to-cart-button sn-button-lg">
 										<span>前往支付</span>
-									</a>
+									</a>          
+                        
 								</div>					</div>
 					<!--// Cart Content -->
 
