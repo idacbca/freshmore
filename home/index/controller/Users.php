@@ -95,7 +95,8 @@ class Users extends Common
     {
         $type = $this->getCatgory();
         $id=input('session.cid');
-        $orders=db('orders')->where('id',$id)->select();
+        $order=db('orders')->where('id',$id)->select();
+        $orders=array_reverse($order);
         $db = db('user');
         $cid=Session::get('cid');
 		$user = $db->find($cid);
@@ -134,16 +135,99 @@ class Users extends Common
             'telephone' => $_POST['telephone'],
                 ],['id' => $cid]);
 
-        
-       
-        
-            if($result){
+        if($result){
                 $this->success('个人信息修改成功！', 'my_account');
             } else{
                 $this->error('个人信息修改失败！');
             }
                
     }
+
+    public function user_currency(){
+        $user = model('user');
+        $cid=Session::get('cid');
+        $currency=db('user')->where('id',$cid)->value('currency');
+        $newcurrency=$currency+$_POST['currency'];
+
+        $result = $user->save([
+            'currency'  => $newcurrency,
+              ],['id' => $cid]);
+        if($result){
+                $this->success('充值成功！', 'my_account');
+            } else{
+                $this->error('充值失败！');
+            }
+               
+    }
+
+    public function user_drawcurrency(){
+        $user = model('user');
+        $cid=Session::get('cid');
+        $currency=db('user')->where('id',$cid)->value('currency');
+        $newcurrency=$currency-$_POST['drawcurrency'];
+
+        $result = $user->save([
+            'currency'  => $newcurrency,
+              ],['id' => $cid]);
+        if($result){
+                $this->success('提现成功！', 'my_account');
+            } else{
+                $this->error('提现失败！');
+            }
+               
+    }
+
+
+     // 设置收货ajax
+	public function orders_get_ajax(){
+		$id = $_POST['id'];
+		$db = db('orders');
+        $re = $db->where('orderid', $id)->update(['status' => '0']);
+		if($re){
+            echo 1;
+		}else echo 0;
+	}
+
+	// 设置未收货ajax
+	public function orders_notget_ajax(){
+		$id = $_POST['id'];
+		$db = db('orders');
+		$re = $db->where('orderid', $id)->update(['status' => '1']);
+		if($re){
+			echo 1;
+		}else echo 0;
+    }
+    
+     //退款操作
+     public function orders_refund_ajax()
+     {
+     $id = $_POST['id'];
+     $db = db('orders');
+     $re = $db->where('orderid', $id)->update(['paystatus' => 1]);
+
+    //这里退款的货物就不再放回仓库了
+    //  $ordersdetail=$db->where('orderid', $id)->select();
+
+    //  foreach ($ordersdetail as $vo){
+      
+    //     $quantity1=db('goods')->where('goodsname',$vo['goods'])->value('inventory');
+    //     $newquantity=$vo['quantity']+$quantity1;
+    //     $rs=db('goods')->where('goodsname',$vo['goods'])->update(['inventory' =>$newquantity]);
+    //     }
+     
+     $payinfo= $db->where('orderid', $id)->value('payinfo');
+     $id=input('session.cid');//获取session中用户id
+     $currency=db('user')->where('id',$id)->value('currency');
+    
+     $newcurrency=$currency+$payinfo;
+     $ra=db('user')->where('id',$id)->update(['currency' => $newcurrency]);
+     
+     if($re&&$ra){
+         echo 1;
+            }
+     
+     else echo 0;
+     }
         
 
         public function password_edit(){

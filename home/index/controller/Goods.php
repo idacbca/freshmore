@@ -16,27 +16,30 @@ class Goods extends Common
             $id = $tpid->where('pid',input('id'))->column('id');//父类为传过来的id
             $k = db('goods_files');
             $data = array();
+            $data2 = array();
             $imgid = array();
-            $imgpath = array();
             $data3 = array();
             if($id){
                 foreach($id as $m){
                     $data2 = $goods->where('tid|tpid', $m) 
                     ->select();//多个二维数组
+                    
                     foreach($data2 as $h=>&$y){
                         $imgid = $k->where('id', $data2[$h]['filepath']) 
                     ->value('filepath');//多个一维数组
                         $data2[$h]['filepath']=$imgid;
-                        array_push($imgpath,$imgid);
+                        $stu = $data2[$h]['status'];
+                        if($stu == 0){
+                            array_push($data3,$data2[$h]);
+                        } 
+                        
 
                     }
-                    if($data2 != null){
-                        array_push($data,$data2);
-                    } 
                 }
-           // array_push($data3,$data2);        
+           // array_push($data3,$data2); 
+            //var_dump($data3);       
             $this->assign([
-                'product' => $data,
+                'product' => $data3,
                 'type' => $type,
                 'idpath' => $idpath, 
                 'title' => '鲜多多生鲜网 - 商城',
@@ -50,7 +53,11 @@ class Goods extends Common
                     ->value('filepath');
                 $data[0]['filepath']=$imgid;
                 $img = $this->getimgPath();
-                $data2[0]= $data;
+                $stu = $data[0]['status'];
+                if($stu == 0){
+                    array_push($data2,$data[0]);
+                }
+                //var_dump($data2);
                 $this->assign([
                     'product' => $data2,
                     'type' => $type,
@@ -66,16 +73,19 @@ class Goods extends Common
             $idpath = $this->getPath();
             $goods = db('goods');
             $k = db('goods_files');
-            $data2 = $goods->select();
+            $data2 = $goods->where('status', 0)->select();
             foreach($data2 as $info=>$is){
                 $imgid = $k->where('id', $is['filepath']) //获取图片
                 ->value('filepath');
                 $data2[$info]['filepath']=$imgid;
+                
+                
 
             }
-            $data[0]= $data2;
+            //var_dump($data2);
+            
             $this->assign([
-                'product' => $data,
+                'product' => $data2,
                 'type' => $type,
                 'idpath' => $idpath, 
                 'title' => '鲜多多生鲜网 - 商城'
@@ -95,6 +105,7 @@ class Goods extends Common
         $goods=db('goods');
         $quantity=$_POST['quantity'];
         $goodsid=$_POST['goodsid'];
+        $k = db('goods_files');
         $id=input('session.cid');//获取session中用户id
         $goodsname= $goods->where('id',$goodsid)->value('goodsname');
         $unitprice= $goods->where('id',$goodsid)->value('curprice');
@@ -108,6 +119,10 @@ class Goods extends Common
             $this->error("库存不足，请重新选择！");
         }
         $ra=db('cartdetail')->where('id',$id)->where('goodsid',$goodsid)->select();
+        $imgid = $goods->where('id', $_POST['goodsid']) 
+        ->value('filepath');//多个一维数组
+        $imgpath = $k->where('id', $imgid) 
+        ->value('filepath');
         
 
         //除此之外还有删除功能需要调整
@@ -119,7 +134,6 @@ class Goods extends Common
              $quantity2=$quantity+$quantity1;
              $totalprice1=db('cartdetail')->where('selfid',$selfid)->value('totalprice');
              $totalprice2=$totalprice+$totalprice1;
-             
              $cartdetail->where('selfid',$selfid)->update(['quantity' => $quantity2]);
              $cartdetail->where('selfid',$selfid)->update(['totalprice' =>$totalprice2]);
 
@@ -133,10 +147,11 @@ class Goods extends Common
             'goodsname'=>$goodsname,
             'unitprice'=>$unitprice,
             'quantity' =>$quantity,
-            'totalprice'=>$totalprice
-                         ]);
+            'totalprice'=>$totalprice,
+            'img' =>$imgpath 
+            ]);
         }
-
+        //var_dump($cartdetail);
         $newinventory=$inventory-$quantity;
 
         $goods->where('id', $goodsid)->update(['inventory' => $newinventory]);
@@ -217,7 +232,7 @@ class Goods extends Common
     $cartdetail = db('cartdetail')->where('id',$id)->select();
     $totalprice = db('cartdetail')->where('id',$id)->sum('totalprice');
     $start=0;
-
+    
     foreach ($cartdetail as $vo){
              
     $freight=db('goods')->where('id',$vo['goodsid'])->value('freight');
@@ -225,8 +240,8 @@ class Goods extends Common
         $start=$freight;
      }
     }
-  //消费大于200元免运费
-    if($totalprice>=200)
+  //消费大于99元免运费
+    if($totalprice>=99)
         {
             $freight=0;
         }
@@ -253,16 +268,27 @@ class Goods extends Common
     $goodsname = $_POST['goodsname'];
     //var_dump($goodsname);
     $m = db('goods');
+    $k = db('goods_files');
     $type = $this->getCatgory();
     $idpath = $this->getPath();
-    //var_dump($idpath); 
+    //var_dump($idpath);
+    $data3 = array(); 
     $data2 = $m->where('goodsname','like','%'.$goodsname.'%')->select();
-    $data[0]= $data2;
-    //var_dump($data);
-       if($data){
+    foreach($data2 as $h=>&$y){
+        $imgid = $k->where('id', $data2[$h]['filepath']) 
+    ->value('filepath');//多个一维数组
+        $data2[$h]['filepath']=$imgid;
+        $stu = $data2[$h]['status'];
+        if($stu == 0){
+            array_push($data3,$data2[$h]);
+        } 
+        
+
+    }
+    //var_dump($data3);
+       if($data3){
         $this->assign([
-            'product' => $data,
-            'data' => $data,
+            'product' => $data3,
             'idpath' => $idpath,
             'type' => $type
 				

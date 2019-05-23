@@ -47,12 +47,6 @@
                 <div class="row align-items-center">
                     <div class="col-lg-4 col-12">
                         <form action="{:url('index/goods/searchGoods')}" class="header-search" method="post">
-                            <select name="header-search-categories">
-                                <option value="0">全部种类</option>
-                                {foreach $type as $data}
-                                <option value="{$data['level']}">{$data['name']}</option>
-                                {/foreach}
-                            </select>
                             <input type="text" name="goodsname" placeholder="请输入商品名">
                             <button type="submit" ><i class="fa fa-search"></i></button>
                         </form>

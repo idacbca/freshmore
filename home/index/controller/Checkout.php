@@ -62,15 +62,27 @@ class Checkout extends Common
         $user = model('user');
         $data = $user->where('user_name',$username)->find();
 
+        $currency=db('user')->where('id',$id)->value('currency');
+
         if(is_null($data['address'])||is_null($data['telephone'])){
             $this->error("请先完善个人信息");
+        }
 
-        if($payinfo==0)
+        
+
+
+
+       else if($payinfo==0)
         {
             $this->error("亲，请先添加商品！","index/index/index");
         }
+
+        else if($payinfo>$currency)
+        {
+            $this->error("亲，您的余额不足，请尽快充值！","index/users/my_account");
+        }
         
-        }else{
+       else{
         $orders->data([
             'id'=>$id,
             'username'=>$username,
@@ -81,8 +93,10 @@ class Checkout extends Common
             'telephone'=>$data['telephone']
                   ]);
              
-
+        $newcurrency=$currency-$payinfo;
+        $rs=db('user')->where('id',$id)->update(['currency' => $newcurrency]);
         $re = $orders->save();
+
         
         $orderid=db('orders')->where('id',$id)->max('orderid');
         $cartdetail=db('cartdetail')->where('id',$id)->select();
@@ -90,8 +104,7 @@ class Checkout extends Common
         foreach ($cartdetail as $vo)
            {
 
-             
-$data=['orderid'=>$orderid,'goods'=>$vo['goodsname'],'quantity'=>$vo['quantity'],'unitprice'=>$vo['unitprice']];
+             $data=['orderid'=>$orderid,'goods'=>$vo['goodsname'],'quantity'=>$vo['quantity'],'unitprice'=>$vo['unitprice']];
 
              db('ordersdetail')->insert($data);
             }
