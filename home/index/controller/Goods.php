@@ -113,6 +113,10 @@ class Goods extends Common
         $unitprice= $goods->where('id',$goodsid)->value('curprice');
         $inventory= $goods->where('id',$goodsid)->value('inventory');
         $totalprice=$unitprice*$quantity;
+        if($id==null)
+        {
+            $this->error("请您先登录！","index/users/login"); 
+        }
         if($inventory<$quantity){
             $this->error("库存不足，请重新选择！");
         }

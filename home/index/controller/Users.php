@@ -92,10 +92,25 @@ class Users extends Common
     public function my_account()
     {
         $type = $this->getCatgory();
+        $id=input('session.cid');
+        $orders=db('orders')->where('id',$id)->select();
         $this->assign([
             'title' => '鲜多多生鲜网 - 账户中心',
-            'type' => $type
+            'type' => $type,
+            'orders'=>$orders
         ]);
     	return $this->fetch();
+    }
+
+    public function ordersdetail()
+    {
+       
+       $id = input('param.id');//获取传入的id
+       $data=db('ordersdetail')->where('orderid',$id)->select();
+
+
+       $this->assign('data',$data);
+       return $this->fetch();
+
     }
 }
