@@ -110,6 +110,10 @@ class Goods extends Common
         $unitprice= $goods->where('id',$goodsid)->value('curprice');
         $inventory= $goods->where('id',$goodsid)->value('inventory');
         $totalprice=$unitprice*$quantity;
+        if($id==null)
+        {
+            $this->error("请您先登录！","index/users/login"); 
+        }
         if($inventory<$quantity){
             $this->error("库存不足，请重新选择！");
         }
@@ -231,8 +235,8 @@ class Goods extends Common
         $start=$freight;
      }
     }
-  //消费大于五万免运费
-    if($totalprice>=50000)
+  //消费大于200元免运费
+    if($totalprice>=200)
         {
             $freight=0;
         }

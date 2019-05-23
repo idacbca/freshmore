@@ -94,19 +94,35 @@ class Users extends Common
     public function my_account()
     {
         $type = $this->getCatgory();
-        $this->assign([
-            'title' => '鲜多多生鲜网 - 账户中心',
-            'type' => $type
-        ]);
-
-
+        $id=input('session.cid');
+        $orders=db('orders')->where('id',$id)->select();
         $db = db('user');
         $cid=Session::get('cid');
 		$user = $db->find($cid);
-			$this->assign([
-				'user' => $user
-			]);
+        $this->assign([
+            'title' => '鲜多多生鲜网 - 账户中心',
+            'type' => $type,
+            'orders'=>$orders,
+            'user' => $user
+        ]);
+    
     	return $this->fetch();
+    }
+
+    public function ordersdetail()
+    {
+       $type = $this->getCatgory();
+       $id = input('param.id');//获取传入的id
+
+       $ordersdetail=db('ordersdetail')->where('orderid',$id)->select();
+
+       $this->assign([
+        'title' => '鲜多多生鲜网 - 账户中心',
+        'type' => $type,
+        'ordersdetail'=>$ordersdetail
+    ]);
+
+       return $this->fetch();
     }
 
     public function user_edit(){
@@ -117,6 +133,10 @@ class Users extends Common
             'address' => $_POST['address'],
             'telephone' => $_POST['telephone'],
                 ],['id' => $cid]);
+
+        
+       
+        
             if($result){
                 $this->success('个人信息修改成功！', 'my_account');
             } else{
