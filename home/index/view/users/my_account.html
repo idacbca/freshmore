@@ -72,7 +72,7 @@
                                                         <th width="100">订单编号</th>
                                                         <th width="120">日期</th>
                                                         <th width="100">运输状态</th>
-                                                        <th width="100">价格</th>
+                                                        <th width="80">价格</th>
                                                         <th width="100">收货状态</th>
                                                         <th width="100">支付状态</th>
                                                         <th width="120">收货</th>
@@ -89,14 +89,14 @@
                                                                 {default /}default
                                                                     {/switch}</strong>
                                                         </td>
-                                                        <td width="100">{$vo.payinfo}</td>
+                                                        <td width="80">{$vo.payinfo}</td>
                                                         <td width="100"><strong>{switch name="$vo.status"}
                                                                 {case value="0"}已收货{/case}
                                                                 {case value="1"}未收货{/case}
                                                                 {default /}default
                                                                     {/switch}</strong>
                                                         </td>
-                                                        <td width="100"><strong>{switch name="$vo.paystatus"}
+                                                        <td width="110"><strong>{switch name="$vo.paystatus"}
                                                                 {case value="0"}已支付{/case}
                                                                 {case value="1"}已退款{/case}
                                                                 {default /}default
@@ -105,20 +105,17 @@
 
                                
 
-                                <td width="120"> {if condition="($vo.status == 1)"}
+                                <td width="120"> {if condition="($vo.status == 1&&$vo.paystatus==0)"}
                                 <a style="text-decoration:none" onClick="orders_get(this, {$vo.orderid})" href="javascript:;" title="设置为已收货"><i class="Hui-iconfont">&#xe6dc;</i></a>
                                 {else /}{/if}
                                 <!-- <a style="text-decoration:none" onClick="orders_notget(this, {$vo.orderid})" href="javascript:;" title="设置为未收货"><i class="Hui-iconfont">&#xe6de;</i></a> -->
                                 </td>
-                                <td width="120"></td>
+                                <td width="120">
                                 {if condition="($vo.paystatus == 0)"}
-                                <a style="text-decoration:none" class="ml-5" onClick="orders_refund(this, {$vo.orderid})" href="javascript:;" title="退款"><i class="Hui-iconfont">&#xe6e2;
+                                <a style="text-decoration:none"  onClick="orders_refund(this, {$vo.orderid})" href="javascript:;" title="退款"><i class="Hui-iconfont">&#xe6e2;
                                 </i></a>
                                 {else /}
                                 {/if}
-                                </td>
-								
-                            
                                 </td>
                                 
                                 <td width="100"><a href="{:url('ordersdetail', ['id'=>$vo.orderid])} class="add-to-cart-button"><span>详情</span></a></td>
