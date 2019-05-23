@@ -53,8 +53,9 @@
                     <th width="100">顾客</th>
 										
 										
-										
+										<th width="100">收货状态</th>
 										<th width="100">运输状态</th>
+										<th width="100">支付状态</th>
 										
 										<th width="100">运费</th>
                     
@@ -76,7 +77,13 @@
 								<td width="100"><center>{$vo.username}</center></td>
 								
 								
-								
+								<td class="td-status">
+										<strong>{switch name="$vo.status"}
+														{case value="0"}已收货{/case}
+														{case value="1"}未收货{/case}
+														{default /}default
+										{/switch}</strong>
+									</td>
 						
 								<td class="td-status">
 									<strong>{switch name="$vo.orderstate"}
@@ -85,6 +92,14 @@
 													{default /}default
 									{/switch}</strong>
 								</td>
+
+								<td class="td-status">
+										<strong>{switch name="$vo.paystatus"}
+														{case value="0"}已支付 {/case}
+														{case value="1"}已退款{/case}
+														{default /}default
+										{/switch}</strong>
+									</td>
 								
 								<td width="100"><center>{$vo.freight}元</center></td> 
 								
