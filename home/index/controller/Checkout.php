@@ -52,21 +52,24 @@ class Checkout extends Common
 
         $orders=model('orders');
         $ordersdetail=db('ordersdetail');
+        
         $id=input('session.cid');//获取session中用户id
         $username=db('user')->where('id',$id)->value('user_name');
         $orderstate=1;
         $freight=$_POST['freight'];
         $payinfo=$_POST['total'];
         
-        if($payinfo==0)
-        {
-            $this->error("亲，请先添加商品！","index/index/index");
-        }
         $user = model('user');
         $data = $user->where('user_name',$username)->find();
 
         if(is_null($data['address'])||is_null($data['telephone'])){
-            $this->error("请先填写个人信息");
+            $this->error("请先完善个人信息");
+
+        if($payinfo==0)
+        {
+            $this->error("亲，请先添加商品！","index/index/index");
+        }
+        
         }else{
         $orders->data([
             'id'=>$id,

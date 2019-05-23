@@ -57,27 +57,29 @@
                                         <div class="table-responsive">
                                             <table class="table table-bordered table-hover">
                                                 <tbody>
+                                                    
                                                     <tr>			
                                                         <th>订单编号</th>
                                                         <th>日期</th>
-                                                        <th>订单状态</th>
+                                                        <th>运输状态</th>
                                                         <th>价格</th>
                                                         <th></th>
                                                     </tr>
+                                                    {foreach $orders as $vo}
                                                     <tr>		
-                                                        <td><a class="account-order-id" href="#">#5364</a></td>
-                                                        <td>July 27, 2018</td>
-                                                        <td>未付款</td>
-                                                        <td>£162.00 for 2 items</td>
-                                                        <td><a href="#" class="add-to-cart-button"><span>查看详情</span></a></td>
+                                                        <td><a class="account-order-id" href="#">{$vo.orderid}</a></td>
+                                                        <td>{$vo.create_time}</td>
+                                                        <td><strong>{switch name="$vo.orderstate"}
+                                                                {case value="0"}已发货{/case}
+                                                                {case value="1"}未发货{/case}
+                                                                {default /}default
+                                                                    {/switch}</strong>
+                                                        </td>
+                                                        <td>{$vo.payinfo}</td>
+                                                        <td><a href="{:url('ordersdetail', ['id'=>$vo.orderid])} class="add-to-cart-button"><span>查看详情</span></a></td>
                                                     </tr>
-                                                    <tr>		
-                                                        <td><a class="account-order-id" href="#">#5356</a></td>
-                                                        <td>July 27, 2018</td>
-                                                        <td>On Hold</td>
-                                                        <td>£162.00 for 2 items</td>
-                                                        <td><a href="#" class="add-to-cart-button"><span>查看详情</span></a></td>
-                                                    </tr>
+                                                    {/foreach}
+                                                    
                                                 </tbody>
                                             </table>
                                         </div>
