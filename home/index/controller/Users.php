@@ -95,7 +95,8 @@ class Users extends Common
     {
         $type = $this->getCatgory();
         $id=input('session.cid');
-        $orders=db('orders')->where('id',$id)->where('paystatus',0)->select();
+        $order=db('orders')->where('id',$id)->select();
+        $orders=array_reverse($order);
         $db = db('user');
         $cid=Session::get('cid');
 		$user = $db->find($cid);
@@ -151,17 +152,31 @@ class Users extends Common
         $result = $user->save([
             'currency'  => $newcurrency,
               ],['id' => $cid]);
-
-        
-       
-        
-            if($result){
+        if($result){
                 $this->success('充值成功！', 'my_account');
             } else{
                 $this->error('充值失败！');
             }
                
     }
+
+    public function user_drawcurrency(){
+        $user = model('user');
+        $cid=Session::get('cid');
+        $currency=db('user')->where('id',$cid)->value('currency');
+        $newcurrency=$currency-$_POST['drawcurrency'];
+
+        $result = $user->save([
+            'currency'  => $newcurrency,
+              ],['id' => $cid]);
+        if($result){
+                $this->success('提现成功！', 'my_account');
+            } else{
+                $this->error('提现失败！');
+            }
+               
+    }
+
 
      // 设置收货ajax
 	public function orders_get_ajax(){
