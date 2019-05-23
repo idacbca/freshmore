@@ -105,6 +105,7 @@ class Goods extends Common
         $goods=db('goods');
         $quantity=$_POST['quantity'];
         $goodsid=$_POST['goodsid'];
+        $k = db('goods_files');
         $id=input('session.cid');//获取session中用户id
         $goodsname= $goods->where('id',$goodsid)->value('goodsname');
         $unitprice= $goods->where('id',$goodsid)->value('curprice');
@@ -118,6 +119,10 @@ class Goods extends Common
             $this->error("库存不足，请重新选择！");
         }
         $ra=db('cartdetail')->where('id',$id)->where('goodsid',$goodsid)->select();
+        $imgid = $goods->where('id', $_POST['goodsid']) 
+        ->value('filepath');//多个一维数组
+        $imgpath = $k->where('id', $imgid) 
+        ->value('filepath');
         
 
         //除此之外还有删除功能需要调整
@@ -129,7 +134,6 @@ class Goods extends Common
              $quantity2=$quantity+$quantity1;
              $totalprice1=db('cartdetail')->where('selfid',$selfid)->value('totalprice');
              $totalprice2=$totalprice+$totalprice1;
-             
              $cartdetail->where('selfid',$selfid)->update(['quantity' => $quantity2]);
              $cartdetail->where('selfid',$selfid)->update(['totalprice' =>$totalprice2]);
 
@@ -143,10 +147,11 @@ class Goods extends Common
             'goodsname'=>$goodsname,
             'unitprice'=>$unitprice,
             'quantity' =>$quantity,
-            'totalprice'=>$totalprice
-                         ]);
+            'totalprice'=>$totalprice,
+            'img' =>$imgpath 
+            ]);
         }
-
+        //var_dump($cartdetail);
         $newinventory=$inventory-$quantity;
 
         $goods->where('id', $goodsid)->update(['inventory' => $newinventory]);
@@ -227,7 +232,7 @@ class Goods extends Common
     $cartdetail = db('cartdetail')->where('id',$id)->select();
     $totalprice = db('cartdetail')->where('id',$id)->sum('totalprice');
     $start=0;
-
+    
     foreach ($cartdetail as $vo){
              
     $freight=db('goods')->where('id',$vo['goodsid'])->value('freight');
