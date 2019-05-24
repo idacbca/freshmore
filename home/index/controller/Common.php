@@ -81,7 +81,7 @@ class Common extends Controller
         }
     
 
-    public function getPath(){
+    public function getPath(){//获取商品路径
         $m = db('goods_type');
         //$id = $m->where('id',input('id'))->select();
         $idpath = $m->where('id',input('id'))->value('path');
@@ -91,7 +91,6 @@ class Common extends Controller
         foreach($arr as $k=>&$pathname){           
             $arr[$k] = $m->where('id',$pathname)->value('name');               
         }
-        
         return $arr;
     }
 
@@ -107,7 +106,7 @@ class Common extends Controller
         foreach($arr as $k=>&$pathname){           
             $arr[$k] = $m->where('id',$pathname)->value('name');               
         }
-        
+        //var_dump($arr);
         return $arr;
     }
     public function getimgPath(){

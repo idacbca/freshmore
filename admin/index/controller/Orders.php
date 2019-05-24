@@ -13,7 +13,8 @@ class Orders extends Controller
             $search=$_POST['search'];
             $orders=db('orders');
         
-            $data = $orders->where('orderid','like','%'.$search.'%')->select();
+            $data1= $orders->where('orderid','like','%'.$search.'%')->select();
+            $data=array_reverse($data1);
             $count=count($data);
         
             $this->assign([
@@ -23,10 +24,9 @@ class Orders extends Controller
             ]);
             return $this->fetch();
         } else{//没有输入查询信息时
-            $order = db('orders');
-            
-            $data = $order->select();
-            $orders = array_reverse($data);
+            $orders = db('orders');
+            $data1 = $orders->select();
+            $data=array_reverse($data1);
             $count = count($data);
             $this->assign([
             'data' => $data,
