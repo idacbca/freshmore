@@ -274,6 +274,7 @@ class Goods extends Common
     //var_dump($idpath);
     $data3 = array(); 
     $data2 = $m->where('goodsname','like','%'.$goodsname.'%')->select();
+    //var_dump($data2);
     foreach($data2 as $h=>&$y){
         $imgid = $k->where('id', $data2[$h]['filepath']) 
     ->value('filepath');//多个一维数组
@@ -296,11 +297,12 @@ class Goods extends Common
         return $this->fetch("shop_left_sidebar");
     } else{
         $this->assign([
-            'product' => $data,
+            'product' => $data3,
             'idpath' => $idpath,
             'type' => $type
 				
         ]);
+        
         return $this->fetch("shop_left_sidebar");
     }
    
