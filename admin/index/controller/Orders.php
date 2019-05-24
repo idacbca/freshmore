@@ -23,8 +23,10 @@ class Orders extends Controller
             ]);
             return $this->fetch();
         } else{//没有输入查询信息时
-            $orders = db('orders');
-            $data = $orders->select();
+            $order = db('orders');
+            
+            $data = $order->select();
+            $orders = array_reverse($data);
             $count = count($data);
             $this->assign([
             'data' => $data,
