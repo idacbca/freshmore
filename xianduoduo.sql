@@ -11,7 +11,7 @@
  Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 24/05/2019 13:25:57
+ Date: 24/05/2019 15:50:35
 */
 
 SET NAMES utf8mb4;
@@ -137,7 +137,7 @@ CREATE TABLE `cartdetail`  (
   `selfid` int(10) NOT NULL AUTO_INCREMENT COMMENT '自增id',
   `img` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0',
   PRIMARY KEY (`selfid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 76 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 79 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cartdetail
@@ -154,6 +154,7 @@ INSERT INTO `cartdetail` VALUES (4, 14, '西红柿', '9', '27', 3, '2019-05-23 2
 INSERT INTO `cartdetail` VALUES (3, 34, '芦笋', '3', '3', 1, '2019-05-23 21:42:57', '2019-05-23 21:42:57', 71, '/uploads/20190521/bd546323dcd473ca72001d055c6ee245.jpg');
 INSERT INTO `cartdetail` VALUES (4, 17, '草鱼', '10', '10', 1, '2019-05-23 21:49:27', '2019-05-23 21:49:27', 72, '/uploads/20190521/a5714b3013531169f0b3ffcdc435d54f.jpg');
 INSERT INTO `cartdetail` VALUES (2, 19, '土豆', '3', '9', 3, '2019-05-24 10:27:20', '2019-05-24 10:27:20', 75, '/uploads/20190520/53b8f32473b2e41717bdb981d53af3c4.jpg');
+INSERT INTO `cartdetail` VALUES (9, 26, '圣女果', '4', '4', 1, '2019-05-24 15:43:40', '2019-05-24 15:43:40', 78, '/uploads/20190521/0c92f97261ffd1c379dca7903a5014ef.jpg');
 
 -- ----------------------------
 -- Table structure for goods
@@ -188,20 +189,20 @@ CREATE TABLE `goods`  (
 -- Records of goods
 -- ----------------------------
 INSERT INTO `goods` VALUES (14, '西红柿', 45, 43, '斤', '1', '43,42', 1, NULL, 9, NULL, 6, 0, NULL, NULL, 12, '0', NULL, '<p>娇艳沙甜、软糯多汁，沙瓤细腻<br/></p>', NULL, '2019-05-24 13:22:33');
-INSERT INTO `goods` VALUES (17, '草鱼', 48, 47, '斤', '1', '34,33', 24, NULL, 10, NULL, 8, 1, NULL, NULL, 20, '0', NULL, '<p>肉嫩</p>', NULL, '2019-05-21 12:17:35');
+INSERT INTO `goods` VALUES (17, '草鱼', 48, 47, '斤', '1', '34,33', 24, NULL, 10, NULL, 8, 0, NULL, NULL, 20, '0', NULL, '<p>活鱼现场冷冻冰鲜，最大程度保留鱼肉的鲜嫩</p>', NULL, '2019-05-24 13:55:28');
 INSERT INTO `goods` VALUES (19, '土豆', 54, 43, '斤', '1', '28', 1333, NULL, 3, NULL, 1, 20, NULL, NULL, 5, '0', NULL, '<p>云南玉溪精选土豆</p><p>光照充足 规范种植 肉质肥厚 果实饱满<br/></p>', '2019-05-10 16:37:59', '2019-05-24 13:24:20');
-INSERT INTO `goods` VALUES (25, '荔浦芋头', 58, 43, '斤', '1', '36,35', 12, NULL, 9, NULL, 6, 30, NULL, NULL, 10, '0', NULL, '<p>芋头</p>', '2019-05-10 16:52:45', '2019-05-21 12:18:46');
-INSERT INTO `goods` VALUES (26, '圣女果', 73, 52, '盒', '1', '37,27', 31001, NULL, 4, NULL, 2, 401, NULL, NULL, 3, '0', NULL, '<p>农场直购，每日新鲜必达<br/></p>', '2019-05-17 09:41:12', '2019-05-24 13:21:24');
+INSERT INTO `goods` VALUES (25, '荔浦芋头', 58, 43, '斤', '1', '36,35', 12, NULL, 9, NULL, 6, 30, NULL, NULL, 10, '0', NULL, '<p>入口即化，肉质细腻，口留芋香<br/></p>', '2019-05-10 16:52:45', '2019-05-24 13:35:57');
+INSERT INTO `goods` VALUES (26, '圣女果', 73, 52, '盒', '1', '37,27', 31001, NULL, 4, NULL, 2, 399, NULL, NULL, 3, '0', NULL, '<p>优选小千禧品种，鲜甜多汁，每日鲜采，颗颗饱满<br/></p>', '2019-05-17 09:41:12', '2019-05-24 13:56:57');
 INSERT INTO `goods` VALUES (27, '国产柠檬', 75, 53, '个', '3', '25', 31011, NULL, 6, NULL, 4, 525, NULL, NULL, 2, '0', NULL, '<p>一级黄柠檬</p><p>没有酸爽，哪来甜蜜<br/></p>', '2019-05-17 09:42:55', '2019-05-24 13:19:57');
 INSERT INTO `goods` VALUES (28, '青提', 71, 53, '份', '1', '29,24', 31002, NULL, 8, NULL, 5, 225, NULL, NULL, 1, '0', NULL, '<p>莹润浓甜“绿珍珠 ”鲜食晒干两相宜<br/></p>', '2019-05-17 09:44:14', '2019-05-24 11:26:23');
 INSERT INTO `goods` VALUES (29, '红富士苹果', 69, 53, '份', '1', '26', 31003, NULL, 12, NULL, 9, 5444, NULL, NULL, 4, '0', NULL, '<p>山眉水烟红富士 色泽鲜艳、汁多肉脆、酸甜可口<br/></p>', '2019-05-17 09:46:09', '2019-05-24 11:27:50');
-INSERT INTO `goods` VALUES (30, '山东小土豆', 79, 43, '盒', '1', '20', 10011, NULL, 4, NULL, 3, 5393, NULL, NULL, 1, '0', NULL, '<p>新鲜上市！</p>', '2019-05-17 09:58:17', '2019-05-20 13:11:36');
-INSERT INTO `goods` VALUES (31, '吉林黑糯玉米', 63, 43, '根', '1', '23', 31004, NULL, 7, NULL, 2, 219, NULL, NULL, 1, '0', NULL, '<p>软糯</p>', '2019-05-17 10:00:02', '2019-05-20 13:12:31');
+INSERT INTO `goods` VALUES (30, '山东小土豆', 79, 43, '盒', '1', '20', 10011, NULL, 4, NULL, 3, 5393, NULL, NULL, 1, '0', NULL, '<p>清甜香糯、颗粒饱满、光滑无暇<br/></p>', '2019-05-17 09:58:17', '2019-05-24 13:38:19');
+INSERT INTO `goods` VALUES (31, '吉林黑糯玉米', 63, 43, '根', '1', '23', 31004, NULL, 7, NULL, 2, 219, NULL, NULL, 1, '0', NULL, '<p>新鲜采摘 绿色有机 软甜糯口 唇齿留香&nbsp;</p>', '2019-05-17 10:00:02', '2019-05-24 13:54:06');
 INSERT INTO `goods` VALUES (32, '埃及橙子', 77, 52, '个', '2', '22', 31006, NULL, 10, NULL, 7, 39, NULL, NULL, 1, '0', NULL, '<p>橙子中含量丰富的维生素C、P，能增加机体抵抗力，增加毛细血管的弹性，降低血中胆固醇。高血脂症、高血压、动脉硬化者常食橙子有益。橙子所含纤维素和果胶物质，可促进肠道蠕动，有利于清肠通便，排除体内有害物质。</p>', '2019-05-17 10:07:15', '2019-05-24 11:17:44');
 INSERT INTO `goods` VALUES (33, '新西兰苹果', 78, 52, '盒', '2', '21', 31010, NULL, 15, NULL, 10, 43, NULL, NULL, 7, '0', NULL, '<p>果型优美，个大均匀，色泽艳丽，肉质脆密。</p><p>不打蜡、不催红、无除草剂、无激素<br/></p>', '2019-05-17 10:11:02', '2019-05-24 11:22:48');
-INSERT INTO `goods` VALUES (34, '芦笋', 44, 42, '把', '3', '32,31,30', 10003, NULL, 3, NULL, 2, 48, NULL, NULL, 0, '0', NULL, '<p>鲜</p>', '2019-05-17 16:00:43', '2019-05-21 12:16:42');
-INSERT INTO `goods` VALUES (35, '洋芋', 57, 42, '个', '2', '41,40', 10012, NULL, 8, NULL, 7, 32, NULL, NULL, 2, '0', NULL, '<p>糯</p>', '2019-05-17 16:02:03', '2019-05-21 12:21:19');
-INSERT INTO `goods` VALUES (36, '荷兰豆', 60, 42, '0', '1', '39,38', 10014, NULL, 4, NULL, 3, 23, NULL, NULL, 1, '0', NULL, '<p>脆</p>', '2019-05-17 16:02:54', '2019-05-21 12:20:26');
+INSERT INTO `goods` VALUES (34, '芦笋', 44, 42, '把', '3', '32,31,30', 10003, NULL, 3, NULL, 2, 48, NULL, NULL, 0, '0', NULL, '<p>全嫩 无老根 新鲜采摘</p>', '2019-05-17 16:00:43', '2019-05-24 13:47:52');
+INSERT INTO `goods` VALUES (35, '洋芋', 57, 42, '个', '2', '41,40', 10012, NULL, 8, NULL, 7, 32, NULL, NULL, 2, '0', NULL, '<p>香味浓郁，沙甜可口</p>', '2019-05-17 16:02:03', '2019-05-24 13:50:56');
+INSERT INTO `goods` VALUES (36, '荷兰豆', 60, 42, '0', '1', '39,38', 10014, NULL, 4, NULL, 3, 23, NULL, NULL, 1, '0', NULL, '<p>有机种植、无化学污染、绿色无公害</p>', '2019-05-17 16:02:54', '2019-05-24 13:51:20');
 
 -- ----------------------------
 -- Table structure for goods_files
@@ -299,7 +300,7 @@ CREATE TABLE `orders`  (
   `telephone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '电话号码',
   `paystatus` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '支付状态 0已支付，1未支付',
   PRIMARY KEY (`orderid`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 103 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 104 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of orders
@@ -319,6 +320,7 @@ INSERT INTO `orders` VALUES (99, 4, '16110120', '0', 1, 1, '81', '2019-05-23 19:
 INSERT INTO `orders` VALUES (100, 4, '16110120', '1', 1, 3, '23', '2019-05-23 20:02:49', '2019-05-23 20:02:49', '北工大平乐园100号', '12334444', '1');
 INSERT INTO `orders` VALUES (101, 4, '16110120', '1', 1, 1, '81', '2019-05-23 20:31:21', '2019-05-23 20:31:21', '北工大平乐园100号', '12334444', '1');
 INSERT INTO `orders` VALUES (102, 2, 'acbca', '1', 1, 4, '100', '2019-05-24 09:28:09', '2019-05-24 09:28:09', '11111', '1111', '0');
+INSERT INTO `orders` VALUES (103, 10, '16110105', '1', 1, 20, '34', '2019-05-24 14:18:05', '2019-05-24 14:18:05', '124', '13800000000', '0');
 
 -- ----------------------------
 -- Table structure for ordersdetail
@@ -332,7 +334,7 @@ CREATE TABLE `ordersdetail`  (
   `id` int(255) NOT NULL AUTO_INCREMENT COMMENT '自增id',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `商品编号`(`orderid`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 78 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 80 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ordersdetail
@@ -361,6 +363,8 @@ INSERT INTO `ordersdetail` VALUES (100, '圣女果', 5, '4', 74);
 INSERT INTO `ordersdetail` VALUES (101, '山东小土豆', 20, '4', 75);
 INSERT INTO `ordersdetail` VALUES (102, '圣女果', 9, '4', 76);
 INSERT INTO `ordersdetail` VALUES (102, '红富士苹果', 5, '12', 77);
+INSERT INTO `ordersdetail` VALUES (103, '圣女果', 1, '4', 78);
+INSERT INTO `ordersdetail` VALUES (103, '草鱼', 1, '10', 79);
 
 -- ----------------------------
 -- Table structure for user
@@ -377,7 +381,7 @@ CREATE TABLE `user`  (
   `telephone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `currency` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '充值的钱',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
@@ -389,5 +393,7 @@ INSERT INTO `user` VALUES ('12333', 6, 'admin1', '81dc9bdb52d04dc20036dbd8313ed0
 INSERT INTO `user` VALUES ('12345', 7, '16110106', 'e10adc3949ba59abbe56e057f20f883e', '2019-05-23 00:29:19', '2019-05-23 00:35:43', '1111', '1111', '0');
 INSERT INTO `user` VALUES ('happy', 8, 'happy', '56ab24c15b72a457069c5ea42fcfc640', '2019-05-23 09:36:27', '2019-05-23 09:49:22', 'babababbabaab', '122345690609', '0');
 INSERT INTO `user` VALUES ('1611', 9, '1611', '7a6a74cbe87bc60030a4bd041dd47b78', '2019-05-24 11:10:35', '2019-05-24 11:10:35', NULL, NULL, '0');
+INSERT INTO `user` VALUES ('', 10, '16110105', '0ab7d592bb6447762b88b727fca69672', '2019-05-24 14:10:39', '2019-05-24 14:17:49', '124', '13800000000', '86');
+INSERT INTO `user` VALUES ('1233', 11, '1233', 'e034fb6b66aacc1d48f445ddfb08da98', '2019-05-24 15:30:26', '2019-05-24 15:30:26', NULL, NULL, '0');
 
 SET FOREIGN_KEY_CHECKS = 1;
