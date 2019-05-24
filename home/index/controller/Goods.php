@@ -2,6 +2,7 @@
 namespace app\index\controller;
 
 use think\Controller;
+use think\Session;
 
 class Goods extends Common
 {
@@ -10,6 +11,8 @@ class Goods extends Common
         if(input('id')){
             $type = $this->getCatgory();
             $idpath = $this->getPath();
+            $allgoods=$this->getCart();
+            $total=Session::get('total'); 
             //$page = $this->userlistAction();
             $goods = db('goods');
             $tpid = model('goods_type');
@@ -43,6 +46,8 @@ class Goods extends Common
                 'type' => $type,
                 'idpath' => $idpath, 
                 'title' => '鲜多多生鲜网 - 商城',
+                'allgoods'=> $allgoods,
+                'total'=>$total
             ]);
             return $this->fetch(); 
             } else{//三级分类
@@ -63,6 +68,8 @@ class Goods extends Common
                     'type' => $type,
                     'idpath' => $idpath, 
                     'title' => '鲜多多生鲜网 - 商城',
+                    'allgoods'=> $allgoods,
+                    'total'=>$total
                 ]);
              return $this->fetch(); 
 
@@ -71,6 +78,8 @@ class Goods extends Common
         } else{//点击商品分类
             $type = $this->getCatgory();
             $idpath = $this->getPath();
+            $allgoods=$this->getCart();
+            $total=Session::get('total'); 
             $goods = db('goods');
             $k = db('goods_files');
             $data2 = $goods->where('status', 0)->select();
@@ -88,7 +97,9 @@ class Goods extends Common
                 'product' => $data2,
                 'type' => $type,
                 'idpath' => $idpath, 
-                'title' => '鲜多多生鲜网 - 商城'
+                'title' => '鲜多多生鲜网 - 商城',
+                'allgoods'=> $allgoods,
+                'total'=>$total
             ]);
             return $this->fetch();
         }
@@ -163,6 +174,12 @@ class Goods extends Common
           }
                      
        return $this->fetch();
+
+
+
+
+
+
     }
 
  //删除购物车中的商品
@@ -194,6 +211,8 @@ class Goods extends Common
         if(input('id')){
             //var_dump(input('id'));
             $type = $this->getCatgory();
+            $allgoods=$this->getCart();
+            $total=Session::get('total'); 
             $goods = model('goods');
             $img = $this->getimgPath();
             $idpath = $this->getGoodsPath();
@@ -202,7 +221,9 @@ class Goods extends Common
                 'details' => $data,
                 'idpath' => $idpath,
                 'type' => $type,
-                'img' => $img
+                'img' => $img,
+                'allgoods'=> $allgoods,
+                'total'=>$total
             ]);
             return $this->fetch();
         } else{
@@ -215,7 +236,9 @@ class Goods extends Common
                 'details' => $data,
                 'type' => $type,
                 'idpath' => $idpath,
-                'img' => $img
+                'img' => $img,
+                'allgoods'=> $allgoods,
+                'total'=>$total
             ]);
             return $this->fetch();
         }
@@ -226,6 +249,8 @@ class Goods extends Common
     public function cart()
     {
     $type = $this->getCatgory();
+    $allgoods=$this->getCart();
+    
 
     $id=input('session.cid');//获取session中用户id
 
@@ -251,14 +276,16 @@ class Goods extends Common
         }   
 
     $total=$totalprice+$freight;
-
+       
     $this->assign([
         'type' => $type,
         'title' => '鲜多多生鲜网 - 购物车',
         'cartdetail' => $cartdetail,
         'totalprice'=> $totalprice,
         'freight'=>$freight,
-        'total'=>$total
+        'total'=>$total,
+        'allgoods'=> $allgoods,
+        
     ]);
 
         return $this->fetch();
@@ -274,6 +301,7 @@ class Goods extends Common
     //var_dump($idpath);
     $data3 = array(); 
     $data2 = $m->where('goodsname','like','%'.$goodsname.'%')->select();
+    //var_dump($data2);
     foreach($data2 as $h=>&$y){
         $imgid = $k->where('id', $data2[$h]['filepath']) 
     ->value('filepath');//多个一维数组
@@ -296,11 +324,12 @@ class Goods extends Common
         return $this->fetch("shop_left_sidebar");
     } else{
         $this->assign([
-            'product' => $data,
+            'product' => $data3,
             'idpath' => $idpath,
             'type' => $type
 				
         ]);
+        
         return $this->fetch("shop_left_sidebar");
     }
    

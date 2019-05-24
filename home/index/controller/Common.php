@@ -3,6 +3,7 @@ namespace app\index\controller;
 
 use think\Controller;
 use think\auth\Auth;
+use think\Session;
 
 class Common extends Controller
 {
@@ -39,8 +40,48 @@ class Common extends Controller
         }
         return $type;
     }
+   
+    public function getCart(){
+            $cid=Session::get('cid');
+            $cartdetail=db('cartdetail');
+            $allgoods=$cartdetail->where('id',$cid)->select();
+            
+            $cartdetail = db('cartdetail')->where('id',$cid)->select();
+            $totalprice = db('cartdetail')->where('id',$cid)->sum('totalprice');
+            $start=0;
+            
+            foreach ($cartdetail as $vo){
+                     
+            $freight=db('goods')->where('id',$vo['goodsid'])->value('freight');
+            if($freight>$start){
+                $start=$freight;
+             }
+            }
+          //消费大于99元免运费
+            if($totalprice>=99)
+                {
+                    $freight=0;
+                }
+            else
+                {
+                    $freight=$start;
+                }   
+        
+            $total=$totalprice+$freight;
+                session('total',$total);
 
-    public function getPath(){
+
+
+
+
+
+            
+            return $allgoods;
+    
+        }
+    
+
+    public function getPath(){//获取商品路径
         $m = db('goods_type');
         //$id = $m->where('id',input('id'))->select();
         $idpath = $m->where('id',input('id'))->value('path');
@@ -50,7 +91,6 @@ class Common extends Controller
         foreach($arr as $k=>&$pathname){           
             $arr[$k] = $m->where('id',$pathname)->value('name');               
         }
-        
         return $arr;
     }
 
@@ -66,7 +106,7 @@ class Common extends Controller
         foreach($arr as $k=>&$pathname){           
             $arr[$k] = $m->where('id',$pathname)->value('name');               
         }
-        
+        //var_dump($arr);
         return $arr;
     }
     public function getimgPath(){

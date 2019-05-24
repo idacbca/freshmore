@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="/static/admin/lib/Hui-iconfont/1.0.8/iconfont.css" />
      <link rel="stylesheet" type="text/css" href="/static/admin/static/h-ui.admin/skin/default/skin.css" id="skin" />
     <link rel="stylesheet" type="text/css" href="/static/admin/static/h-ui.admin/css/style.css" />
+
 </head>
 
 <body>
@@ -72,7 +73,7 @@
                                                         <th width="100">订单编号</th>
                                                         <th width="120">日期</th>
                                                         <th width="100">运输状态</th>
-                                                        <th width="100">价格</th>
+                                                        <th width="80">价格</th>
                                                         <th width="100">收货状态</th>
                                                         <th width="100">支付状态</th>
                                                         <th width="120">收货</th>
@@ -89,14 +90,14 @@
                                                                 {default /}default
                                                                     {/switch}</strong>
                                                         </td>
-                                                        <td width="100">{$vo.payinfo}</td>
+                                                        <td width="80">{$vo.payinfo}</td>
                                                         <td width="100"><strong>{switch name="$vo.status"}
                                                                 {case value="0"}已收货{/case}
                                                                 {case value="1"}未收货{/case}
                                                                 {default /}default
                                                                     {/switch}</strong>
                                                         </td>
-                                                        <td width="100"><strong>{switch name="$vo.paystatus"}
+                                                        <td width="110"><strong>{switch name="$vo.paystatus"}
                                                                 {case value="0"}已支付{/case}
                                                                 {case value="1"}已退款{/case}
                                                                 {default /}default
@@ -105,20 +106,17 @@
 
                                
 
-                                <td width="120"> {if condition="($vo.status == 1)"}
+            <td width="120"> {if condition="($vo.status == 1&&$vo.paystatus==0&&$vo.orderstate==0)"}
                                 <a style="text-decoration:none" onClick="orders_get(this, {$vo.orderid})" href="javascript:;" title="设置为已收货"><i class="Hui-iconfont">&#xe6dc;</i></a>
                                 {else /}{/if}
                                 <!-- <a style="text-decoration:none" onClick="orders_notget(this, {$vo.orderid})" href="javascript:;" title="设置为未收货"><i class="Hui-iconfont">&#xe6de;</i></a> -->
                                 </td>
-                                <td width="120"></td>
+                                <td width="120">
                                 {if condition="($vo.paystatus == 0)"}
-                                <a style="text-decoration:none" class="ml-5" onClick="orders_refund(this, {$vo.orderid})" href="javascript:;" title="退款"><i class="Hui-iconfont">&#xe6e2;
+                                <a style="text-decoration:none"  onClick="orders_refund(this, {$vo.orderid})" href="javascript:;" title="退款"><i class="Hui-iconfont">&#xe6e2;
                                 </i></a>
                                 {else /}
                                 {/if}
-                                </td>
-								
-                            
                                 </td>
                                 
                                 <td width="100"><a href="{:url('ordersdetail', ['id'=>$vo.orderid])} class="add-to-cart-button"><span>详情</span></a></td>
@@ -134,24 +132,24 @@
                                         <div class="myaccount-currency">
                                            
                                             <div class="row">
-                                                    <form action="{:url('user_currency')}" class="sn-form" method="POST">
+                                                    <form action="{:url('user_currency')}" class="sn-form" method="POST" id="form-article-add" >
                                                             <div class="sn-form-inner">
                                                                 <div class="single-input single-input-half">
-                                                                    <label for="充值数额">充值数额（元）</label>
-                                                                    <input name="currency" type="currency" id="currency" >
+                                                                    <label for="充值数额">充值数额</label>
+                                                                    <input name="currency" type="text" id="currency" class="input-text" >
                                                                 </div>
 
                                                                 <div class="single-input">
-                                                                        <button class="sn-button sn-button-dark" type="submit" ><span>充值</span>
+                                                                        <button class="sn-button sn-button-dark" type="submit"><span>充值</span>
                                                                         </button>
                                                                 </div>
                                                             </div> 
                                                         </form>
-                                                <form action="{:url('user_drawcurrency')}" class="sn-form" method="POST">       
+                                                <form action="{:url('user_drawcurrency')}" class="sn-form" method="POST" id="form-article-draw">       
                                                             <div class="sn-form-inner">
                                                                     <div class="single-input single-input-half">
                                                                         <label for="提现数额">提现数额（元）</label>
-                                                                        <input name="drawcurrency" type="drawcurrency" id="drawcurrency" >
+                                                                        <input name="drawcurrency" class="input-text" type="text" id="drawcurrency" >
                                                                     </div>
     
                                                                     <div class="single-input">
@@ -329,7 +327,80 @@ function orders_refund(obj,id){
 }
  </script>   
 
+<script type="text/javascript" src="/static/admin/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="/static/admin/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="/static/admin/static/h-ui/js/H-ui.min.js"></script> 
+<script type="text/javascript" src="/static/admin/static/h-ui.admin/js/H-ui.admin.js"></script>
+<!--产品添加表单验证部分-->
 
+<script type="text/javascript" src="/static/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
+<script type="text/javascript" src="/static/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+<script type="text/javascript" src="/static/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script> 
+<script type="text/javascript">
+
+
+    (function( factory ) {
+    if ( typeof define === "function" && define.amd ) {
+        define( ["jquery", "../jquery.validate"], factory );
+    } else {
+        factory( jQuery );
+    }
+    }(function( $ ) {
+
+        $.extend($.validator.messages, {
+       number: "请输入合法数字",
+       digits: "请输入正整数",
+       range: $.validator.format("请输入范围在 {10} 到 {10000} 之间的金额"),
+   
+});
+
+}));
+  
+
+
+    $(function(){
+
+        $('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+//充值权限
+        $("#form-article-add").validate({
+            rules:{
+                currency:{
+                    digits:true,
+                    number:true,
+                    range:[10,10000]
+                         },             
+            onkeyup:false,
+            focusCleanup:true,
+            success:"valid",
+                 }
+                         })  
+//提现权限
+        $("#form-article-draw").validate({
+            rules:{
+                drawcurrency:{
+                    digits:true,
+                    number:true
+                    
+                         },
+                // messages: {
+                //    currency: {
+                //               digits: "请输入整数",
+                //               number: "请输入合法数字"
+                //              },
+                //           },
+            onkeyup:false,
+            focusCleanup:true,
+            success:"valid",
+                 }
+                                        })
+     
+     
+                        });
+</script> 
 </body>
 
 

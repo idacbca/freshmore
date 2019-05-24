@@ -2,6 +2,7 @@
 namespace app\index\controller;
 
 use think\Controller;
+use think\Session;
 
 class Checkout extends Common
 
@@ -10,6 +11,8 @@ class Checkout extends Common
     {
 
         $type = $this->getCatgory();
+        $allgoods=$this->getCart();
+        
         $id=input('session.cid');//获取session中用户id
         $cartdetail=db('cartdetail')->where('id',$id)->select();
         $totalprice = db('cartdetail')->where('id',$id)->sum('totalprice');
@@ -42,7 +45,8 @@ class Checkout extends Common
             'cartdetail'=>$cartdetail,
             'totalprice'=>$totalprice,
             'freight'=>$freight,
-            'total'=>$total
+            'total'=>$total,
+            'allgoods' =>$allgoods
         ]);
         return $this->fetch();
     }

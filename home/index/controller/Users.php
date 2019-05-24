@@ -94,6 +94,8 @@ class Users extends Common
     public function my_account()
     {
         $type = $this->getCatgory();
+        $allgoods=$this->getCart();
+ $total=Session::get('total'); 
         $id=input('session.cid');
         $order=db('orders')->where('id',$id)->select();
         $orders=array_reverse($order);
@@ -104,7 +106,9 @@ class Users extends Common
             'title' => '鲜多多生鲜网 - 账户中心',
             'type' => $type,
             'orders'=>$orders,
-            'user' => $user
+            'user' => $user,
+            'allgoods'=> $allgoods,
+            'total'=>$total
         ]);
     
     	return $this->fetch();
@@ -113,6 +117,8 @@ class Users extends Common
     public function ordersdetail()
     {
        $type = $this->getCatgory();
+       $allgoods=$this->getCart();
+        $total=Session::get('total'); 
        $id = input('param.id');//获取传入的id
 
        $ordersdetail=db('ordersdetail')->where('orderid',$id)->select();
@@ -120,7 +126,9 @@ class Users extends Common
        $this->assign([
         'title' => '鲜多多生鲜网 - 账户中心',
         'type' => $type,
-        'ordersdetail'=>$ordersdetail
+        'ordersdetail'=>$ordersdetail,
+        'allgoods'=> $allgoods,
+        'total'=>$total
     ]);
 
        return $this->fetch();
@@ -142,11 +150,15 @@ class Users extends Common
             }
                
     }
-
+//充值操作
     public function user_currency(){
         $user = model('user');
         $cid=Session::get('cid');
         $currency=db('user')->where('id',$cid)->value('currency');
+
+        if($_POST['currency']<=0)
+        $this->error('输入错误！', 'my_account');
+
         $newcurrency=$currency+$_POST['currency'];
 
         $result = $user->save([
@@ -159,11 +171,17 @@ class Users extends Common
             }
                
     }
-
+//提现操作
     public function user_drawcurrency(){
         $user = model('user');
         $cid=Session::get('cid');
         $currency=db('user')->where('id',$cid)->value('currency');
+
+        if($_POST['drawcurrency']<=0)
+        $this->error('输入错误！', 'my_account');
+        if($currency<$_POST['drawcurrency'])
+        $this->error('余额不足！', 'my_account');
+
         $newcurrency=$currency-$_POST['drawcurrency'];
 
         $result = $user->save([
