@@ -94,6 +94,8 @@ class Users extends Common
     public function my_account()
     {
         $type = $this->getCatgory();
+        $allgoods=$this->getCart();
+ $total=Session::get('total'); 
         $id=input('session.cid');
         $order=db('orders')->where('id',$id)->select();
         $orders=array_reverse($order);
@@ -104,7 +106,9 @@ class Users extends Common
             'title' => '鲜多多生鲜网 - 账户中心',
             'type' => $type,
             'orders'=>$orders,
-            'user' => $user
+            'user' => $user,
+            'allgoods'=> $allgoods,
+            'total'=>$total
         ]);
     
     	return $this->fetch();
@@ -113,6 +117,8 @@ class Users extends Common
     public function ordersdetail()
     {
        $type = $this->getCatgory();
+       $allgoods=$this->getCart();
+        $total=Session::get('total'); 
        $id = input('param.id');//获取传入的id
 
        $ordersdetail=db('ordersdetail')->where('orderid',$id)->select();
@@ -120,7 +126,9 @@ class Users extends Common
        $this->assign([
         'title' => '鲜多多生鲜网 - 账户中心',
         'type' => $type,
-        'ordersdetail'=>$ordersdetail
+        'ordersdetail'=>$ordersdetail,
+        'allgoods'=> $allgoods,
+        'total'=>$total
     ]);
 
        return $this->fetch();
