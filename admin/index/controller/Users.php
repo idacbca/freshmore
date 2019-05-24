@@ -180,13 +180,19 @@ class Users extends Common
     	//角色管理权限节点选择
     	$role_data = $db->where('status', '1')->where('title','like','角色%')->select();
     	//权限管理权限节点选择
-    	$permission_data = $db->where('status', '1')->where('title','like','权限%')->select();
+        $permission_data = $db->where('status', '1')->where('title','like','权限%')->select();
+        //订单管理权限节点选择
+        $order_data = $db->where('status', '1')->where('title','like','订单%')->select();
+        //用户管理权限节点选择
+        $user_data = $db->where('status', '1')->where('title','like','用户%')->select();
     	$this->assign([
     		'category_data' => $category_data,
     		'admin_data' => $admin_data,
     		'product_data' => $product_data,
     		'role_data' => $role_data,
-    		'permission_data' => $permission_data
+            'permission_data' => $permission_data,
+            'order_data' => $order_data,
+            'user_data' => $user_data
     	]);
         return $this->fetch();
     }
@@ -217,13 +223,19 @@ class Users extends Common
     	//角色管理权限节点选择
     	$role_data = $db->where('status', '1')->where('title','like','角色%')->select();
     	//权限管理权限节点选择
-    	$permission_data = $db->where('status', '1')->where('title','like','权限%')->select();
+        $permission_data = $db->where('status', '1')->where('title','like','权限%')->select();
+        //订单管理权限节点选择
+        $order_data = $db->where('status', '1')->where('title','like','订单%')->select();
+        //用户管理权限节点选择
+        $user_data = $db->where('status', '1')->where('title','like','用户%')->select();
     	$this->assign([
     		'category_data' => $category_data,
     		'admin_data' => $admin_data,
     		'product_data' => $product_data,
     		'role_data' => $role_data,
-    		'permission_data' => $permission_data
+            'permission_data' => $permission_data,
+            'order_data' => $order_data,
+            'user_data' => $user_data
     	]);
 
         $db = db('auth_group');
