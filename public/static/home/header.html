@@ -106,12 +106,12 @@
                                         <!-- {if condition="isset($allgoods)"} -->
                                         {foreach $allgoods as $good}
                                         <li>
-                                            <a href="product-details-right-sidebar.html" class="minicart-product-image">
+                                            <a href="{:url('index/goods/product_details',['id'=>$good.goodsid])}" class="minicart-product-image">
                                                 <img src="{$good['img']}" alt="cart products">
                                                 <span class="quantity">{$good['quantity']}</span>
                                             </a>
                                             <div class="minicart-product-details">
-                                                <h6><a href="product-details-right-sidebar.html">{$good['goodsname']}</a></h6>
+                                                <h6><a href="{:url('index/goods/product_details',['id'=>$good.goodsid])}">{$good['goodsname']}</a></h6>
                                                 <span>￥{$good['unitprice']}</span>
                                             </div>
                                             <button class="close">
