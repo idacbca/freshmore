@@ -45,7 +45,37 @@ class Common extends Controller
             $cid=Session::get('cid');
             $cartdetail=db('cartdetail');
             $allgoods=$cartdetail->where('id',$cid)->select();
-    
+            
+            $cartdetail = db('cartdetail')->where('id',$cid)->select();
+            $totalprice = db('cartdetail')->where('id',$cid)->sum('totalprice');
+            $start=0;
+            
+            foreach ($cartdetail as $vo){
+                     
+            $freight=db('goods')->where('id',$vo['goodsid'])->value('freight');
+            if($freight>$start){
+                $start=$freight;
+             }
+            }
+          //消费大于99元免运费
+            if($totalprice>=99)
+                {
+                    $freight=0;
+                }
+            else
+                {
+                    $freight=$start;
+                }   
+        
+            $total=$totalprice+$freight;
+                session('total',$total);
+
+
+
+
+
+
+            
             return $allgoods;
     
         }
