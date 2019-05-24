@@ -276,7 +276,7 @@ class Goods extends Common
         }   
 
     $total=$totalprice+$freight;
-        session('total',$total);
+       
     $this->assign([
         'type' => $type,
         'title' => '鲜多多生鲜网 - 购物车',
