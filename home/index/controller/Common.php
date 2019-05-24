@@ -3,6 +3,7 @@ namespace app\index\controller;
 
 use think\Controller;
 use think\auth\Auth;
+use think\Session;
 
 class Common extends Controller
 {
@@ -39,6 +40,16 @@ class Common extends Controller
         }
         return $type;
     }
+   
+    public function getCart(){
+            $cid=Session::get('cid');
+            $cartdetail=db('cartdetail');
+            $allgoods=$cartdetail->where('id',$cid)->select();
+    
+            return $allgoods;
+    
+        }
+    
 
     public function getPath(){
         $m = db('goods_type');
