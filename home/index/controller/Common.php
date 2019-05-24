@@ -106,7 +106,7 @@ class Common extends Controller
         foreach($arr as $k=>&$pathname){           
             $arr[$k] = $m->where('id',$pathname)->value('name');               
         }
-        var_dump($arr);
+        //var_dump($arr);
         return $arr;
     }
     public function getimgPath(){
