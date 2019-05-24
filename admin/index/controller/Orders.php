@@ -12,8 +12,7 @@ class Orders extends Controller
        if($_POST){
           
          $search=$_POST['search'];
-         $orders=db('orders');
-        
+         $order=db('orders');
          $data = $orders->where('orderid','like','%'.$search.'%')->select();
          $count=count($data);
         
@@ -30,7 +29,8 @@ class Orders extends Controller
        //没有输入查询信息时
        else{
          $orders = db('orders');
-                        $data = $orders->select();
+                        $orders = $orders->select();
+                        $data=array_reverse($orders);
                         $count = count($data);
                         $this->assign([
                            'data' => $data,
