@@ -246,6 +246,35 @@ class Goods extends Common
      
     }
 
+    //修改购物车商品数量
+    public function changeNum()
+    {
+        //1.接受参数
+        $productid=intval($_POST['productid']);
+        $num=intval($_POST['num']);
+        $id=input('session.cid');
+
+        //完成更新操作
+        $pastquantity=db('cartdetail')->where('id',$id)->where('goodsid',$productid)->value('quantity');
+        $rc = db('cartdetail')->where('id',$id)->where('goodsid',$productid)->update(['quantity' => $num]);
+        $unitprice = db('cartdetail')->where('id',$id)->where('goodsid',$productid)->value('unitprice');
+        $totalprice= $unitprice*$num;
+        $rb = db('cartdetail')->where('id',$id)->where('goodsid',$productid)->update(['totalprice' => $totalprice]);
+        $variation= $num-$pastquantity;
+
+        $inventory=db('goods')->where('goodsid',$productid)->value('inventory');
+        $newinventory=$inventory+$variation;
+        $ra=db('goods')->where('goodsid',$productid)->update(['inventory' => $newinventory]);
+
+        if($ra&&$ra&&$rc)
+        {
+            echo 1;
+        }
+        else
+            echo 0;
+
+    }
+
     public function cart()
     {
     $type = $this->getCatgory();
@@ -285,6 +314,7 @@ class Goods extends Common
         'freight'=>$freight,
         'total'=>$total,
         'allgoods'=> $allgoods,
+        'id'=>$id,
         
     ]);
 

@@ -50,6 +50,24 @@ function verify(){
    return true;
 
 }
+
+function   changeNum(productid,num){   
+        var url="changeNum";
+        var data={'productid':productid,'num':num};
+        var success=function(data)  {
+             if(echo==1)
+            {
+              //var price=($("#product-"+productid).val())*($("#p-"+productid)).html();
+              //$("#total-"+productid).html(price);
+            //   var price = document.getElementById("p").value;
+            //   var quantity = document.getElementById("product").value;
+            //   document.getElementById("total").innerHTML = price * quantity;
+               
+            }
+        }  
+       $.post(url,data,success,"json");
+       var a=location.reload();
+                  }
 </script>
 <body>
 	
@@ -91,12 +109,14 @@ function verify(){
 										<a href="product-details-right-sidebar.html" class="product-title">{$vo.goodsname}</a>
 									</td>
 
-									<td>{$vo.unitprice}</td>
-
-									<td>{$vo.quantity}</td>
-
+									<td><span id="p">{$vo.unitprice}</span></td>
+                                    <td align="center">
+                                    
+                            <input type="text"  class="inputBg" name="quantity" id="product" value="{$vo.quantity}" onchange="changeNum({$vo.goodsid},this.value)">
+                                           
+                                    </td>
 									<td>
-										<span class="total-price">{$vo.totalprice}</span>
+										<span class="total-price" id="total">{$vo.totalprice}</span>
 									</td>
 									<td>
                                     <button class="remove-product"  onClick="cart_del(this, {$vo.selfid})">
