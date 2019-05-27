@@ -21,7 +21,6 @@ class Login extends Controller
     	$admin_name = $_POST['admin_name'];
         $admin_password = $_POST['admin_password'];
         $m = db('admin_user');
-    	// $admin_info = $m->where('admin_name', $admin_name)->where('admin_password', md5($admin_password))->find();
         $admin_info = $m
         ->where('admin_name', $_POST['admin_name'])
         ->find();

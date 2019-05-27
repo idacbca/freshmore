@@ -7,7 +7,9 @@ class Users extends Common
 {
     public function admin_add()
     {
-    	$data = db('auth_group')->where("status=1")->select();
+        $data = db('auth_group')
+        ->where("status=1")
+        ->select();
         $this->assign('data',$data);
         return $this->fetch();
     }
@@ -15,8 +17,8 @@ class Users extends Common
     public function admin_add_operate()
     {
     	if($_POST){
-            $data['admin_name']=$_POST['admin_name'];
-            $data['admin_password']=md5($_POST['admin_password']);
+            $data['admin_name'] = $_POST['admin_name'];
+            $data['admin_password'] = md5($_POST['admin_password']);
                 
             $m=db('admin_user');//用户数据库
             $name=$m->where('admin_name', $data['admin_name'])->find();
@@ -309,11 +311,6 @@ class Users extends Common
             ]);
             return $this->fetch();
         }
-    }
-
-    // 用户添加页
-    public function user_add(){
-
     }
 
     // 修改用户密码页

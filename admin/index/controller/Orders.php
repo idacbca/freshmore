@@ -58,14 +58,10 @@ class Orders extends Controller
     //订单详情
     public function ordersdetail()
     {
-        
         $id = input('param.id');//获取传入的id
         $data=db('ordersdetail')->where('orderid',$id)->select();
-
-
         $this->assign('data',$data);
         return $this->fetch();
-
     }
 
     //删除订单详情

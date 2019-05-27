@@ -100,34 +100,8 @@ class Goods extends Common
 
 	//修改商品信息函数
 	public function goods_edit(){
-		/*$data['id'] = $_POST['id'];
-		$data['goodsname'] = $_POST['goodsname'];
-		$tid = explode(",", $_POST['tid']);
-		$data['tid'] = $tid[0];
-		$data['tpid'] = $tid[1];
-		$data['unit'] = $_POST['unit'];
-		$data['attributes'] = $_POST['attributes'];
-		// $data['imagepath'] = "";
-		$data['number'] = $_POST['number'];
-		$data['barcode'] = $_POST['barcode'];
-		$data['curprice'] = $_POST['curprice'];
-		$data['oriprice'] = $_POST['oriprice'];
-		$data['cosprice'] = $_POST['cosprice'];
-		$data['inventory'] = $_POST['inventory'];
-		$data['restrict'] = $_POST['restrict'];
-		$data['already'] = $_POST['already'];
-		$data['freight'] = $_POST['freight'];
-		$data['status'] = $_POST['status'];
-		$data['reorder'] = $_POST['reorder'];
-		// $data['file'] = $_POST['file'];
-		$data['text'] = $_POST['editorValue'];
-
-		$db = db('goods');
-		$result = $db->where('id', $data['id'])->update($data);*/
-
 		$goods = model('goods');
 		$tid = explode(",", $_POST['tid']);
-		
 		
 		if(isset($_POST['imagepath'])){
 				$result = $goods->save([
@@ -145,7 +119,7 @@ class Goods extends Common
 				'text' => $_POST['editorValue'],
 				'filepath' =>implode(',', $_POST['imagepath'])
 			],['id' => $_POST['id']]);
-		}else{
+		} else{
 			$result = $goods->save([
 				'goodsname'  =>  $_POST['goodsname'],
 				'tid' => $tid[0],
@@ -158,8 +132,7 @@ class Goods extends Common
 				'inventory' => $_POST['inventory'],
 				'freight' => $_POST['freight'],
 				'status' => $_POST['status'],
-				'text' => $_POST['editorValue'],
-				
+				'text' => $_POST['editorValue']
 			],['id' => $_POST['id']]);
 
 		}
@@ -183,26 +156,6 @@ class Goods extends Common
 
 	//添加商品函数
 	public function goods_add(){
-		/*$data['goodsname'] = $_POST['goodsname'];
-		$data['tid'] = $tid[0];
-		$data['tpid'] = $tid[1];
-		$data['unit'] = $_POST['unit'];
-		$data['attributes'] = $_POST['attributes'];
-		$data['imagepath'] = $_POST['imagepath'];
-		$data['number'] = $_POST['number'];
-		$data['barcode'] = $_POST['barcode'];
-		$data['curprice'] = $_POST['curprice'];
-		$data['oriprice'] = $_POST['oriprice'];
-		$data['cosprice'] = $_POST['cosprice'];
-		$data['inventory'] = $_POST['inventory'];
-		$data['restrict'] = $_POST['restrict'];
-		$data['already'] = $_POST['already'];
-		$data['freight'] = $_POST['freight'];
-		$data['status'] = $_POST['status'];
-		$data['reorder'] = $_POST['reorder'];
-	    $data['file'] = $_POST['file'];
-		$data['text'] = $_POST['editorValue'];*/
-
 		$goods = model('goods');
 		$tid = explode(",", $_POST['tid']);
 		$goods->data([
