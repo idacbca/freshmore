@@ -27,8 +27,8 @@ class Checkout extends Common
                  $start=$freight;
              }
             }
-//消费大于五万免运费
-        if($totalprice>=50000)
+//消费大于99免运费
+        if($totalprice>=99)
            {
                $freight=0;
            }
